@@ -1,11 +1,12 @@
 import { FC } from 'react'
 
+import { Hero } from '~/components'
 import { Container } from '~/styles/pages'
 
 const IndexPage: FC = () => {
   return (
     <Container>
-      <h1>Hello</h1>
+      <Hero />
     </Container>
   )
 }
