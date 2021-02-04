@@ -12,7 +12,7 @@ export const GlobalStyle = createGlobalStyle`
     color: ${({ theme: { colors } }) => colors.text};
   }
 
-  body, input, button, textarea {
+  body, input, button, textarea, a {
     font: 400 16px Quicksand, sans-serif;
   }
 
@@ -23,6 +23,11 @@ export const GlobalStyle = createGlobalStyle`
   h2 {
     font-family: 'Quicksand';
     font-weight: bold;
+  }
+
+  li {
+    list-style: none;
+    text-transform: uppercase;
   }
 
   a {
