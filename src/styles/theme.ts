@@ -5,6 +5,7 @@ export const theme = {
     white: '#F5F5F5',
     ice: '#EDEDF4',
     primary: '#DC2430',
+    primaryDark: '#A5161F',
     primaryLight: '#E5616A',
     secondary: '#FF9F1C',
     secondaryLight: '#FFBB5C',

@@ -10,6 +10,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     background: ${({ theme: { colors } }) => colors.background};
     color: ${({ theme: { colors } }) => colors.text};
+    min-height: 100vh;
   }
 
   body, input, button, textarea, a {

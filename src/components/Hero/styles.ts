@@ -5,7 +5,7 @@ export const Container = styled.div`
   justify-content: center;
   flex-direction: column;
   padding: 0 10vw;
-  min-height: 90vh;
+  min-height: 80vh;
   width: 100%;
   background-image: url('/hero-bg.jpg');
   background-size: cover;
@@ -18,12 +18,12 @@ export const Container = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    height: 100%;
+    height: 80%;
     z-index: 0;
     background: linear-gradient(
       180deg,
       rgba(0, 0, 0, 1) 0%,
-      rgba(255, 255, 255, 0) 100%
+      rgba(255, 255, 255, 0) 70%
     );
   }
 `
