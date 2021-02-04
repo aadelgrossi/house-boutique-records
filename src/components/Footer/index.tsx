@@ -15,7 +15,6 @@ import {
 } from './styles'
 
 export const Footer: FC = () => {
-  console.log({ socialIcons })
   return (
     <Container>
       <Content>
