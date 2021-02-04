@@ -19,9 +19,9 @@ export const locales = [
 ]
 
 export const socialIcons = [
-  { Icon: SiBeatport, url: 'http://beatport.com' },
+  { Icon: SiBeatport, url: 'https://beatport.com' },
   { Icon: SiSpotify, url: 'https://spotify.com' },
-  { Icon: SiSoundcloud, url: 'http://soundcloud.com' },
-  { Icon: SiInstagram, url: 'http://instagram.com' },
+  { Icon: SiSoundcloud, url: 'https://soundcloud.com' },
+  { Icon: SiInstagram, url: 'https://instagram.com' },
   { Icon: FaFacebookF, url: 'https://facebook.com' }
 ]

@@ -25,10 +25,11 @@ export const Footer: FC = () => {
           <Title>Find Us On</Title>
           <SocialIcons>
             {socialIcons.map(({ Icon, url }) => (
-              <a key={url} href={url} style={{ cursor: 'pointer' }}>
-                <Icon color="#fff" size={22} />
-                {/* {url} */}
-              </a>
+              <Link key={url} href={url}>
+                <a>
+                  <Icon color="#fff" size={22} />
+                </a>
+              </Link>
             ))}
           </SocialIcons>
         </Group>
