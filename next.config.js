@@ -6,5 +6,10 @@ module.exports = {
   webpack: config => {
     // extend your webpack configuration here
     return config
+  },
+  i18n: {
+    defaultLocale: 'pt-BR',
+    localeDetection: false,
+    locales: ['en', 'pt-BR', 'es']
   }
 }

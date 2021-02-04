@@ -1,28 +1,27 @@
 import { FC, useState } from 'react'
 
-import cn from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 export const Header: FC = () => {
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false)
+  const { locale: activeLocale } = useRouter()
 
   return (
-    <header className="bg-green-600">
-      <div className="flex flex-wrap items-center justify-between lg:container px-4 py-6 mx-auto md:flex-no-wrap md:px-6">
+    <header className="bg-green-600 bg-opacity-40 sticky">
+      {/* <div className="flex flex-wrap items-center justify-between lg:container px-4 py-6 mx-auto md:flex-no-wrap md:px-6">
         <div className="flex items-center">
           <Image
-            src="/tailwind-logo.svg"
-            width={40}
-            height={40}
+            src="/logo.jpg"
+            width={150}
+            height={150}
             priority
             alt="Tailwind CSS logo"
           />
 
           <Link href="/">
-            <a className="text-lg md:text-xl font-bold ml-3 text-white">
-              Next.js Starter Tailwind
-            </a>
+            <a className="text-lg md:text-xl font-bold ml-3 text-white"></a>
           </Link>
         </div>
 
@@ -57,7 +56,27 @@ export const Header: FC = () => {
             </li>
           ))}
         </ul>
-      </div>
+
+        <ul>
+          {[
+            { locale: 'en', label: 'English' },
+            { locale: 'pt-BR', label: 'Português' }
+          ].map(({ label, locale }) => (
+            <li key={locale}>
+              <Link href="/" locale={locale}>
+                <a
+                  className={cn(
+                    'block text-black',
+                    locale === activeLocale ? 'font-bold' : 'font-normal'
+                  )}
+                >
+                  {label}
+                </a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div> */}
     </header>
   )
 }

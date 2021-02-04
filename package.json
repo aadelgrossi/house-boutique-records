@@ -1,7 +1,7 @@
 {
-  "name": "next-tailwind-typescript",
-  "version": "1.0.0",
-  "description": "Next.js + TypeScript starter styled with Tailwind CSS and custom ESLint/Prettier config",
+  "name": "house-boutique-records",
+  "version": "0.0.1",
+  "description": "House Boutique Records official website",
   "main": "index.js",
   "scripts": {
     "dev": "next",
@@ -13,16 +13,16 @@
   "dependencies": {
     "next": "10.0.4",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "styled-components": "^5.2.1"
   },
   "devDependencies": {
-    "@types/classnames": "^2.2.11",
     "@types/node": "^14.14.22",
     "@types/react": "^17.0.0",
+    "@types/styled-components": "^5.1.7",
     "@typescript-eslint/eslint-plugin": "^4.14.2",
     "@typescript-eslint/parser": "^4.14.2",
     "autoprefixer": "10.1.0",
-    "classnames": "2.2.6",
     "eslint": "^7.19.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-config-standard": "^16.0.2",
@@ -36,13 +36,7 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-standard": "^5.0.0",
-    "postcss": "8.2.1",
-    "postcss-100vh-fix": "1.0.2",
-    "postcss-flexbugs-fixes": "5.0.2",
-    "postcss-hover-media-feature": "1.0.0",
-    "postcss-preset-env": "6.7.0",
     "prettier": "^2.2.1",
-    "tailwindcss": "2.0.2",
     "typescript": "^4.1.3"
   }
 }
