@@ -98,7 +98,9 @@ export const Releases: React.FC<Props> = ({ featured, latest, upcoming }) => {
             <Card key={release.id}>
               <ImageWrapper>
                 <Image src={release.coverArt.url} width={200} height={200} />
-                <ReleaseDate>{formatDate(release.releaseDate)}</ReleaseDate>
+                <ReleaseDate>
+                  {formatDate(release.releaseDate, locale)}
+                </ReleaseDate>
               </ImageWrapper>
               <TrackTitle>{release.title}</TrackTitle>
               {release.artists.map(artist => (
