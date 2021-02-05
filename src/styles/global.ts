@@ -12,6 +12,7 @@ export const GlobalStyle = createGlobalStyle`
     background: ${({ theme: { colors } }) => colors.background};
     color: ${({ theme: { colors } }) => colors.text};
     min-height: 100vh;
+    overflow-x: hidden;
     -webkit-font-smoothing: antialised;
   }
 
