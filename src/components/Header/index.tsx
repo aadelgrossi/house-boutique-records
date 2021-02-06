@@ -10,8 +10,15 @@ import { useTranslation } from '~/hooks/useTranslation'
 import { Container, Navbar, LocaleSwitcher, Menu, MenuItem } from './styles'
 
 export const Header: FC = () => {
-  const { locale: activeLocale, route: activeRoute } = useRouter()
+  const { locale: activeLocale, asPath, route: activeRoute } = useRouter()
   const { t } = useTranslation()
+
+  console.log({ activeRoute })
+
+  const isRouteActive = (route: string) =>
+    route === '/'
+      ? route === activeRoute
+      : asPath.includes(route.replace('/', ''))
 
   return (
     <Container>
@@ -22,7 +29,7 @@ export const Header: FC = () => {
           {navItems.map(({ name, route }) => (
             <li key={name}>
               <Link href={route} locale={activeLocale}>
-                <MenuItem active={route === activeRoute}>
+                <MenuItem active={isRouteActive(route)}>
                   {t(`header_${name}`)}
                 </MenuItem>
               </Link>
@@ -34,7 +41,7 @@ export const Header: FC = () => {
       <LocaleSwitcher>
         {locales.map(({ label, locale }) => (
           <li key={locale}>
-            <Link href="/" locale={locale}>
+            <Link href={asPath} locale={locale}>
               <MenuItem active={locale === activeLocale}>{label}</MenuItem>
             </Link>
           </li>
