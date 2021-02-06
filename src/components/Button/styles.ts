@@ -1,11 +1,16 @@
 import styled, { css } from 'styled-components'
 
-export const Container = styled.div<{ outline: boolean }>`
-  padding: 0.8rem 1.2rem;
+type Props = { outline: boolean }
+
+export const Container = styled.div<Props>`
+  padding: 0.8rem 1.6rem;
   height: 56px;
   cursor: pointer;
   text-transform: uppercase;
   display: flex;
+  align-items: center;
+  width: min(220px, 20rem);
+  justify-content: center;
   flex-shrink: 0;
   background-color: ${props =>
     props.outline ? 'transparent' : props.theme.colors.secondary};
