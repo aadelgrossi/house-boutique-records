@@ -41,7 +41,7 @@ export const Contents = styled.div`
 `
 
 export const Title = styled.h1`
-  font-size: clamp(38px, 6rem, 5vw);
+  font-size: clamp(38px, 6rem, 4.5vw);
   font-family: 'Anton';
   width: clamp(359px, 37rem, 56vw);
   line-height: 0.95;

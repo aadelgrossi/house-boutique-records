@@ -12,6 +12,7 @@ export const Title = styled.h1`
   text-transform: uppercase;
   font-size: 1.3em;
   font-weight: 500;
+  margin-bottom: 0.5em;
 `
 
 export const MainContent = styled.div`
@@ -55,13 +56,20 @@ export const SocialIcons = styled.div`
   > a + a {
     margin-left: 20px;
   }
+`
 
-  > a {
-    display: flex;
-    align-items: center;
-    border: 1px solid ${props => props.theme.colors.ice};
-    border-radius: 26px;
-    padding: 12px 12px;
+export const SocialButton = styled.a<{ color: string }>`
+  display: flex;
+  align-items: center;
+  box-shadow: inset 0 0 0 1px ${props => props.theme.colors.ice};
+  border-radius: 26px;
+  padding: 12px 12px;
+  transition: 0.2s all ease-in-out;
+
+  &:hover {
+    background-color: ${props => props.color};
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: unset;
   }
 `
 export const FooterDetail = styled.div`

@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
+import { useTranslation } from '~/hooks/useTranslation'
 import { formatDate } from '~/utils/formatDate'
 
 import {
@@ -33,12 +34,13 @@ type Props = {
 
 export const Releases: React.FC<Props> = ({ featured, latest, upcoming }) => {
   const { locale } = useRouter()
+  const { t } = useTranslation()
 
   return (
     <Container>
       <ReleasedContainer>
         <FeaturedContainer>
-          <Title>Featured Release</Title>
+          <Title>{t('home_featuredReleaseHeading')}</Title>
           <FeaturedContent>
             <FeaturedImageWrapper>
               <Image
@@ -63,7 +65,7 @@ export const Releases: React.FC<Props> = ({ featured, latest, upcoming }) => {
         </FeaturedContainer>
 
         <LatestReleasesContainer>
-          <Title>Latest</Title>
+          <Title>{t('home_releasesButton')}</Title>
 
           <LatestReleasesContent>
             {latest.map(release => (
@@ -91,7 +93,7 @@ export const Releases: React.FC<Props> = ({ featured, latest, upcoming }) => {
       </ReleasedContainer>
 
       <UpcomingReleasesContainer>
-        <Title>Upcoming</Title>
+        <Title>{t('home_upcomingReleasesHeading')}</Title>
 
         <UpcomingReleasesContent>
           {upcoming.map(release => (

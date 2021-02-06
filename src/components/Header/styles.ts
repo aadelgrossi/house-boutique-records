@@ -19,7 +19,7 @@ export const Navbar = styled.nav`
 export const MenuItem = styled.a<{ active: boolean }>`
   text-decoration: none;
 
-  font-weight: ${props => (props.active ? 'bold' : 'normal')};
+  font-weight: ${props => (props.active ? 800 : 500)};
   cursor: ${props => (props.active ? 'auto' : 'pointer')};
 `
 

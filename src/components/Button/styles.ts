@@ -9,7 +9,6 @@ export const Container = styled.div<Props>`
   text-transform: uppercase;
   display: flex;
   align-items: center;
-  width: min(220px, 20rem);
   justify-content: center;
   flex-shrink: 0;
   background-color: ${props =>
