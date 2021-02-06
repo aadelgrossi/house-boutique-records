@@ -23,15 +23,15 @@ export const Footer: FC = () => {
 
         <Items>
           <Item>
-            <Title>Find Us On</Title>
+            <Title>Socials</Title>
             <SocialIcons>
-              {/* {socialIcons.map(i => (
+              {socialIcons.map(({ Icon, url }) => (
                 <Link key={url} href={url}>
                   <a>
-                    <Icon color="#fff" size={22} />
+                    <Icon color="#fff" size={24} />
                   </a>
                 </Link>
-              ))} */}
+              ))}
             </SocialIcons>
           </Item>
 
