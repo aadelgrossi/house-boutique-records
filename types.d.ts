@@ -2,7 +2,19 @@ interface Artist {
   id: string
   name: string
   slug: string
+  localizations: Array<{
+    bio: {
+      html: string
+    }
+    locale: string
+  }>
+  artistPlatforms: Array<{
+    id: string
+    platform: string
+    url: string
+  }>
   thumb: Asset
+  releases: Release[]
   backgroundImage: Asset
 }
 
@@ -11,7 +23,7 @@ interface Asset {
 }
 
 interface Release {
-  id
+  id: string
   title: string
   releaseDate: string
   artists: Artist[]
