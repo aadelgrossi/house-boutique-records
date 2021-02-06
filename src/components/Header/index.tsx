@@ -5,11 +5,13 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import { navItems, locales } from '~/constants'
+import { useTranslation } from '~/hooks/useTranslation'
 
 import { Container, Navbar, LocaleSwitcher, Menu, MenuItem } from './styles'
 
 export const Header: FC = () => {
   const { locale: activeLocale, route: activeRoute } = useRouter()
+  const { t } = useTranslation()
 
   return (
     <Container>
@@ -20,7 +22,9 @@ export const Header: FC = () => {
           {navItems.map(({ name, route }) => (
             <li key={name}>
               <Link href={route} locale={activeLocale}>
-                <MenuItem active={route === activeRoute}>{name}</MenuItem>
+                <MenuItem active={route === activeRoute}>
+                  {t(`header_${name}`)}
+                </MenuItem>
               </Link>
             </li>
           ))}

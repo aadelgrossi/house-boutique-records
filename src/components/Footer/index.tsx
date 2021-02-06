@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { socialIcons } from '~/constants'
+import { useTranslation } from '~/hooks/useTranslation'
 
 import {
   Container,
@@ -11,11 +12,13 @@ import {
   FooterDetail,
   Item,
   SocialIcons,
+  SocialButton,
   Items,
   Title
 } from './styles'
 
 export const Footer: FC = () => {
+  const { t } = useTranslation()
   return (
     <Container>
       <MainContent>
@@ -23,20 +26,20 @@ export const Footer: FC = () => {
 
         <Items>
           <Item>
-            <Title>Socials</Title>
+            <Title>{t('footer_socials')}</Title>
             <SocialIcons>
-              {socialIcons.map(({ Icon, url }) => (
+              {socialIcons.map(({ Icon, url, color }) => (
                 <Link key={url} href={url}>
-                  <a>
+                  <SocialButton color={color}>
                     <Icon color="#fff" size={24} />
-                  </a>
+                  </SocialButton>
                 </Link>
               ))}
             </SocialIcons>
           </Item>
 
           <Item>
-            <Title>Get in touch</Title>
+            <Title>{t('footer_contact')}</Title>
             <p>contact@houseboutiquerecords.com</p>
           </Item>
         </Items>
