@@ -26,11 +26,7 @@ export const Container = styled.div`
     left: 0;
     height: 80%;
     z-index: 0;
-    background: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.7) 0%,
-      rgba(255, 255, 255, 0) 70%
-    );
+    background: linear-gradient(0deg, #111214 0%, rgba(255, 255, 255, 0) 70%);
   }
 `
 
