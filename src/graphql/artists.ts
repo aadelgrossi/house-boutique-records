@@ -41,6 +41,10 @@ const SINGLE_ARTIST = gql`
       }
       releases(first: 5, orderBy: releaseDate_DESC) {
         title
+        artists {
+          name
+          slug
+        }
         coverArt {
           url
         }
