@@ -1,11 +1,11 @@
 import { FaFacebookF } from 'react-icons/fa'
 import { SiBeatport, SiSoundcloud, SiInstagram } from 'react-icons/si'
 export const navItems = [
-  { name: 'Home', route: '/' },
-  { name: 'Releases', route: '/releases' },
-  { name: 'Artists', route: '/artists' },
-  { name: 'News', route: '/news' },
-  { name: 'Radio', route: '/radio' }
+  { name: 'home', route: '/' },
+  { name: 'releases', route: '/releases' },
+  { name: 'artists', route: '/artists' },
+  { name: 'news', route: '/news' },
+  { name: 'radio', route: '/radio' }
 ]
 
 export const locales = [
@@ -14,15 +14,25 @@ export const locales = [
 ]
 
 export const socialIcons = [
-  { Icon: SiSoundcloud, url: 'https://soundcloud.com/houseboutiquerecords' },
+  {
+    Icon: SiSoundcloud,
+    url: 'https://soundcloud.com/houseboutiquerecords',
+    color: '#ff7700 '
+  },
   {
     Icon: SiBeatport,
-    url: 'https://www.beatport.com/label/house-boutique-records/93262'
+    url: 'https://www.beatport.com/label/house-boutique-records/93262',
+    color: '#94D500'
   },
-  { Icon: SiInstagram, url: 'https://www.instagram.com/houseboutiquerecords/' },
+  {
+    Icon: SiInstagram,
+    url: 'https://www.instagram.com/houseboutiquerecords/',
+    color: '#E1306C'
+  },
 
   {
     Icon: FaFacebookF,
-    url: 'https://www.facebook.com/House-Boutique-Records-103196021795458'
+    url: 'https://www.facebook.com/House-Boutique-Records-103196021795458',
+    color: '#4267B2'
   }
 ]
