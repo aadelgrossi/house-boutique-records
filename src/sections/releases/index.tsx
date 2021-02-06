@@ -4,8 +4,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
+import ReleaseCard from '~/components/ReleaseCard'
 import { useTranslation } from '~/hooks/useTranslation'
-import { formatDate } from '~/utils/formatDate'
 
 import {
   Container,
@@ -16,14 +16,11 @@ import {
   FeaturedInfo,
   FeaturedImageWrapper,
   Artist,
-  ImageWrapper,
   TrackTitle,
-  Card,
   LatestReleasesContainer,
   LatestReleasesContent,
   UpcomingReleasesContainer,
-  UpcomingReleasesContent,
-  ReleaseDate
+  UpcomingReleasesContent
 } from './styles'
 
 type Props = {
@@ -69,24 +66,7 @@ export const Releases: React.FC<Props> = ({ featured, latest, upcoming }) => {
 
           <LatestReleasesContent>
             {latest.map(release => (
-              <Card key={release.id}>
-                <Image
-                  src={release.coverArt.url}
-                  width={200}
-                  height={200}
-                  layout="intrinsic"
-                />
-                <TrackTitle>{release.title}</TrackTitle>
-                {release.artists.map(artist => (
-                  <Link
-                    key={artist.id}
-                    href={`/artists/${artist.slug}`}
-                    locale={locale}
-                  >
-                    <Artist>{artist.name}</Artist>
-                  </Link>
-                ))}
-              </Card>
+              <ReleaseCard key={release.id} {...release} />
             ))}
           </LatestReleasesContent>
         </LatestReleasesContainer>
@@ -97,26 +77,7 @@ export const Releases: React.FC<Props> = ({ featured, latest, upcoming }) => {
 
         <UpcomingReleasesContent>
           {upcoming.map(release => (
-            <Card key={release.id}>
-              <ImageWrapper>
-                <Image src={release.coverArt.url} width={200} height={200} />
-                <ReleaseDate>
-                  {formatDate(release.releaseDate, locale)}
-                </ReleaseDate>
-              </ImageWrapper>
-              <TrackTitle>{release.title}</TrackTitle>
-              {release.artists.map(artist => (
-                <>
-                  <Link
-                    key={artist.id}
-                    href={`/artists/${artist.slug}`}
-                    locale={locale}
-                  >
-                    <Artist>{artist.name}</Artist>
-                  </Link>
-                </>
-              ))}
-            </Card>
+            <ReleaseCard key={release.id} {...release} unreleased />
           ))}
         </UpcomingReleasesContent>
       </UpcomingReleasesContainer>
