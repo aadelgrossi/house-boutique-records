@@ -13,7 +13,6 @@ export const GlobalStyle = createGlobalStyle`
     color: ${({ theme: { colors } }) => colors.text};
     min-height: 100vh;
     overflow-x: hidden;
-    -webkit-font-smoothing: antialised;
   }
 
   body, input, button, textarea, a {
