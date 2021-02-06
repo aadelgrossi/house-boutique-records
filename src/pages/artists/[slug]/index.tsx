@@ -6,7 +6,9 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Image from 'next/image'
 
 import { SocialIcon } from '~/components'
+import ReleaseCard from '~/components/ReleaseCard'
 import { fetchArtists, fetchSingleArtist } from '~/graphql'
+import { useTranslation } from '~/hooks/useTranslation'
 
 import {
   Container,
@@ -16,7 +18,9 @@ import {
   ImageContainer,
   ArtistSocials,
   ArtistHeader,
-  ReleasesContainer
+  ReleasesContainer,
+  Title,
+  Releases
 } from './styles'
 
 interface ArtistPageProps {
@@ -28,8 +32,10 @@ interface Params extends ParsedUrlQuery {
 }
 
 const Artist: NextPage<ArtistPageProps> = ({
-  artist: { backgroundImage, name, localizations, artistPlatforms }
+  artist: { backgroundImage, name, localizations, artistPlatforms, releases }
 }) => {
+  const { t } = useTranslation()
+
   return (
     <Container>
       <ImageContainer>
@@ -42,16 +48,27 @@ const Artist: NextPage<ArtistPageProps> = ({
       </ImageContainer>
       <Content>
         <ArtistHeader>
-          <Name>{name}</Name>
           <ArtistSocials>
             {artistPlatforms.map(platform => (
               <SocialIcon key={platform.id} {...platform} />
             ))}
           </ArtistSocials>
+          <Name>{name}</Name>
         </ArtistHeader>
         <Bio allowDangerousHtml={true}>{localizations[0]?.bio.html}</Bio>
+        <ReleasesContainer>
+          <Title>
+            {t('artists_tracksBy')}
+            {` ${name}`}
+          </Title>
+
+          <Releases>
+            {releases.map(release => (
+              <ReleaseCard key={release.id} {...release} />
+            ))}
+          </Releases>
+        </ReleasesContainer>
       </Content>
-      <ReleasesContainer></ReleasesContainer>
     </Container>
   )
 }

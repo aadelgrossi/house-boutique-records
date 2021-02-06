@@ -19,29 +19,23 @@ export const ImageContainer = styled.div`
     height: 100%;
     z-index: 1;
 
-    background: rgba(17, 18, 20, 0)
-      linear-gradient(
-        180deg,
-        rgba(17, 18, 20, 0),
-        rgba(17, 18, 20, 0.03) 15%,
-        rgba(17, 18, 20, 0.125) 30%,
-        rgba(17, 18, 20, 0.25) 46%,
-        rgba(17, 18, 20, 0.4) 61%,
-        rgba(17, 18, 20, 0.553) 75%,
-        rgba(17, 18, 20, 0.694) 88%,
-        rgba(17, 18, 20, 0.9) 95%,
-        rgba(17, 18, 20, 1)
-      )
-      repeat scroll 0% 0%;
+    background: rgb(17, 18, 20);
+    background: linear-gradient(
+      360deg,
+      rgba(17, 18, 20, 1) 0%,
+      rgba(17, 18, 20, 0.98) 4%,
+      rgba(17, 18, 20, 0.65) 33%,
+      rgba(17, 18, 20, 0) 85%
+    );
   }
 `
 
 export const ArtistHeader = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   gap: 1rem;
-  align-items: flex-end;
+  align-items: flex-start;
 `
 
 export const ArtistSocials = styled.div`
@@ -49,7 +43,6 @@ export const ArtistSocials = styled.div`
   flex-direction: row;
   align-items: center;
   gap: 1rem;
-  justify-content: space-between;
 `
 
 export const Name = styled.h1`
@@ -82,6 +75,17 @@ export const Content = styled.div`
   }
 `
 
-export const ReleasesContainer = styled.div`
-  height: 200px;
+export const ReleasesContainer = styled.div``
+
+export const Releases = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 1rem;
+`
+
+export const Title = styled.h2`
+  text-transform: uppercase;
+  font-family: 'Ramabhadra';
+  margin-bottom: 1em;
 `
