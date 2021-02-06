@@ -1,6 +1,7 @@
 import React from 'react'
 
-import { Button } from '../'
+import { Button } from '~/components'
+
 import { Container, Title, ButtonGroup, Contents } from './styles'
 
 export const Hero: React.FC = () => {

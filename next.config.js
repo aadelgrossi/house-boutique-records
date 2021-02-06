@@ -8,8 +8,11 @@ module.exports = {
     return config
   },
   i18n: {
-    defaultLocale: 'pt-BR',
+    defaultLocale: 'pt',
     localeDetection: false,
-    locales: ['en', 'pt-BR', 'es']
+    locales: ['en', 'pt']
+  },
+  images: {
+    domains: ['media.graphcms.com']
   }
 }

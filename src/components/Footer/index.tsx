@@ -7,38 +7,40 @@ import { socialIcons } from '~/constants'
 
 import {
   Container,
-  Content,
+  MainContent,
   FooterDetail,
-  Group,
+  Item,
   SocialIcons,
+  Items,
   Title
 } from './styles'
 
 export const Footer: FC = () => {
-  console.log({ socialIcons })
   return (
     <Container>
-      <Content>
-        <Image src="/logo.jpg" width={150} height={150}></Image>
+      <MainContent>
+        <Image src="/logo.jpg" width={120} height={120} layout="fixed" />
 
-        <Group>
-          <Title>Find Us On</Title>
-          <SocialIcons>
-            {socialIcons.map(({ Icon, url }) => (
-              <Link key={url} href={url}>
-                <a>
-                  <Icon color="#fff" size={22} />
-                </a>
-              </Link>
-            ))}
-          </SocialIcons>
-        </Group>
+        <Items>
+          <Item>
+            <Title>Socials</Title>
+            <SocialIcons>
+              {socialIcons.map(({ Icon, url }) => (
+                <Link key={url} href={url}>
+                  <a>
+                    <Icon color="#fff" size={24} />
+                  </a>
+                </Link>
+              ))}
+            </SocialIcons>
+          </Item>
 
-        <Group>
-          <Title>Demos & Inquiries</Title>
-          <p>contact@houseboutiquerecords.com</p>
-        </Group>
-      </Content>
+          <Item>
+            <Title>Get in touch</Title>
+            <p>contact@houseboutiquerecords.com</p>
+          </Item>
+        </Items>
+      </MainContent>
       <FooterDetail>
         <p>2021 House Boutique Records</p>
       </FooterDetail>

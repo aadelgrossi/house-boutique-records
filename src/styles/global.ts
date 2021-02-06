@@ -5,25 +5,28 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    outline: 0;
   }
 
   body {
     background: ${({ theme: { colors } }) => colors.background};
     color: ${({ theme: { colors } }) => colors.text};
     min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialised;
   }
 
   body, input, button, textarea, a {
-    font: 400 16px Quicksand, sans-serif;
+    font: 15px Quicksand, sans-serif;
   }
 
   h1 {
-    font-family: 'Ramabhadra';
+    font-family: Ramabhadra;
   }
 
   h2 {
-    font-family: 'Quicksand';
-    font-weight: bold;
+    font-family: Quicksand;
+    font-weight: 600;
   }
 
   li {

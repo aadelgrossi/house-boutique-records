@@ -1,10 +1,5 @@
 import { FaFacebookF } from 'react-icons/fa'
-import {
-  SiBeatport,
-  SiSoundcloud,
-  SiInstagram,
-  SiSpotify
-} from 'react-icons/si'
+import { SiBeatport, SiSoundcloud, SiInstagram } from 'react-icons/si'
 export const navItems = [
   { name: 'Home', route: '/' },
   { name: 'Releases', route: '/releases' },
@@ -15,13 +10,19 @@ export const navItems = [
 
 export const locales = [
   { locale: 'en', label: 'English' },
-  { locale: 'pt-BR', label: 'Português' }
+  { locale: 'pt', label: 'Português' }
 ]
 
 export const socialIcons = [
-  { Icon: SiBeatport, url: 'https://beatport.com' },
-  { Icon: SiSpotify, url: 'https://spotify.com' },
-  { Icon: SiSoundcloud, url: 'https://soundcloud.com' },
-  { Icon: SiInstagram, url: 'https://instagram.com' },
-  { Icon: FaFacebookF, url: 'https://facebook.com' }
+  { Icon: SiSoundcloud, url: 'https://soundcloud.com/houseboutiquerecords' },
+  {
+    Icon: SiBeatport,
+    url: 'https://www.beatport.com/label/house-boutique-records/93262'
+  },
+  { Icon: SiInstagram, url: 'https://www.instagram.com/houseboutiquerecords/' },
+
+  {
+    Icon: FaFacebookF,
+    url: 'https://www.facebook.com/House-Boutique-Records-103196021795458'
+  }
 ]
