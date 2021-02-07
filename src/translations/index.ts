@@ -20,7 +20,7 @@ export const messages: Translation = {
     seeAll: 'Ver todos',
     footer_socials: 'Redes sociais',
     footer_contact: 'Fale com a gente',
-    artists_tracksBy: 'Lançamentos e músicas de'
+    artists_tracksBy: 'Lançamentos por'
   },
   en: {
     header_home: 'Home',
