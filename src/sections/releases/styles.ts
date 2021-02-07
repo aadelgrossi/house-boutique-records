@@ -4,13 +4,12 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 3rem 2rem;
-  width: 100%;
+  padding: 3rem 0;
+  width: 90%;
   gap: 3rem;
 
   @media (min-width: 1024px) {
     align-items: flex-start;
-    width: 90%;
   }
 `
 
@@ -29,7 +28,6 @@ export const ReleasedContainer = styled.div`
 export const FeaturedContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 40%;
   align-items: flex-start;
 `
 
