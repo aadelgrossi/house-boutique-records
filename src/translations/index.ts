@@ -20,7 +20,8 @@ export const messages: Translation = {
     seeAll: 'Ver todos',
     footer_socials: 'Redes sociais',
     footer_contact: 'Fale com a gente',
-    artists_tracksBy: 'Lançamentos por'
+    artists_tracksBy: 'Lançamentos por',
+    streamNow: 'Baixe / ouça agora'
   },
   en: {
     header_home: 'Home',
@@ -38,6 +39,7 @@ export const messages: Translation = {
     footer_socials: 'Socials',
     footer_contact: 'Say Hi',
     seeAll: 'See all',
-    artists_tracksBy: 'Tracks and releases by'
+    artists_tracksBy: 'Tracks and releases by',
+    streamNow: 'Download / Stream now'
   }
 }
