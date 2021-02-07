@@ -5,8 +5,7 @@ import React from 'react'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Image from 'next/image'
 
-import { SocialIcon } from '~/components'
-import ReleaseCard from '~/components/ReleaseCard'
+import { SocialIcon, ReleaseCard, ReleaseGroup } from '~/components'
 import { fetchArtists, fetchSingleArtist } from '~/graphql'
 import { useTranslation } from '~/hooks/useTranslation'
 
@@ -19,8 +18,7 @@ import {
   ArtistSocials,
   ArtistHeader,
   ReleasesContainer,
-  Title,
-  Releases
+  Title
 } from './styles'
 
 interface ArtistPageProps {
@@ -62,11 +60,11 @@ const Artist: NextPage<ArtistPageProps> = ({
             {` ${name}`}
           </Title>
 
-          <Releases>
+          <ReleaseGroup>
             {releases.map(release => (
               <ReleaseCard key={release.id} {...release} />
             ))}
-          </Releases>
+          </ReleaseGroup>
         </ReleasesContainer>
       </Content>
     </Container>

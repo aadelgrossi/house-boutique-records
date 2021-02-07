@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import ReleaseCard from '~/components/ReleaseCard'
+import { ReleaseCard, ReleaseGroup } from '~/components'
 import { useTranslation } from '~/hooks/useTranslation'
 
 import {
@@ -18,9 +18,7 @@ import {
   Artist,
   TrackTitle,
   LatestReleasesContainer,
-  LatestReleasesContent,
-  UpcomingReleasesContainer,
-  UpcomingReleasesContent
+  UpcomingReleasesContainer
 } from './styles'
 
 type Props = {
@@ -64,22 +62,22 @@ export const Releases: React.FC<Props> = ({ featured, latest, upcoming }) => {
         <LatestReleasesContainer>
           <Title>{t('home_releasesButton')}</Title>
 
-          <LatestReleasesContent>
+          <ReleaseGroup>
             {latest.map(release => (
               <ReleaseCard key={release.id} {...release} />
             ))}
-          </LatestReleasesContent>
+          </ReleaseGroup>
         </LatestReleasesContainer>
       </ReleasedContainer>
 
       <UpcomingReleasesContainer>
         <Title>{t('home_upcomingReleasesHeading')}</Title>
 
-        <UpcomingReleasesContent>
+        <ReleaseGroup>
           {upcoming.map(release => (
-            <ReleaseCard key={release.id} {...release} unreleased />
+            <ReleaseCard key={release.id} {...release} />
           ))}
-        </UpcomingReleasesContent>
+        </ReleaseGroup>
       </UpcomingReleasesContainer>
     </Container>
   )

@@ -88,4 +88,5 @@ export const Title = styled.h2`
   text-transform: uppercase;
   font-family: 'Ramabhadra';
   margin-bottom: 1em;
+  line-height: 0.95;
 `
