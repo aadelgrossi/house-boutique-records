@@ -10,9 +10,7 @@ import NavBar from '../NavBar'
 import { Container, LocaleSwitcher, MenuItem } from './styles'
 
 export const Header: FC = () => {
-  const { locale: activeLocale, asPath, route: activeRoute } = useRouter()
-
-  console.log({ activeRoute })
+  const { locale: activeLocale, asPath } = useRouter()
 
   return (
     <Container>
