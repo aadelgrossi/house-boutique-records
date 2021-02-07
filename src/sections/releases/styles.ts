@@ -66,31 +66,8 @@ export const FeaturedContent = styled.div`
   gap: 1rem;
 `
 export const FeaturedInfo = styled.div`
-  a:last-child {
+  > a:last-of-type {
     margin-top: 1rem;
-  }
-`
-
-export const Artist = styled.a`
-  font-size: 1.2em;
-  text-transform: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-
-  & + & {
-    margin-left: 18px;
-    position: relative;
-
-    &:before {
-      position: absolute;
-      display: flex;
-      justify-content: center;
-      content: '/';
-      left: -14px;
-      top: 0;
-    }
   }
 `
 

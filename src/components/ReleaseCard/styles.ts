@@ -36,26 +36,3 @@ export const TrackTitle = styled.a`
   text-transform: uppercase;
   line-height: 1;
 `
-
-export const Artist = styled.a`
-  font-size: 0.9em;
-  text-transform: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-
-  & + & {
-    margin-left: 18px;
-    position: relative;
-
-    &:before {
-      position: absolute;
-      display: flex;
-      justify-content: center;
-      content: '/';
-      left: -14px;
-      top: 0;
-    }
-  }
-`

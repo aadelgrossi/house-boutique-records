@@ -6,13 +6,8 @@ import { useRouter } from 'next/router'
 
 import { formatDate, hasBeenReleased } from '~/utils'
 
-import {
-  Container,
-  ImageWrapper,
-  ReleaseDate,
-  TrackTitle,
-  Artist
-} from './styles'
+import { ArtistRowList } from '../ArtistRowList'
+import { Container, ImageWrapper, ReleaseDate, TrackTitle } from './styles'
 
 interface Props {
   data: Release
@@ -37,11 +32,7 @@ export const ReleaseCard: React.FC<Props> = ({
         <TrackTitle>{title}</TrackTitle>
       </Link>
 
-      {artists.map(artist => (
-        <Link key={artist.id} href={`/artists/${artist.slug}`} locale={locale}>
-          <Artist>{artist.name}</Artist>
-        </Link>
-      ))}
+      <ArtistRowList data={artists} />
     </Container>
   )
 }
