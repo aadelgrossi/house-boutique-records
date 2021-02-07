@@ -6,6 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
   width: 100%;
   z-index: 0;
+  padding-bottom: 8rem;
 `
 export const ImageContainer = styled.div`
   position: relative;
@@ -58,16 +59,16 @@ export const Bio = styled(ReactMarkdown)`
   margin: 1rem 0 2rem;
 
   @media (min-width: 720px) {
-    width: 60%;
+    width: calc(60% + 5vw);
   }
 `
 
 export const Content = styled.div`
   z-index: 1;
-  margin: 0 5vw 5rem;
+  margin: 0 5vw;
 
   @media (min-width: 720px) {
-    margin-top: calc(-20vw - 8rem);
+    margin-top: -30%;
   }
 
   p {
@@ -75,7 +76,9 @@ export const Content = styled.div`
   }
 `
 
-export const ReleasesContainer = styled.div``
+export const ReleasesContainer = styled.div`
+  max-width: 820px;
+`
 
 export const Releases = styled.div`
   display: flex;
