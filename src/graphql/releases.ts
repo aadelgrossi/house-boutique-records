@@ -5,7 +5,10 @@ import graphCmsClient from '~/lib/graphCmsClient'
 import {
   ReleasesQueryParams,
   ReleasesQueryResponse,
-  ReleasesHomeQueryResponse
+  ReleasesHomeQueryResponse,
+  ReleaseSingleQueryParams,
+  ReleaseSingleQueryResponse,
+  ReleaseRelatedQueryParams
 } from './types'
 
 const UPCOMING_RELEASES = gql`
@@ -87,6 +90,45 @@ const RELEASES = gql`
   }
 `
 
+const SINGLE_RELEASE = gql`
+  query singleRelease($slug: String!) {
+    release(where: { slug: $slug }) {
+      id
+      title
+      releaseDate
+      artists {
+        slug
+        name
+      }
+      coverArt {
+        url
+      }
+      audioPreview {
+        url
+      }
+    }
+  }
+`
+
+const RELATED_RELEASES = gql`
+  query relatedReleases($slug: String!, $artists: [String!]) {
+    releases(where: { artists_some: { slug_in: $artists }, slug_not: $slug }) {
+      id
+      title
+      releaseDate
+      artists {
+        name
+      }
+      coverArt {
+        url
+      }
+      audioPreview {
+        url
+      }
+    }
+  }
+`
+
 export const fetchAllReleases = async ({
   query,
   date
@@ -114,4 +156,24 @@ export const fetchLatestReleases = async (): Promise<ReleasesHomeQueryResponse> 
     latest: latest.slice(1),
     upcoming
   }
+}
+
+export const fetchSingleRelease = async ({
+  slug,
+  locale = 'pt'
+}: ReleaseSingleQueryParams): Promise<ReleaseSingleQueryResponse> => {
+  return await graphCmsClient.request<ReleaseSingleQueryResponse>(
+    SINGLE_RELEASE,
+    { slug, locale }
+  )
+}
+
+export const fetchRelatedReleases = async ({
+  slug,
+  artists
+}: ReleaseRelatedQueryParams): Promise<ReleasesQueryResponse> => {
+  return await graphCmsClient.request<ReleasesQueryResponse>(RELATED_RELEASES, {
+    slug,
+    artists
+  })
 }
