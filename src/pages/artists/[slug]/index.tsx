@@ -4,8 +4,10 @@ import React from 'react'
 
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Image from 'next/image'
+import Carousel from 'react-multi-carousel'
 
-import { SocialIcon, ReleaseCard, ReleaseGroup } from '~/components'
+import { SocialIcon, ReleaseCard } from '~/components'
+import { responsiveCardsConfig } from '~/constants'
 import { fetchArtists, fetchSingleArtist } from '~/graphql'
 import { useTranslation } from '~/hooks/useTranslation'
 
@@ -59,12 +61,11 @@ const Artist: NextPage<ArtistPageProps> = ({
             {t('artists_tracksBy')}
             {` ${name}`}
           </Title>
-
-          <ReleaseGroup>
+          <Carousel responsive={responsiveCardsConfig}>
             {releases.map(release => (
-              <ReleaseCard key={release.id} {...release} />
+              <ReleaseCard key={release.id} data={release} />
             ))}
-          </ReleaseGroup>
+          </Carousel>
         </ReleasesContainer>
       </Content>
     </Container>

@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import 'react-multi-carousel/lib/styles.css'
 
 import { AppProps } from 'next/app'
 import Head from 'next/head'

@@ -3,8 +3,10 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import Carousel from 'react-multi-carousel'
 
-import { ReleaseCard, ReleaseGroup } from '~/components'
+import { ReleaseCard } from '~/components'
+import { responsiveCardsConfig } from '~/constants'
 import { useTranslation } from '~/hooks/useTranslation'
 
 import {
@@ -18,7 +20,8 @@ import {
   Artist,
   TrackTitle,
   LatestReleasesContainer,
-  UpcomingReleasesContainer
+  UpcomingReleasesContainer,
+  LatestReleasesCards
 } from './styles'
 
 type Props = {
@@ -40,8 +43,9 @@ export const Releases: React.FC<Props> = ({ featured, latest, upcoming }) => {
             <FeaturedImageWrapper>
               <Image
                 src={featured?.coverArt.url as string}
-                width={300}
-                height={300}
+                width={250}
+                height={250}
+                layout="fixed"
               />
             </FeaturedImageWrapper>
             <FeaturedInfo>
@@ -62,22 +66,23 @@ export const Releases: React.FC<Props> = ({ featured, latest, upcoming }) => {
         <LatestReleasesContainer>
           <Title>{t('home_releasesButton')}</Title>
 
-          <ReleaseGroup>
+          <LatestReleasesCards>
             {latest.map(release => (
-              <ReleaseCard key={release.id} {...release} />
+              <ReleaseCard key={release.id} data={release} />
             ))}
-          </ReleaseGroup>
+          </LatestReleasesCards>
         </LatestReleasesContainer>
       </ReleasedContainer>
 
       <UpcomingReleasesContainer>
         <Title>{t('home_upcomingReleasesHeading')}</Title>
-
-        <ReleaseGroup>
-          {upcoming.map(release => (
-            <ReleaseCard key={release.id} {...release} />
-          ))}
-        </ReleaseGroup>
+        <div style={{ width: '100%' }}>
+          <Carousel ssr responsive={responsiveCardsConfig}>
+            {upcoming.map(release => (
+              <ReleaseCard key={release.id} data={release} />
+            ))}
+          </Carousel>
+        </div>
       </UpcomingReleasesContainer>
     </Container>
   )

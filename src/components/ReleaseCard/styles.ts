@@ -30,6 +30,7 @@ export const TrackTitle = styled.h3`
 
 export const Artist = styled.a`
   font-size: 0.9em;
+  text-transform: none;
 
   &:hover {
     text-decoration: underline;
@@ -44,7 +45,7 @@ export const Artist = styled.a`
       display: flex;
       justify-content: center;
       content: '/';
-      left: -12px;
+      left: -14px;
       top: 0;
     }
   }

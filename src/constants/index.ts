@@ -36,3 +36,26 @@ export const socialIcons = [
     color: '#4267B2'
   }
 ]
+
+export const responsiveCardsConfig = {
+  xl: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 4,
+    slidesToSlide: 2 // optional, default to 1.
+  },
+  lg: {
+    breakpoint: { max: 1024, min: 680 },
+    items: 3,
+    slidesToSlide: 2 // optional, default to 1.
+  },
+  md: {
+    breakpoint: { max: 680, min: 400 },
+    items: 2,
+    slidesToSlide: 1 // optional, default to 1.
+  },
+  sm: {
+    breakpoint: { max: 400, min: 0 },
+    items: 1,
+    slidesToSlide: 1 // optional, default to 1.
+  }
+}
