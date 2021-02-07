@@ -3,30 +3,27 @@ import 'react-multi-carousel/lib/styles.css'
 
 import { AppProps } from 'next/app'
 import Head from 'next/head'
-import { ThemeProvider } from 'styled-components'
 
 import { Layout } from '~/components'
-import { LanguageProvider } from '~/hooks/useTranslation'
-import { GlobalStyle, theme } from '~/styles'
+import { AppProvider } from '~/providers/app'
+import { GlobalStyle } from '~/styles'
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <LanguageProvider>
-      <ThemeProvider theme={theme}>
-        <Layout>
-          <Head>
-            <title>House Boutique Records</title>
-            <meta
-              name="Description"
-              content="Official website for House Boutique Records"
-            />
-          </Head>
+    <AppProvider>
+      <Layout>
+        <Head>
+          <title>House Boutique Records</title>
+          <meta
+            name="Description"
+            content="Official website for House Boutique Records"
+          />
+        </Head>
 
-          <Component {...pageProps} />
-          <GlobalStyle />
-        </Layout>
-      </ThemeProvider>
-    </LanguageProvider>
+        <Component {...pageProps} />
+        <GlobalStyle />
+      </Layout>
+    </AppProvider>
   )
 }
 
