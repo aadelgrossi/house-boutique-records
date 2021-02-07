@@ -2,7 +2,11 @@ import { gql } from 'graphql-request'
 
 import graphCmsClient from '~/lib/graphCmsClient'
 
-import { ReleasesQueryResponse } from './types'
+import {
+  ReleasesQueryParams,
+  ReleasesQueryResponse,
+  ReleasesHomeQueryResponse
+} from './types'
 
 const UPCOMING_RELEASES = gql`
   query upcomingReleases($date: Date!, $first: Int!) {
@@ -55,7 +59,44 @@ const LATEST_RELEASES = gql`
   }
 `
 
-export const fetchLatestReleases = async (): Promise<ReleasesQueryResponse> => {
+const RELEASES = gql`
+  query allReleases($query: String) {
+    releases(
+      where: {
+        OR: [
+          { title_contains: $query }
+          { artists_some: { name_contains: $query } }
+        ]
+      }
+    ) {
+      title
+      slug
+      releaseDate
+      artists {
+        name
+      }
+      coverArt {
+        url
+      }
+      audioPreview {
+        url
+      }
+    }
+  }
+`
+
+export const fetchAllReleases = async ({
+  query,
+  date
+}: ReleasesQueryParams): Promise<ReleasesQueryResponse> => {
+  const { releases } = await graphCmsClient.request<{
+    releases: Release[]
+  }>(RELEASES, { query, date })
+
+  return { releases }
+}
+
+export const fetchLatestReleases = async (): Promise<ReleasesHomeQueryResponse> => {
   const today = new Date().toISOString().slice(0, 10)
 
   const { releases: upcoming } = await graphCmsClient.request<{

@@ -1,4 +1,4 @@
-export type ReleasesQueryResponse = {
+export type ReleasesHomeQueryResponse = {
   featured: Release
   upcoming: Release[]
   latest: Release[]
@@ -15,4 +15,13 @@ export type ArtistSingleQueryParams = {
 
 export type ArtistSingleQueryResponse = {
   artist: Artist
+}
+
+export type ReleasesQueryParams = {
+  query: string
+  date?: Date
+}
+
+export type ReleasesQueryResponse = {
+  releases: Release[]
 }
