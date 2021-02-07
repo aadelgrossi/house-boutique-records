@@ -63,55 +63,15 @@ export const Artist = styled.a`
   }
 `
 
-export const Card = styled.div``
-
 export const LatestReleasesContainer = styled.div`
   margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 `
 
-export const LatestReleasesContent = styled.div`
-  justify-content: center;
-
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: 1fr 1fr;
-
-  @media (min-width: 620px) {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-  }
-`
-
-export const UpcomingReleasesContainer = styled.div``
-export const UpcomingReleasesContent = styled.div`
-  justify-content: center;
-
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: repeat(2, 1fr);
-
-  @media (min-width: 620px) {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-  }
-`
-
-export const ImageWrapper = styled.div`
-  position: relative;
-`
-
-export const ReleaseDate = styled.p`
-  position: absolute;
-  bottom: 12px;
-  left: 6px;
-  font-weight: 700;
-  color: ${props => props.theme.colors.white};
-  font-size: 0.6em;
-  font-weight: 500;
-  background-color: ${props => props.theme.colors.secondary};
-  width: fit-content;
-  padding: 0.1rem 0.5rem;
-  border-radius: 1rem;
+export const UpcomingReleasesContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 `
