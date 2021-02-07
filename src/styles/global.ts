@@ -19,6 +19,10 @@ export const GlobalStyle = createGlobalStyle`
     font: 15px Quicksand, sans-serif;
   }
 
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1;
+  }
+
   h1 {
     font-family: Ramabhadra;
   }
@@ -36,6 +40,14 @@ export const GlobalStyle = createGlobalStyle`
   a {
     cursor: pointer;
     text-decoration: none;
+  }
+
+  input, select {
+    font-family: Quicksand;
+    font-size: 1em;
+    border: none;
+    background-color: transparent;
+    height: 56px;
   }
 
   button {
