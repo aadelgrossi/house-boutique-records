@@ -11,6 +11,7 @@ export const Container = styled.a<Props>`
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  max-width: 350px;
   background-color: ${props =>
     props.outline ? 'transparent' : props.theme.colors.secondary};
 
