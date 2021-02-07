@@ -37,10 +37,6 @@ export const Container = styled.header`
   }
 `
 
-export const Navbar = styled.nav`
-  width: min(500px, 45vw);
-`
-
 export const MenuItem = styled.a<{ active: boolean }>`
   text-decoration: none;
 
@@ -48,17 +44,10 @@ export const MenuItem = styled.a<{ active: boolean }>`
   cursor: ${props => (props.active ? 'auto' : 'pointer')};
 `
 
-export const Menu = styled.ul`
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  flex-direction: row;
-
-  > li + li {
-    margin-left: 8px;
-  }
-`
-
 export const LocaleSwitcher = styled.ul`
   min-width: 110px;
+
+  @media (max-width: 800px) {
+    display: none;
+  }
 `
