@@ -20,7 +20,8 @@ export const VerticalList = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
+  margin-bottom: 6rem;
 
   > li a {
     font-size: 20px;

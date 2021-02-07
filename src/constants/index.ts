@@ -9,8 +9,8 @@ export const navItems = [
 ]
 
 export const locales = [
-  { locale: 'en', label: 'English' },
-  { locale: 'pt', label: 'Português' }
+  { locale: 'en', label: 'EN' },
+  { locale: 'pt', label: 'PT' }
 ]
 
 export const socialIcons = [

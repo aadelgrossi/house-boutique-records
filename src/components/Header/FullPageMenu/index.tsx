@@ -2,6 +2,7 @@ import { FC } from 'react'
 
 import { AiOutlineCloseCircle } from 'react-icons/ai'
 
+import { LanguageSwitcher } from '../LanguageSwitcher'
 import { Container, VerticalList, Title, CloseMenu } from './styles'
 
 interface Props {
@@ -14,6 +15,8 @@ export const FullPageMenu: FC<Props> = ({ active, close, children }) => {
     <Container active={active}>
       <Title>Menu</Title>
       <VerticalList>{children}</VerticalList>
+
+      <LanguageSwitcher close={close} />
       <CloseMenu onClick={close}>
         <AiOutlineCloseCircle size={30} color="#fff" />{' '}
       </CloseMenu>

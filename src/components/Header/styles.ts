@@ -35,6 +35,13 @@ export const Container = styled.header`
       )
       repeat scroll 0% 0%;
   }
+
+  > ul {
+    @media (max-width: 800px) {
+      visibility: hidden;
+      display: none;
+    }
+  }
 `
 
 export const MenuItem = styled.a<{ active: boolean }>`
@@ -42,12 +49,4 @@ export const MenuItem = styled.a<{ active: boolean }>`
 
   font-weight: ${props => (props.active ? 800 : 500)};
   cursor: ${props => (props.active ? 'auto' : 'pointer')};
-`
-
-export const LocaleSwitcher = styled.ul`
-  min-width: 110px;
-
-  @media (max-width: 800px) {
-    display: none;
-  }
 `
