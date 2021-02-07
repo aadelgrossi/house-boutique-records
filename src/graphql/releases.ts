@@ -73,6 +73,7 @@ const RELEASES = gql`
           { artists_some: { name_contains: $query } }
         ]
       }
+      orderBy: releaseDate_DESC
     ) {
       title
       slug
@@ -91,11 +92,18 @@ const RELEASES = gql`
 `
 
 const SINGLE_RELEASE = gql`
-  query singleRelease($slug: String!) {
+  query singleRelease($slug: String!, $locale: Locale!) {
     release(where: { slug: $slug }) {
       id
       title
       releaseDate
+      localizations(includeCurrent: true, locales: [$locale]) {
+        description {
+          html
+        }
+        locale
+      }
+      link
       artists {
         slug
         name
@@ -112,11 +120,17 @@ const SINGLE_RELEASE = gql`
 
 const RELATED_RELEASES = gql`
   query relatedReleases($slug: String!, $artists: [String!]) {
-    releases(where: { artists_some: { slug_in: $artists }, slug_not: $slug }) {
+    releases(
+      where: { artists_some: { slug_in: $artists }, slug_not: $slug }
+      first: 4
+      orderBy: releaseDate_DESC
+    ) {
       id
       title
+      slug
       releaseDate
       artists {
+        slug
         name
       }
       coverArt {
