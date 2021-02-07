@@ -17,6 +17,7 @@ const UPCOMING_RELEASES = gql`
     ) {
       id
       title
+      slug
       releaseDate
       artists {
         id
@@ -42,6 +43,7 @@ const LATEST_RELEASES = gql`
       first: $first
     ) {
       title
+      slug
       releaseDate
       artists {
         id

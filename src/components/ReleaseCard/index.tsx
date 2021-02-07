@@ -19,19 +19,24 @@ interface Props {
 }
 
 export const ReleaseCard: React.FC<Props> = ({
-  data: { coverArt, releaseDate, artists, title }
+  data: { coverArt, releaseDate, artists, title, slug }
 }) => {
   const { locale } = useRouter()
 
   return (
     <Container>
-      <ImageWrapper>
-        <Image src={coverArt.url} width={180} height={180} layout="fixed" />
-        {!hasBeenReleased(releaseDate) && (
-          <ReleaseDate>{formatDate(releaseDate, locale)}</ReleaseDate>
-        )}
-      </ImageWrapper>
-      <TrackTitle>{title}</TrackTitle>
+      <Link href={`/releases/${slug}`}>
+        <ImageWrapper>
+          <Image src={coverArt.url} width={180} height={180} layout="fixed" />
+          {!hasBeenReleased(releaseDate) && (
+            <ReleaseDate>{formatDate(releaseDate, locale)}</ReleaseDate>
+          )}
+        </ImageWrapper>
+      </Link>
+      <Link href={`/releases/${slug}`}>
+        <TrackTitle>{title}</TrackTitle>
+      </Link>
+
       {artists.map(artist => (
         <Link key={artist.id} href={`/artists/${artist.slug}`} locale={locale}>
           <Artist>{artist.name}</Artist>

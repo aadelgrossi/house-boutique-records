@@ -40,17 +40,22 @@ export const Releases: React.FC<Props> = ({ featured, latest, upcoming }) => {
         <FeaturedContainer>
           <Title>{t('home_featuredReleaseHeading')}</Title>
           <FeaturedContent>
-            <FeaturedImageWrapper>
-              <Image
-                src={featured?.coverArt.url as string}
-                width={250}
-                height={250}
-                layout="fixed"
-              />
-            </FeaturedImageWrapper>
+            <Link href={`/releases/${featured.slug}`}>
+              <FeaturedImageWrapper>
+                <Image
+                  src={featured.coverArt.url as string}
+                  width={250}
+                  height={250}
+                  layout="fixed"
+                />
+              </FeaturedImageWrapper>
+            </Link>
+
             <FeaturedInfo>
-              <TrackTitle>{featured?.title}</TrackTitle>
-              {featured?.artists.map(artist => (
+              <Link href={`/releases/${featured.slug}`}>
+                <TrackTitle>{featured?.title}</TrackTitle>
+              </Link>
+              {featured.artists.map(artist => (
                 <Link
                   key={artist.id}
                   href={`/artists/${artist.slug}`}
