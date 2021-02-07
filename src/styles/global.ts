@@ -38,6 +38,12 @@ export const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 
+  button {
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+  }
+
   a:visited, a:hover, a:active {
     color: inherit;
   }
