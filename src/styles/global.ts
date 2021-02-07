@@ -24,6 +24,7 @@ export const GlobalStyle = createGlobalStyle`
 
   h1 {
     font-family: Ramabhadra;
+    text-transform: uppercase;
   }
 
   h2 {
