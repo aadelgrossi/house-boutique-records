@@ -3,9 +3,11 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import Carousel from 'react-multi-carousel'
 
+import { ReleaseCard } from '~/components'
+import { responsiveCardsConfig } from '~/constants'
 import { useTranslation } from '~/hooks/useTranslation'
-import { formatDate } from '~/utils/formatDate'
 
 import {
   Container,
@@ -16,14 +18,10 @@ import {
   FeaturedInfo,
   FeaturedImageWrapper,
   Artist,
-  ImageWrapper,
   TrackTitle,
-  Card,
   LatestReleasesContainer,
-  LatestReleasesContent,
   UpcomingReleasesContainer,
-  UpcomingReleasesContent,
-  ReleaseDate
+  LatestReleasesCards
 } from './styles'
 
 type Props = {
@@ -45,8 +43,9 @@ export const Releases: React.FC<Props> = ({ featured, latest, upcoming }) => {
             <FeaturedImageWrapper>
               <Image
                 src={featured?.coverArt.url as string}
-                width={300}
-                height={300}
+                width={250}
+                height={250}
+                layout="fixed"
               />
             </FeaturedImageWrapper>
             <FeaturedInfo>
@@ -67,58 +66,23 @@ export const Releases: React.FC<Props> = ({ featured, latest, upcoming }) => {
         <LatestReleasesContainer>
           <Title>{t('home_releasesButton')}</Title>
 
-          <LatestReleasesContent>
+          <LatestReleasesCards>
             {latest.map(release => (
-              <Card key={release.id}>
-                <Image
-                  src={release.coverArt.url}
-                  width={200}
-                  height={200}
-                  layout="intrinsic"
-                />
-                <TrackTitle>{release.title}</TrackTitle>
-                {release.artists.map(artist => (
-                  <Link
-                    key={artist.id}
-                    href={`/artists/${artist.slug}`}
-                    locale={locale}
-                  >
-                    <Artist>{artist.name}</Artist>
-                  </Link>
-                ))}
-              </Card>
+              <ReleaseCard key={release.id} data={release} />
             ))}
-          </LatestReleasesContent>
+          </LatestReleasesCards>
         </LatestReleasesContainer>
       </ReleasedContainer>
 
       <UpcomingReleasesContainer>
         <Title>{t('home_upcomingReleasesHeading')}</Title>
-
-        <UpcomingReleasesContent>
-          {upcoming.map(release => (
-            <Card key={release.id}>
-              <ImageWrapper>
-                <Image src={release.coverArt.url} width={200} height={200} />
-                <ReleaseDate>
-                  {formatDate(release.releaseDate, locale)}
-                </ReleaseDate>
-              </ImageWrapper>
-              <TrackTitle>{release.title}</TrackTitle>
-              {release.artists.map(artist => (
-                <>
-                  <Link
-                    key={artist.id}
-                    href={`/artists/${artist.slug}`}
-                    locale={locale}
-                  >
-                    <Artist>{artist.name}</Artist>
-                  </Link>
-                </>
-              ))}
-            </Card>
-          ))}
-        </UpcomingReleasesContent>
+        <div style={{ width: '100%' }}>
+          <Carousel ssr responsive={responsiveCardsConfig}>
+            {upcoming.map(release => (
+              <ReleaseCard key={release.id} data={release} />
+            ))}
+          </Carousel>
+        </div>
       </UpcomingReleasesContainer>
     </Container>
   )

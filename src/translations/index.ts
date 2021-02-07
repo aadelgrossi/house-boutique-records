@@ -19,7 +19,8 @@ export const messages: Translation = {
     home_artistsReadMore: 'Conheça',
     seeAll: 'Ver todos',
     footer_socials: 'Redes sociais',
-    footer_contact: 'Fale com a gente'
+    footer_contact: 'Fale com a gente',
+    artists_tracksBy: 'Lançamentos por'
   },
   en: {
     header_home: 'Home',
@@ -36,6 +37,7 @@ export const messages: Translation = {
     home_artistsReadMore: 'Read More',
     footer_socials: 'Socials',
     footer_contact: 'Say Hi',
-    seeAll: 'See all'
+    seeAll: 'See all',
+    artists_tracksBy: 'Tracks and releases by'
   }
 }

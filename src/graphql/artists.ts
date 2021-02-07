@@ -2,7 +2,11 @@ import { gql } from 'graphql-request'
 
 import graphCmsClient from '~/lib/graphCmsClient'
 
-import { ArtistsQueryResponse } from './types'
+import {
+  ArtistsQueryResponse,
+  ArtistSingleQueryResponse,
+  ArtistSingleQueryParams
+} from './types'
 
 const ALL_ARTISTS = gql`
   query {
@@ -17,6 +21,49 @@ const ALL_ARTISTS = gql`
   }
 `
 
-export const fetchArtists = async (): Promise<{ artists: Artist[] }> => {
+const SINGLE_ARTIST = gql`
+  query singleArtist($slug: String!, $locale: Locale!) {
+    artist(where: { slug: $slug }) {
+      name
+      localizations(includeCurrent: true, locales: [$locale]) {
+        bio {
+          html
+        }
+        locale
+      }
+      backgroundImage {
+        url
+      }
+      artistPlatforms {
+        id
+        platform
+        url
+      }
+      releases(first: 5, orderBy: releaseDate_DESC) {
+        title
+        artists {
+          name
+          slug
+        }
+        coverArt {
+          url
+        }
+        releaseDate
+      }
+    }
+  }
+`
+
+export const fetchArtists = async (): Promise<ArtistsQueryResponse> => {
   return await graphCmsClient.request<ArtistsQueryResponse>(ALL_ARTISTS)
+}
+
+export const fetchSingleArtist = async ({
+  slug,
+  locale = 'pt'
+}: ArtistSingleQueryParams): Promise<ArtistSingleQueryResponse> => {
+  return await graphCmsClient.request<ArtistSingleQueryResponse>(
+    SINGLE_ARTIST,
+    { slug, locale }
+  )
 }

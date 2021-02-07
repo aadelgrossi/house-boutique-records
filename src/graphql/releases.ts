@@ -66,10 +66,8 @@ export const fetchLatestReleases = async (): Promise<ReleasesQueryResponse> => {
     releases: Release[]
   }>(LATEST_RELEASES, { date: today, first: 5 })
 
-  const featured = upcoming.splice(0, 1)[0]
-
   return {
-    featured,
+    featured: latest[0],
     latest: latest.slice(1),
     upcoming
   }

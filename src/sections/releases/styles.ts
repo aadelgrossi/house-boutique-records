@@ -5,9 +5,10 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 3rem 0;
-  width: 80%;
+  width: 90%;
+  gap: 3rem;
 
-  @media (min-width: 620px) {
+  @media (min-width: 1024px) {
     align-items: flex-start;
   }
 `
@@ -15,8 +16,9 @@ export const Container = styled.div`
 export const ReleasedContainer = styled.div`
   display: flex;
   width: 100%;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 3rem;
 
   @media (min-width: 1200px) {
     flex-direction: row;
@@ -24,18 +26,12 @@ export const ReleasedContainer = styled.div`
 `
 
 export const FeaturedContainer = styled.div`
-  width: 100%;
-  margin: 1rem 0;
-
-  @media (min-width: 1200px) {
-    width: 40%;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 `
 
-export const FeaturedImageWrapper = styled.div`
-  width: max(50%, 250px);
-  margin-right: 1rem;
-`
+export const FeaturedImageWrapper = styled.div``
 
 export const Title = styled.h2`
   text-transform: uppercase;
@@ -45,7 +41,7 @@ export const Title = styled.h2`
 
 export const TrackTitle = styled.h3`
   margin-top: 0.2em;
-  font-size: 1.3em;
+  font-size: 1.6em;
   text-transform: uppercase;
   line-height: 1;
 `
@@ -53,65 +49,54 @@ export const TrackTitle = styled.h3`
 export const FeaturedContent = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
 `
-export const FeaturedInfo = styled.div``
+export const FeaturedInfo = styled.div`
+  flex-wrap: wrap;
+`
 
 export const Artist = styled.a`
-  font-size: 0.9em;
+  font-size: 1.2em;
+  text-transform: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
   & + & {
-    margin-left: 10px;
+    margin-left: 18px;
+    position: relative;
+
+    &:before {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      content: '/';
+      left: -14px;
+      top: 0;
+    }
   }
 `
-
-export const Card = styled.div``
 
 export const LatestReleasesContainer = styled.div`
-  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 820px;
 `
 
-export const LatestReleasesContent = styled.div`
-  justify-content: center;
-
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: 1fr 1fr;
-
-  @media (min-width: 620px) {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-  }
+export const UpcomingReleasesContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 800px;
 `
 
-export const UpcomingReleasesContainer = styled.div``
-export const UpcomingReleasesContent = styled.div`
-  justify-content: center;
-
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: repeat(2, 1fr);
-
-  @media (min-width: 620px) {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-  }
-`
-
-export const ImageWrapper = styled.div`
-  position: relative;
-`
-
-export const ReleaseDate = styled.p`
-  position: absolute;
-  bottom: 12px;
-  left: 6px;
-  font-weight: 700;
-  color: ${props => props.theme.colors.white};
-  font-size: 0.6em;
-  font-weight: 500;
-  background-color: ${props => props.theme.colors.secondary};
-  width: fit-content;
-  padding: 0.1rem 0.5rem;
-  border-radius: 1rem;
+export const LatestReleasesCards = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
 `
