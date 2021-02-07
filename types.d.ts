@@ -25,6 +25,7 @@ interface Asset {
 interface Release {
   id: string
   title: string
+  slug: string
   releaseDate: string
   artists: Artist[]
   link: string
