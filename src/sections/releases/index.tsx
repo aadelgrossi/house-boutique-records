@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Carousel from 'react-multi-carousel'
 
-import { ReleaseCard } from '~/components'
+import { Button, ReleaseCard } from '~/components'
 import { responsiveCardsConfig } from '~/constants'
 import { useTranslation } from '~/hooks/useTranslation'
 
@@ -64,6 +64,7 @@ export const Releases: React.FC<Props> = ({ featured, latest, upcoming }) => {
                   <Artist>{artist.name}</Artist>
                 </Link>
               ))}
+              <Button href={featured.link}>{t('streamNow')}</Button>
             </FeaturedInfo>
           </FeaturedContent>
         </FeaturedContainer>

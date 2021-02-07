@@ -65,7 +65,11 @@ export const FeaturedContent = styled.div`
   flex-wrap: wrap;
   gap: 1rem;
 `
-export const FeaturedInfo = styled.div``
+export const FeaturedInfo = styled.div`
+  a:last-child {
+    margin-top: 1rem;
+  }
+`
 
 export const Artist = styled.a`
   font-size: 1.2em;

@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 
 type Props = { outline: boolean }
 
-export const Container = styled.div<Props>`
+export const Container = styled.a<Props>`
   padding: 0.8rem 1.6rem;
   height: 56px;
   cursor: pointer;
@@ -35,7 +35,7 @@ export const Container = styled.div<Props>`
       }
     `}
 
-  > a {
+  > span {
     font-weight: bold;
   }
 `
