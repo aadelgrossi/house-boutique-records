@@ -93,9 +93,9 @@ export const AudioPlayer: FC = () => {
         cover={currentTrack?.coverArt.url}
         playing={playing}
       >
-        {playerVisible ? (
-          <FaChevronDown size={15} color={colors.white} />
-        ) : (
+        {playerVisible && <FaChevronDown size={15} color={colors.white} />}
+
+        {!playerVisible && !playing && (
           <ImHeadphones size={25} color={colors.white} style={{ zIndex: 50 }} />
         )}
       </HideButton>

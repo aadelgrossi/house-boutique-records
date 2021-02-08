@@ -75,7 +75,6 @@ export const HideButton = styled.button<PlayerControlProps>`
   right: 10%;
   width: 40px;
   height: 40px;
-  /* border: 1px solid ${props => props.theme.colors.secondary}; */
   border-radius: 20px;
   border: unset;
   background-color: ${props => props.theme.colors.secondary};
@@ -88,15 +87,16 @@ export const HideButton = styled.button<PlayerControlProps>`
     !props.active &&
     css`
       background: ${`url(${props.cover}) no-repeat top center`};
-      animation: rotate 7s infinite linear;
+      animation: spin 3s linear infinite;
       background-size: contain;
+      box-shadow: 0px 0px 0px 2px #222, 0px 0px 0px 6px #333;
 
-      @keyframes rotate {
-        from {
+      @keyframes spin {
+        0% {
           transform: rotate(0deg);
         }
-        to {
-          transform: rotate(359deg);
+        100% {
+          transform: rotate(360deg);
         }
       }
 
@@ -107,7 +107,7 @@ export const HideButton = styled.button<PlayerControlProps>`
         height: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.6);
+        background-color: rgba(0, 0, 0, 0.3);
       }
     `}
 
@@ -115,12 +115,10 @@ export const HideButton = styled.button<PlayerControlProps>`
     !props.active &&
     css`
       background-color: ${props => props.theme.colors.secondary};
-
+      top: -120px;
+      right: 30px;
       width: 80px;
       height: 80px;
-      border-radius: 80px;
-
-      top: -110px;
-      right: 50px;
+      border-radius: 50%;
     `}
 `
