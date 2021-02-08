@@ -3,7 +3,9 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { AiFillPlayCircle } from 'react-icons/ai'
 
+import { usePlayer } from '~/hooks/usePlayer'
 import { formatDate, hasBeenReleased } from '~/utils'
 
 import { ArtistRowList } from '../ArtistRowList'
@@ -13,10 +15,10 @@ interface Props {
   data: Release
 }
 
-export const ReleaseCard: React.FC<Props> = ({
-  data: { coverArt, releaseDate, artists, title, slug }
-}) => {
+export const ReleaseCard: React.FC<Props> = ({ data }) => {
   const { locale } = useRouter()
+  const { coverArt, releaseDate, artists, title, slug } = data
+  const { loadTrack } = usePlayer()
 
   return (
     <Container>
@@ -33,6 +35,10 @@ export const ReleaseCard: React.FC<Props> = ({
       </Link>
 
       <ArtistRowList data={artists} />
+
+      <button onClick={() => loadTrack(data)}>
+        <AiFillPlayCircle size={20} color="#fff" />
+      </button>
     </Container>
   )
 }
