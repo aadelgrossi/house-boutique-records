@@ -1,23 +1,50 @@
-import { createContext, useCallback, useContext, useState } from 'react'
+import { createContext, Dispatch, Reducer, useContext, useReducer } from 'react'
 
 interface PlayerContextData {
-  track: Release | null
-  loadTrack(release: Release): void
+  state: State
+  dispatch: Dispatch<Action>
 }
 
 export const PlayerContext = createContext<PlayerContextData>(
   {} as PlayerContextData
 )
 
-export const PlayerProvider: React.FC = ({ children }) => {
-  const [track, setTrack] = useState<Release | null>(null)
+type Action = {
+  name: 'load' | 'play' | 'pause'
+  payload?: Release | null
+}
 
-  const loadTrack = useCallback((track: Release) => {
-    setTrack(track)
-  }, [])
+type State = {
+  playing: boolean
+  currentTrack: Release | null
+}
+
+const initialState: State = {
+  playing: false,
+  currentTrack: null
+}
+
+const reducer: Reducer<State, Action> = (
+  state: State,
+  { name, payload = null }: Action
+) => {
+  switch (name) {
+    case 'load':
+      return { ...state, currentTrack: payload }
+    case 'play':
+      return { ...state, playing: true }
+    case 'pause':
+      return { ...state, playing: false }
+    default:
+      throw new Error()
+  }
+}
+
+export const PlayerProvider: React.FC = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState)
 
   return (
-    <PlayerContext.Provider value={{ track, loadTrack }}>
+    <PlayerContext.Provider value={{ state, dispatch }}>
       {children}
     </PlayerContext.Provider>
   )

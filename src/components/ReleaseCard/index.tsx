@@ -18,7 +18,7 @@ interface Props {
 export const ReleaseCard: React.FC<Props> = ({ data }) => {
   const { locale } = useRouter()
   const { coverArt, releaseDate, artists, title, slug } = data
-  const { loadTrack } = usePlayer()
+  const { dispatch } = usePlayer()
 
   return (
     <Container>
@@ -36,7 +36,7 @@ export const ReleaseCard: React.FC<Props> = ({ data }) => {
 
       <ArtistRowList data={artists} />
 
-      <button onClick={() => loadTrack(data)}>
+      <button onClick={() => dispatch({ name: 'load', payload: data })}>
         <AiFillPlayCircle size={20} color="#fff" />
       </button>
     </Container>

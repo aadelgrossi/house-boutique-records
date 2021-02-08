@@ -1,4 +1,4 @@
-import { FC, useCallback, useMemo, useState } from 'react'
+import { FC, useCallback, useState } from 'react'
 
 import Image from 'next/image'
 import Player, { RHAP_UI } from 'react-h5-audio-player'
@@ -20,11 +20,11 @@ import {
   HideButton
 } from './styles'
 
-type PlayerState = 'idle' | 'playing'
-
 export const AudioPlayer: FC = () => {
-  const { track } = usePlayer()
-  const [playerState, setPlayerState] = useState<PlayerState>('idle')
+  const {
+    state: { currentTrack, playing },
+    dispatch
+  } = usePlayer()
 
   const [playerVisible, setPlayerVisible] = useState(false)
   const { colors } = useTheme()
@@ -34,32 +34,28 @@ export const AudioPlayer: FC = () => {
     setPlayerVisible(state => !state)
   }, [])
 
-  const isPlaying = useMemo(() => {
-    return playerState === 'playing'
-  }, [playerState])
-
   return (
     <Container playerVisible={playerVisible}>
-      {track ? (
+      {currentTrack ? (
         <Wrapper>
           <ReleaseDetails>
             <Image
-              src={track.coverArt.url}
+              src={currentTrack.coverArt.url}
               width={85}
               height={85}
               layout="intrinsic"
             />
             <ReleaseInfo>
-              <NowPlayingText style={{ opacity: Number(isPlaying) }}>
+              <NowPlayingText style={{ opacity: Number(playing) }}>
                 {t('nowPlaying')}
               </NowPlayingText>
-              <strong>{track.title}</strong>
-              <ArtistRowList data={track.artists} />
+              <strong>{currentTrack.title}</strong>
+              <ArtistRowList data={currentTrack.artists} />
             </ReleaseInfo>
           </ReleaseDetails>
 
           <Player
-            src={track.audioPreview.url}
+            src={currentTrack.audioPreview.url}
             autoPlayAfterSrcChange
             autoPlay
             style={{
@@ -69,11 +65,11 @@ export const AudioPlayer: FC = () => {
             }}
             loop={false}
             onLoadedData={() => {
-              setPlayerState('playing')
+              dispatch({ name: 'play' })
               setPlayerVisible(true)
             }}
-            onPlay={() => setPlayerState('playing')}
-            onPause={() => setPlayerState('idle')}
+            onPlay={() => dispatch({ name: 'play' })}
+            onPause={() => dispatch({ name: 'pause' })}
             customProgressBarSection={[
               RHAP_UI.MAIN_CONTROLS,
               RHAP_UI.CURRENT_TIME,
@@ -91,10 +87,11 @@ export const AudioPlayer: FC = () => {
       )}
 
       <HideButton
+        draggable
         onClick={handleHidePlayer}
         active={playerVisible}
-        cover={track?.coverArt.url}
-        playing={isPlaying}
+        cover={currentTrack?.coverArt.url}
+        playing={playing}
       >
         {playerVisible ? (
           <FaChevronDown size={15} color={colors.white} />
