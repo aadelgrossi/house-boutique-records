@@ -3,9 +3,7 @@ interface Artist {
   name: string
   slug: string
   localizations: Array<{
-    bio: {
-      html: string
-    }
+    bio: Markdown
     locale: string
   }>
   artistPlatforms: Array<{
@@ -22,9 +20,18 @@ interface Asset {
   url: string
 }
 
+interface Markdown {
+  html: string
+}
+
 interface Release {
   id: string
   title: string
+  localizations: Array<{
+    description: Markdown
+  }>
+  description: Markdown
+  slug: string
   releaseDate: string
   artists: Artist[]
   link: string

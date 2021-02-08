@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
+export const Container = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,7 +31,14 @@ export const FeaturedContainer = styled.div`
   align-items: flex-start;
 `
 
-export const FeaturedImageWrapper = styled.div``
+export const FeaturedImageWrapper = styled.div`
+  cursor: pointer;
+
+  transition: 0.2s transform ease-in-out;
+  &:hover {
+    transform: scale(1.03);
+  }
+`
 
 export const Title = styled.h2`
   text-transform: uppercase;
@@ -40,10 +47,16 @@ export const Title = styled.h2`
 `
 
 export const TrackTitle = styled.h3`
+  cursor: pointer;
   margin-top: 0.2em;
   font-size: 1.6em;
   text-transform: uppercase;
   line-height: 1;
+  transition: 0.2s all ease-in-out;
+
+  &:hover {
+    transform: scale(1.1) translateX(5px);
+  }
 `
 
 export const FeaturedContent = styled.div`
@@ -53,29 +66,8 @@ export const FeaturedContent = styled.div`
   gap: 1rem;
 `
 export const FeaturedInfo = styled.div`
-  flex-wrap: wrap;
-`
-
-export const Artist = styled.a`
-  font-size: 1.2em;
-  text-transform: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-
-  & + & {
-    margin-left: 18px;
-    position: relative;
-
-    &:before {
-      position: absolute;
-      display: flex;
-      justify-content: center;
-      content: '/';
-      left: -14px;
-      top: 0;
-    }
+  > a:last-of-type {
+    margin-top: 1rem;
   }
 `
 

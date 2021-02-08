@@ -13,8 +13,10 @@ export const Hero: React.FC = () => {
       <Contents>
         <Title>{t('home_heroTitle')}</Title>
         <ButtonGroup>
-          <Button>{t('home_releasesButton')}</Button>
-          <Button outline>{t('home_artistsButton')}</Button>
+          <Button href="/releases">{t('home_releasesButton')}</Button>
+          <Button href="/artists" outline>
+            {t('home_artistsButton')}
+          </Button>
         </ButtonGroup>
       </Contents>
     </Container>

@@ -2,10 +2,10 @@ import React from 'react'
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import Carousel from 'react-multi-carousel'
 
-import { ReleaseCard } from '~/components'
+import { Button, ReleaseCard } from '~/components'
+import { ArtistRowList } from '~/components/ArtistRowList'
 import { responsiveCardsConfig } from '~/constants'
 import { useTranslation } from '~/hooks/useTranslation'
 
@@ -17,7 +17,6 @@ import {
   ReleasedContainer,
   FeaturedInfo,
   FeaturedImageWrapper,
-  Artist,
   TrackTitle,
   LatestReleasesContainer,
   UpcomingReleasesContainer,
@@ -31,7 +30,6 @@ type Props = {
 }
 
 export const Releases: React.FC<Props> = ({ featured, latest, upcoming }) => {
-  const { locale } = useRouter()
   const { t } = useTranslation()
 
   return (
@@ -40,25 +38,23 @@ export const Releases: React.FC<Props> = ({ featured, latest, upcoming }) => {
         <FeaturedContainer>
           <Title>{t('home_featuredReleaseHeading')}</Title>
           <FeaturedContent>
-            <FeaturedImageWrapper>
-              <Image
-                src={featured?.coverArt.url as string}
-                width={250}
-                height={250}
-                layout="fixed"
-              />
-            </FeaturedImageWrapper>
+            <Link href={`/releases/${featured.slug}`}>
+              <FeaturedImageWrapper>
+                <Image
+                  src={featured.coverArt.url as string}
+                  width={250}
+                  height={250}
+                  layout="fixed"
+                />
+              </FeaturedImageWrapper>
+            </Link>
+
             <FeaturedInfo>
-              <TrackTitle>{featured?.title}</TrackTitle>
-              {featured?.artists.map(artist => (
-                <Link
-                  key={artist.id}
-                  href={`/artists/${artist.slug}`}
-                  locale={locale}
-                >
-                  <Artist>{artist.name}</Artist>
-                </Link>
-              ))}
+              <Link href={`/releases/${featured.slug}`}>
+                <TrackTitle>{featured?.title}</TrackTitle>
+              </Link>
+              <ArtistRowList data={featured.artists} fontSize="1.2em" />
+              <Button href={featured.link}>{t('streamNow')}</Button>
             </FeaturedInfo>
           </FeaturedContent>
         </FeaturedContainer>

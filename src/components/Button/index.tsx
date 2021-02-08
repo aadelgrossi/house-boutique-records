@@ -1,18 +1,24 @@
-import React, { ButtonHTMLAttributes } from 'react'
+import { FC } from 'react'
+
+import Link from 'next/link'
 
 import { Container } from './styles'
 
-type ButtonProps = ButtonHTMLAttributes<HTMLAnchorElement> & {
+type ButtonProps = {
+  href: string
   outline?: boolean
 }
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button: FC<ButtonProps> = ({
   children,
+  href,
   outline = false
 }) => {
   return (
     <Container outline={outline}>
-      <a>{children}</a>
+      <Link href={href}>
+        <span>{children}</span>
+      </Link>
     </Container>
   )
 }

@@ -38,10 +38,3 @@ export const MobileMenu = styled.a`
     display: none;
   }
 `
-
-export const MenuItem = styled.a<{ active: boolean }>`
-  text-decoration: none;
-
-  font-weight: ${props => (props.active ? 800 : 500)};
-  cursor: ${props => (props.active ? 'auto' : 'pointer')};
-`

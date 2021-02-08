@@ -1,9 +1,18 @@
 import styled from 'styled-components'
 
-export const Container = styled.div``
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`
 
 export const ImageWrapper = styled.div`
   position: relative;
+  cursor: pointer;
+  transition: 0.2s transform ease-in-out;
+
+  &:hover {
+    transform: scale(1.03);
+  }
 `
 
 export const ReleaseDate = styled.p`
@@ -20,33 +29,10 @@ export const ReleaseDate = styled.p`
   border-radius: 1rem;
 `
 
-export const TrackTitle = styled.h3`
+export const TrackTitle = styled.a`
   margin-top: 0.2em;
   font-size: 1.2em;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   line-height: 1;
-`
-
-export const Artist = styled.a`
-  font-size: 0.9em;
-  text-transform: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-
-  & + & {
-    margin-left: 18px;
-    position: relative;
-
-    &:before {
-      position: absolute;
-      display: flex;
-      justify-content: center;
-      content: '/';
-      left: -14px;
-      top: 0;
-    }
-  }
 `
