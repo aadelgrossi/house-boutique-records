@@ -14,30 +14,26 @@ export const Artist = styled.a`
     text-decoration: underline;
   }
 
-  & + &:not(:last-of-type) {
-    margin-left: 10px;
+  &:not(:only-of-type, :nth-last-of-type(-n + 2)) {
+    margin-right: 10px;
     position: relative;
 
-    &:before {
+    &:after {
       position: absolute;
-      display: flex;
-      justify-content: center;
       content: ',';
-      left: -10px;
+      right: -4px;
       top: 0;
     }
   }
 
-  & + &:last-of-type {
-    margin-left: 23px;
+  &:nth-last-of-type(2) {
+    margin-right: 22px;
     position: relative;
 
-    &:before {
+    &:after {
       position: absolute;
-      display: flex;
-      justify-content: center;
       content: '&';
-      left: -16px;
+      right: -16px;
       top: 0;
     }
   }
