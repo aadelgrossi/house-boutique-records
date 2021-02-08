@@ -24,7 +24,8 @@ export const messages: Translation = {
     streamNow: 'Baixe / ouça agora',
     releaseDate: 'Data de lançamento',
     relatedReleases: 'Lançamentos relacionados',
-    nowPlaying: 'Ouvindo agora'
+    nowPlaying: 'Ouvindo agora',
+    preview: 'Prévia'
   },
   en: {
     header_home: 'Home',
@@ -46,6 +47,7 @@ export const messages: Translation = {
     streamNow: 'Download / Stream now',
     releaseDate: 'Release date',
     relatedReleases: 'Related releases',
-    nowPlaying: 'Now playing'
+    nowPlaying: 'Now playing',
+    preview: 'Preview'
   }
 }

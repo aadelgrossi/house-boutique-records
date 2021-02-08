@@ -57,7 +57,7 @@ export const RelatedReleasesGrid = styled.div`
   max-width: 820px;
 `
 export const ReleaseDate = styled.div`
-  margin-bottom: 2rem;
+  margin: 1rem 0 2rem;
 
   > p,
   strong {

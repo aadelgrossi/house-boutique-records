@@ -3,12 +3,11 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { AiFillPlayCircle } from 'react-icons/ai'
 
-import { usePlayer } from '~/hooks/usePlayer'
 import { formatDate, hasBeenReleased } from '~/utils'
 
 import { ArtistRowList } from '../ArtistRowList'
+import { PlayButton } from '../PlayButton'
 import { Container, ImageWrapper, ReleaseDate, TrackTitle } from './styles'
 
 interface Props {
@@ -18,7 +17,6 @@ interface Props {
 export const ReleaseCard: React.FC<Props> = ({ data }) => {
   const { locale } = useRouter()
   const { coverArt, releaseDate, artists, title, slug } = data
-  const { dispatch } = usePlayer()
 
   return (
     <Container>
@@ -36,9 +34,7 @@ export const ReleaseCard: React.FC<Props> = ({ data }) => {
 
       <ArtistRowList data={artists} />
 
-      <button onClick={() => dispatch({ name: 'load', payload: data })}>
-        <AiFillPlayCircle size={20} color="#fff" />
-      </button>
+      <PlayButton track={data} />
     </Container>
   )
 }

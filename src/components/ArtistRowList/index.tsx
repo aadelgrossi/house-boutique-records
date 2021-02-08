@@ -9,7 +9,7 @@ interface Props {
   fontSize?: string
 }
 
-export const ArtistRowList: FC<Props> = ({ data, fontSize = '0.9em' }) => {
+export const ArtistRowList: FC<Props> = ({ data, fontSize = '1em' }) => {
   return (
     <Container>
       {data.map(artist => (
