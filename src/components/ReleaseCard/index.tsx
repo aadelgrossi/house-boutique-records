@@ -7,16 +7,16 @@ import { useRouter } from 'next/router'
 import { formatDate, hasBeenReleased } from '~/utils'
 
 import { ArtistRowList } from '../ArtistRowList'
+import { PlayButton } from '../PlayButton'
 import { Container, ImageWrapper, ReleaseDate, TrackTitle } from './styles'
 
 interface Props {
   data: Release
 }
 
-export const ReleaseCard: React.FC<Props> = ({
-  data: { coverArt, releaseDate, artists, title, slug }
-}) => {
+export const ReleaseCard: React.FC<Props> = ({ data }) => {
   const { locale } = useRouter()
+  const { coverArt, releaseDate, artists, title, slug } = data
 
   return (
     <Container>
@@ -33,6 +33,8 @@ export const ReleaseCard: React.FC<Props> = ({
       </Link>
 
       <ArtistRowList data={artists} />
+
+      <PlayButton track={data} />
     </Container>
   )
 }

@@ -4,8 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Carousel from 'react-multi-carousel'
 
-import { Button, ReleaseCard } from '~/components'
-import { ArtistRowList } from '~/components/ArtistRowList'
+import { Button, ReleaseCard, ArtistRowList, PlayButton } from '~/components'
 import { responsiveCardsConfig } from '~/constants'
 import { useTranslation } from '~/hooks/useTranslation'
 
@@ -54,6 +53,7 @@ export const Releases: React.FC<Props> = ({ featured, latest, upcoming }) => {
                 <TrackTitle>{featured?.title}</TrackTitle>
               </Link>
               <ArtistRowList data={featured.artists} fontSize="1.2em" />
+              <PlayButton track={featured} />
               <Button href={featured.link}>{t('streamNow')}</Button>
             </FeaturedInfo>
           </FeaturedContent>

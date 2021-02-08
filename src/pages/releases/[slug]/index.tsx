@@ -4,8 +4,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
-import { Button, ReleaseCard } from '~/components'
-import { ArtistRowList } from '~/components/ArtistRowList'
+import { Button, ReleaseCard, ArtistRowList, PlayButton } from '~/components'
 import {
   fetchAllReleases,
   fetchRelatedReleases,
@@ -36,10 +35,8 @@ interface Params extends ParsedUrlQuery {
   slug: string
 }
 
-const Release: NextPage<ReleasePageProps> = ({
-  release: { title, artists, localizations, coverArt, link, releaseDate },
-  relatedReleases
-}) => {
+const Release: NextPage<ReleasePageProps> = ({ release, relatedReleases }) => {
+  const { title, artists, localizations, coverArt, link, releaseDate } = release
   const { t } = useTranslation()
   const { locale } = useRouter()
 
@@ -55,6 +52,8 @@ const Release: NextPage<ReleasePageProps> = ({
             <Description allowDangerousHtml={true}>
               {localizations[0]?.description?.html}
             </Description>
+
+            <PlayButton track={release} />
 
             <ReleaseDate>
               <strong>{t('releaseDate')}</strong>
