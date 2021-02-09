@@ -76,6 +76,7 @@ const RELEASES = gql`
       }
       orderBy: releaseDate_DESC
     ) {
+      id
       title
       slug
       releaseDate
