@@ -40,9 +40,11 @@ const SINGLE_ARTIST = gql`
         url
       }
       releases(first: 5, orderBy: releaseDate_DESC) {
+        id
         title
         slug
         artists {
+          id
           name
           slug
         }

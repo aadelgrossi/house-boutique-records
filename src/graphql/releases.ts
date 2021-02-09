@@ -45,6 +45,7 @@ const LATEST_RELEASES = gql`
       orderBy: releaseDate_DESC
       first: $first
     ) {
+      id
       title
       slug
       releaseDate
@@ -79,6 +80,7 @@ const RELEASES = gql`
       slug
       releaseDate
       artists {
+        id
         name
       }
       coverArt {
@@ -105,6 +107,7 @@ const SINGLE_RELEASE = gql`
       }
       link
       artists {
+        id
         slug
         name
       }
@@ -130,6 +133,7 @@ const RELATED_RELEASES = gql`
       slug
       releaseDate
       artists {
+        id
         slug
         name
       }
