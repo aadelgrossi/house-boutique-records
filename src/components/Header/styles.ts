@@ -4,12 +4,13 @@ export const Container = styled.header`
   position: fixed;
   width: 100%;
   height: 120px;
-  background-color: transparent;
   display: flex;
   z-index: 10;
   align-items: center;
   justify-content: space-between;
   padding: 50px;
+
+  transition: top 0.7s ease, background-color 0.2s ease-in-out;
 
   &:after {
     content: '';

@@ -2,8 +2,9 @@ import styled from 'styled-components'
 
 export const Container = styled.div<{ active: boolean }>`
   visibility: ${props => (props.active ? 'visible' : 'hidden')};
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.9);
+  opacity: ${props => (props.active ? 1 : 0)};
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.8);
   width: 100%;
   height: 100vh;
   top: 0;
@@ -12,8 +13,9 @@ export const Container = styled.div<{ active: boolean }>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  backdrop-filter: blur(5px);
 
-  transition: left 1s linear;
+  transition: all 0.4s linear;
 `
 
 export const VerticalList = styled.ul`
