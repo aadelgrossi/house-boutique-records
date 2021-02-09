@@ -22,6 +22,8 @@ export const Container = styled.div<{ playerVisible: boolean }>`
     `}
 `
 
+export const EmptyPlayer = styled.p``
+
 export const Wrapper = styled.div`
   width: 100%;
   display: flex;

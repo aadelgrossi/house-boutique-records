@@ -17,7 +17,8 @@ import {
   ReleaseInfo,
   ReleaseDetails,
   NowPlayingText,
-  HideButton
+  HideButton,
+  EmptyPlayer
 } from './styles'
 
 export const AudioPlayer: FC = () => {
@@ -83,7 +84,7 @@ export const AudioPlayer: FC = () => {
           />
         </Wrapper>
       ) : (
-        <p>Nada tocando no momento...</p>
+        <EmptyPlayer>{t('noTrackLoaded')}</EmptyPlayer>
       )}
 
       <HideButton

@@ -25,7 +25,8 @@ export const messages: Translation = {
     releaseDate: 'Data de lançamento',
     relatedReleases: 'Lançamentos relacionados',
     nowPlaying: 'Ouvindo agora',
-    preview: 'Prévia'
+    preview: 'Prévia',
+    noTrackLoaded: 'O player está vazio.'
   },
   en: {
     header_home: 'Home',
@@ -48,6 +49,7 @@ export const messages: Translation = {
     releaseDate: 'Release date',
     relatedReleases: 'Related releases',
     nowPlaying: 'Now playing',
-    preview: 'Preview'
+    preview: 'Preview',
+    noTrackLoaded: 'Player is empty'
   }
 }
