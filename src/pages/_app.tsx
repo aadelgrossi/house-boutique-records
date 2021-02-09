@@ -12,23 +12,25 @@ import { GlobalStyle } from '~/styles'
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <AppProvider>
-      <Layout>
-        <Head>
-          <title>House Boutique Records</title>
-          <meta
-            name="Description"
-            content="Official website for House Boutique Records"
-          />
-        </Head>
+    <>
+      <GlobalStyle />
+      <AppProvider>
+        <Layout>
+          <Head>
+            <title>House Boutique Records</title>
+            <meta
+              name="Description"
+              content="Official website for House Boutique Records"
+            />
+          </Head>
 
-        <PlayerProvider>
-          <Component {...pageProps} />
-          <AudioPlayer />
-        </PlayerProvider>
-        <GlobalStyle />
-      </Layout>
-    </AppProvider>
+          <PlayerProvider>
+            <Component {...pageProps} />
+            <AudioPlayer />
+          </PlayerProvider>
+        </Layout>
+      </AppProvider>
+    </>
   )
 }
 

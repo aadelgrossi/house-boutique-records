@@ -9,8 +9,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: ${({ theme: { colors } }) => colors.background};
-    color: ${({ theme: { colors } }) => colors.text};
+    background: #111214;
+    color: #F5F5F5;
     overflow-x: hidden;
     font: 15px Quicksand, sans-serif;
   }

@@ -1,5 +1,3 @@
-import React from 'react'
-
 import Document, {
   DocumentContext,
   DocumentInitialProps,
@@ -55,7 +53,7 @@ export default class MyDocument extends Document {
           <link
             href="https://fonts.googleapis.com/css2?family=Yantramanav:wght@100;300;400;700&display=swap"
             rel="stylesheet"
-          ></link>
+          />
         </Head>
         <body>
           <Main />
