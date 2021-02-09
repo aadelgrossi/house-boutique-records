@@ -6,7 +6,6 @@ export const Container = styled.div`
   flex-direction: column;
   width: 100%;
   z-index: 0;
-  padding-bottom: 8rem;
 `
 export const ImageContainer = styled.div`
   position: relative;

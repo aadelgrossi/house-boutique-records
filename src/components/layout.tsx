@@ -7,7 +7,9 @@ export const Layout: FC = ({ children }) => {
   return (
     <>
       <Header />
-      <main style={{ minHeight: '80vh' }}>{children}</main>
+      <main style={{ minHeight: '80vh', marginBottom: '3rem' }}>
+        {children}
+      </main>
       <Footer />
     </>
   )
