@@ -3,14 +3,14 @@ import { SiBeatport, SiSoundcloud, SiInstagram } from 'react-icons/si'
 export const navItems = [
   { name: 'home', route: '/' },
   { name: 'releases', route: '/releases' },
-  { name: 'artists', route: '/artists' },
-  { name: 'news', route: '/news' },
-  { name: 'radio', route: '/radio' }
+  { name: 'artists', route: '/artists' }
+  // { name: 'news', route: '/news' },
+  // { name: 'radio', route: '/radio' }
 ]
 
 export const locales = [
-  { locale: 'en', label: 'EN' },
-  { locale: 'pt', label: 'PT' }
+  { locale: 'en', label: 'ENGLISH' },
+  { locale: 'pt', label: 'PORTUGUÊS' }
 ]
 
 export const socialIcons = [
