@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
-  padding: 0 clamp(1rem, 5vw, 15vw);
+  padding: 0 max(1rem, 5vw);
   min-height: 80vh;
   width: 100%;
   background-image: url('/hero-bg.jpg');

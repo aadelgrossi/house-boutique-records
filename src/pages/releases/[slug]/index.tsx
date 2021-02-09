@@ -4,7 +4,13 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
-import { Button, ReleaseCard, ArtistRowList, PlayButton } from '~/components'
+import {
+  Button,
+  ReleaseCard,
+  ArtistRowList,
+  PlayButton,
+  ContainerBox
+} from '~/components'
 import {
   fetchAllReleases,
   fetchRelatedReleases,
@@ -14,8 +20,6 @@ import { useTranslation } from '~/hooks/useTranslation'
 import { formatLongDate } from '~/utils'
 
 import {
-  Container,
-  Content,
   Details,
   ReleaseTitle,
   ImageContainer,
@@ -42,41 +46,39 @@ const Release: NextPage<ReleasePageProps> = ({ release, relatedReleases }) => {
   const { locale } = useRouter()
 
   return (
-    <Container>
-      <Content>
-        <ReleaseInfo>
-          <ImageContainer>
-            <Image src={coverArt.url} width={300} height={300} />
-          </ImageContainer>
-          <Details>
-            <ReleaseTitle>{title}</ReleaseTitle>
-            <ArtistRowList data={artists} />
+    <ContainerBox>
+      <ReleaseInfo>
+        <ImageContainer>
+          <Image src={coverArt.url} width={300} height={300} />
+        </ImageContainer>
+        <Details>
+          <ReleaseTitle>{title}</ReleaseTitle>
+          <ArtistRowList data={artists} />
 
-            <Description allowDangerousHtml={true}>
-              {localizations[0]?.description?.html}
-            </Description>
+          <Description allowDangerousHtml={true}>
+            {localizations[0]?.description?.html}
+          </Description>
 
-            <PlayButton track={release} />
+          <PlayButton track={release} />
 
-            <ReleaseDate>
-              <strong>{t('releaseDate')}</strong>
-              <p>{formatLongDate(releaseDate, locale)}</p>
-            </ReleaseDate>
+          <ReleaseDate>
+            <strong>{t('releaseDate')}</strong>
+            <p>{formatLongDate(releaseDate, locale)}</p>
+          </ReleaseDate>
 
-            {link && <Button href={link}>{t('streamNow')}</Button>}
-          </Details>
-        </ReleaseInfo>
+          {link && <Button href={link}>{t('streamNow')}</Button>}
+        </Details>
+      </ReleaseInfo>
 
-        <RelatedReleasesContainer>
-          <RelatedReleasesTitle>{t('relatedReleases')}</RelatedReleasesTitle>
-          <RelatedReleasesGrid>
-            {relatedReleases?.map(related => (
-              <ReleaseCard key={related.id} data={related} />
-            ))}
-          </RelatedReleasesGrid>
-        </RelatedReleasesContainer>
-      </Content>
-    </Container>
+      <RelatedReleasesContainer>
+        <RelatedReleasesTitle>{t('relatedReleases')}</RelatedReleasesTitle>
+        <RelatedReleasesGrid>
+          {relatedReleases?.map(related => (
+            <ReleaseCard key={related.id} data={related} />
+          ))}
+        </RelatedReleasesGrid>
+      </RelatedReleasesContainer>
+    </ContainerBox>
   )
 }
 
