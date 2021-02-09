@@ -9,10 +9,10 @@ module.exports = {
   },
   i18n: {
     defaultLocale: 'pt',
-    localeDetection: false,
     locales: ['en', 'pt']
   },
   images: {
     domains: ['media.graphcms.com']
-  }
+  },
+  pageExtensions: ['tsx']
 }
