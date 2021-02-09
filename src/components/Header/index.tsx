@@ -41,7 +41,7 @@ export const Header: FC = () => {
       }}
     >
       <Content>
-        <Image src="/logo.jpg" width="120" height="120" />
+        <Image src="/logo.jpg" width="130" height="130" />
         <NavBar />
         <LanguageSwitcher />
       </Content>

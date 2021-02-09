@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Container = styled.header`
   position: fixed;
   width: 100%;
-  height: 120px;
+  height: 140px;
   display: flex;
   justify-content: center;
   z-index: 10;
@@ -41,8 +41,8 @@ export const Content = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  max-width: 1200px;
-  padding: 0 5vw;
+  max-width: 1368px;
+  padding: 0 max(1rem, 5vw);
 
   > ul {
     @media (max-width: 800px) {
