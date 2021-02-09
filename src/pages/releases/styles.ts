@@ -38,10 +38,10 @@ export const SearchBox = styled(FilterItem)`
 
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   height: 56px;
   border-bottom: 1px solid gray;
 `
-export const SearchButton = styled.button``
 
 export const Input = styled.input`
   width: 90%;
@@ -49,29 +49,8 @@ export const Input = styled.input`
   height: 56px;
   color: white;
   padding-right: 2rem;
-`
-
-export const DateSelect = styled.select`
-  width: 100%;
-  color: white;
-  position: relative;
-  appearance: none;
-
-  option {
-    height: 56px;
-    color: black;
-  }
-`
-
-export const SelectDateWrapper = styled(FilterItem)`
-  border-bottom: 1px solid gray;
-  position: relative;
-
-  svg {
-    position: absolute;
-    right: 18px;
-    top: 20px;
-  }
+  font-size: 16px;
+  font-family: Yantramanav;
 `
 
 export const Release = styled.div`
@@ -114,7 +93,7 @@ export const ReleaseGrid = styled.div`
   display: grid;
   margin: 3rem 0;
   gap: max(2vw, 1rem);
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
 `
 
 export const InfoButton = styled.div`
