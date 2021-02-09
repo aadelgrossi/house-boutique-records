@@ -10,6 +10,7 @@ import { useTranslation } from '~/hooks/useTranslation'
 
 import {
   Container,
+  Content,
   FeaturedContainer,
   Title,
   FeaturedContent,
@@ -33,53 +34,55 @@ export const Releases: React.FC<Props> = ({ featured, latest, upcoming }) => {
 
   return (
     <Container>
-      <ReleasedContainer>
-        <FeaturedContainer>
-          <Title>{t('home_featuredReleaseHeading')}</Title>
-          <FeaturedContent>
-            <Link href={`/releases/${featured.slug}`}>
-              <FeaturedImageWrapper>
-                <Image
-                  src={featured.coverArt.url as string}
-                  width={250}
-                  height={250}
-                  layout="fixed"
-                />
-              </FeaturedImageWrapper>
-            </Link>
-
-            <FeaturedInfo>
+      <Content>
+        <ReleasedContainer>
+          <FeaturedContainer>
+            <Title>{t('home_featuredReleaseHeading')}</Title>
+            <FeaturedContent>
               <Link href={`/releases/${featured.slug}`}>
-                <TrackTitle>{featured?.title}</TrackTitle>
+                <FeaturedImageWrapper>
+                  <Image
+                    src={featured.coverArt.url as string}
+                    width={250}
+                    height={250}
+                    layout="fixed"
+                  />
+                </FeaturedImageWrapper>
               </Link>
-              <ArtistRowList data={featured.artists} fontSize="1.2em" />
-              <PlayButton track={featured} />
-              <Button href={featured.link}>{t('streamNow')}</Button>
-            </FeaturedInfo>
-          </FeaturedContent>
-        </FeaturedContainer>
 
-        <LatestReleasesContainer>
-          <Title>{t('home_releasesButton')}</Title>
+              <FeaturedInfo>
+                <Link href={`/releases/${featured.slug}`}>
+                  <TrackTitle>{featured?.title}</TrackTitle>
+                </Link>
+                <ArtistRowList data={featured.artists} fontSize="1.2em" />
+                <PlayButton track={featured} />
+                <Button href={featured.link}>{t('streamNow')}</Button>
+              </FeaturedInfo>
+            </FeaturedContent>
+          </FeaturedContainer>
 
-          <LatestReleasesCards>
-            {latest.map(release => (
-              <ReleaseCard key={release.id} data={release} />
-            ))}
-          </LatestReleasesCards>
-        </LatestReleasesContainer>
-      </ReleasedContainer>
+          <LatestReleasesContainer>
+            <Title>{t('home_releasesButton')}</Title>
 
-      <UpcomingReleasesContainer>
-        <Title>{t('home_upcomingReleasesHeading')}</Title>
-        <div style={{ width: '100%' }}>
-          <Carousel ssr responsive={responsiveCardsConfig}>
-            {upcoming.map(release => (
-              <ReleaseCard key={release.id} data={release} />
-            ))}
-          </Carousel>
-        </div>
-      </UpcomingReleasesContainer>
+            <LatestReleasesCards>
+              {latest.map(release => (
+                <ReleaseCard key={release.id} data={release} />
+              ))}
+            </LatestReleasesCards>
+          </LatestReleasesContainer>
+        </ReleasedContainer>
+
+        <UpcomingReleasesContainer>
+          <Title>{t('home_upcomingReleasesHeading')}</Title>
+          <div style={{ width: '100%' }}>
+            <Carousel ssr responsive={responsiveCardsConfig}>
+              {upcoming.map(release => (
+                <ReleaseCard key={release.id} data={release} />
+              ))}
+            </Carousel>
+          </div>
+        </UpcomingReleasesContainer>
+      </Content>
     </Container>
   )
 }

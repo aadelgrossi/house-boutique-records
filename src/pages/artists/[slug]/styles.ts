@@ -51,24 +51,24 @@ export const Name = styled.h1`
   text-transform: uppercase;
   font-weight: 700;
   line-height: 1;
-  font-size: 60px;
+  font-size: max(52px, 4.5vw);
 `
 
 export const Bio = styled(ReactMarkdown)`
   color: white;
-  margin: 1rem 0 2rem;
+  margin: 1rem 0 4rem;
 
   @media (min-width: 720px) {
-    width: calc(60% + 5vw);
+    width: calc(60% + 3vw);
   }
 `
 
 export const Content = styled.div`
   z-index: 1;
-  margin: 0 5vw;
+  margin: -22% 5vw 0;
 
   @media (min-width: 720px) {
-    margin-top: -30%;
+    margin-top: -38%;
   }
 
   p {

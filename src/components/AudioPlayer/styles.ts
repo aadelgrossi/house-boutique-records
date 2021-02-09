@@ -6,10 +6,9 @@ export const Container = styled.div<{ playerVisible: boolean }>`
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 175px;
   bottom: 0;
   left: 0;
-  padding: 0.5rem 1rem;
+  padding: 1rem;
   transition: all 0.5s;
   z-index: 20;
   transform: translateY(100%);

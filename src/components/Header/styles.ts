@@ -5,11 +5,8 @@ export const Container = styled.header`
   width: 100%;
   height: 120px;
   display: flex;
+  justify-content: center;
   z-index: 10;
-  align-items: center;
-  justify-content: space-between;
-  padding: 50px;
-
   transition: top 0.7s ease, background-color 0.2s ease-in-out;
 
   &:after {
@@ -36,6 +33,16 @@ export const Container = styled.header`
       )
       repeat scroll 0% 0%;
   }
+`
+
+export const Content = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  padding: 0 5vw;
 
   > ul {
     @media (max-width: 800px) {

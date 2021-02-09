@@ -49,13 +49,13 @@ export default class MyDocument extends Document {
             rel="stylesheet"
           />
           <link
-            href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap"
             rel="stylesheet"
           />
           <link
-            href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Yantramanav:wght@100;300;400;700&display=swap"
             rel="stylesheet"
-          />
+          ></link>
         </Head>
         <body>
           <Main />

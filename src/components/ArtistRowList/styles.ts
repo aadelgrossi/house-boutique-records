@@ -7,8 +7,10 @@ export const Container = styled.div`
 `
 
 export const Artist = styled.a`
-  font-size: 0.9em;
+  font-size: 1em;
+  font-weight: 300;
   text-transform: none;
+  font-family: Yantramanav;
 
   &:hover {
     text-decoration: underline;

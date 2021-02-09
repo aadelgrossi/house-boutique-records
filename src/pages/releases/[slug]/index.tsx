@@ -18,6 +18,7 @@ import {
   Content,
   Details,
   ReleaseTitle,
+  ImageContainer,
   Description,
   ReleaseInfo,
   RelatedReleasesContainer,
@@ -44,7 +45,9 @@ const Release: NextPage<ReleasePageProps> = ({ release, relatedReleases }) => {
     <Container>
       <Content>
         <ReleaseInfo>
-          <Image src={coverArt.url} width={350} height={350} layout="fixed" />
+          <ImageContainer>
+            <Image src={coverArt.url} width={300} height={300} />
+          </ImageContainer>
           <Details>
             <ReleaseTitle>{title}</ReleaseTitle>
             <ArtistRowList data={artists} />

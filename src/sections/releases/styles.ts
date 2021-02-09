@@ -2,15 +2,19 @@ import styled from 'styled-components'
 
 export const Container = styled.section`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 3rem 0;
-  width: 90%;
-  gap: 3rem;
+  justify-content: center;
+  width: 100%;
+  padding: 3rem max(1rem, 5vw);
 
   @media (min-width: 1024px) {
     align-items: flex-start;
   }
+`
+
+export const Content = styled.div`
+  width: 100%;
+  max-width: 1368px;
+  gap: 3rem;
 `
 
 export const ReleasedContainer = styled.div`
@@ -18,7 +22,9 @@ export const ReleasedContainer = styled.div`
   width: 100%;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: space-between;
   gap: 3rem;
+  margin: 1rem 0 3rem;
 
   @media (min-width: 1200px) {
     flex-direction: row;

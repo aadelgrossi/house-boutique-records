@@ -6,7 +6,7 @@ import { debounce } from '~/utils/debounce'
 
 import { LanguageSwitcher } from './LanguageSwitcher'
 import { NavBar } from './NavBar'
-import { Container } from './styles'
+import { Container, Content } from './styles'
 
 export const Header: FC = () => {
   const [atTop, setAtTop] = useState(true)
@@ -40,9 +40,11 @@ export const Header: FC = () => {
         backgroundColor: atTop ? 'transparent' : '#111214'
       }}
     >
-      <Image src="/logo.jpg" width="120" height="120" />
-      <NavBar />
-      <LanguageSwitcher />
+      <Content>
+        <Image src="/logo.jpg" width="120" height="120" />
+        <NavBar />
+        <LanguageSwitcher />
+      </Content>
     </Container>
   )
 }

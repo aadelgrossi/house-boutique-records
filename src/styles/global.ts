@@ -12,14 +12,20 @@ export const GlobalStyle = createGlobalStyle`
     background: ${({ theme: { colors } }) => colors.background};
     color: ${({ theme: { colors } }) => colors.text};
     overflow-x: hidden;
+    font: 15px Quicksand, sans-serif;
   }
 
-  body, input, button, textarea, a {
-    font: 15px Quicksand, sans-serif;
+  input, button, textarea,p {
+    font: 16px Yantramanav, sans-serif;
+  }
+
+  p {
+    font-weight: 300;
   }
 
   h1, h2, h3, h4, h5, h6 {
     line-height: 1;
+    overflow-wrap: break-word;
   }
 
   h1 {
@@ -29,7 +35,7 @@ export const GlobalStyle = createGlobalStyle`
 
   h2 {
     font-family: Quicksand;
-    font-weight: 600;
+    font-weight: 700;
   }
 
   li {

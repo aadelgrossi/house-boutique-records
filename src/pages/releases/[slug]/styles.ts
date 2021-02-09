@@ -23,6 +23,12 @@ export const ReleaseInfo = styled.div`
   }
 `
 
+export const ImageContainer = styled.div`
+  display: flex;
+  width: 100%;
+  max-width: 300px;
+`
+
 export const Details = styled.div``
 
 export const ReleaseTitle = styled.h1`
@@ -52,7 +58,7 @@ export const RelatedReleasesTitle = styled.h3`
 export const RelatedReleasesGrid = styled.div`
   margin-top: 1rem;
   display: grid;
-  gap: max(2vw, 1rem);
+  gap: max(2vw, 2rem);
   grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
   max-width: 820px;
 `

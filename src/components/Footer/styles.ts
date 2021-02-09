@@ -18,7 +18,7 @@ export const MainContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 3rem;
+  padding: min(2rem, 7vw);
 
   transition: 0.2s all ease-in-out;
 
@@ -43,6 +43,7 @@ export const Items = styled.div`
 export const Item = styled.div`
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
 
   > p {
     line-height: 0.8;
@@ -51,18 +52,17 @@ export const Item = styled.div`
 
 export const SocialIcons = styled.div`
   display: flex;
+  flex-wrap: wrap;
 
-  > a + a {
-    margin-left: 20px;
-  }
+  gap: 0.5rem;
 `
 
 export const SocialButton = styled.a<{ color: string }>`
   display: flex;
   align-items: center;
   box-shadow: inset 0 0 0 1px ${props => props.theme.colors.ice};
-  border-radius: 26px;
-  padding: 12px 12px;
+  border-radius: 50%;
+  padding: 0.8rem;
   transition: 0.2s all ease-in-out;
 
   &:hover {

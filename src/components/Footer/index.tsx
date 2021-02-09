@@ -31,7 +31,7 @@ export const Footer: FC = () => {
               {socialIcons.map(({ Icon, url, color }) => (
                 <Link key={url} href={url}>
                   <SocialButton color={color}>
-                    <Icon color="#fff" size={24} />
+                    <Icon color="#fff" size={22} />
                   </SocialButton>
                 </Link>
               ))}
