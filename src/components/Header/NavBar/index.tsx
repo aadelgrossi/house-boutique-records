@@ -22,11 +22,9 @@ export const NavBar: React.FC = () => {
         <IoIosMenu size={40} color="#fff" />
       </MobileMenu>
 
-      {mobileMenuActive && (
-        <FullPageMenu active={mobileMenuActive} close={toggleMobileMenu}>
-          <MenuItems toggleMobileMenu={toggleMobileMenu} />
-        </FullPageMenu>
-      )}
+      <FullPageMenu active={mobileMenuActive} close={toggleMobileMenu}>
+        <MenuItems toggleMobileMenu={toggleMobileMenu} />
+      </FullPageMenu>
     </Container>
   )
 }
