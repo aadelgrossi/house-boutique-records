@@ -9,7 +9,7 @@ import Carousel from 'react-multi-carousel'
 import { SocialIcon, ReleaseCard } from '~/components'
 import { responsiveCardsConfig } from '~/constants'
 import { fetchArtists, fetchSingleArtist } from '~/graphql'
-import { useTranslation } from '~/hooks/useTranslation'
+import { useTranslation } from '~/hooks'
 
 import {
   Container,

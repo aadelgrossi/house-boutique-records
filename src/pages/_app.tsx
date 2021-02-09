@@ -6,7 +6,7 @@ import { AppProps } from 'next/app'
 import Head from 'next/head'
 
 import { Layout, AudioPlayer } from '~/components'
-import { PlayerProvider } from '~/hooks/usePlayer'
+import { PlayerProvider } from '~/hooks'
 import { AppProvider } from '~/providers/app'
 import { GlobalStyle } from '~/styles'
 

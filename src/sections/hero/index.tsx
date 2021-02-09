@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Button } from '~/components'
-import { useTranslation } from '~/hooks/useTranslation'
+import { useTranslation } from '~/hooks'
 
 import { Container, Title, ButtonGroup, Contents } from './styles'
 
