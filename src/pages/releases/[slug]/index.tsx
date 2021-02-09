@@ -85,12 +85,12 @@ const Release: NextPage<ReleasePageProps> = ({ release, relatedReleases }) => {
 export const getStaticPaths: GetStaticPaths = async ({ locales = ['pt'] }) => {
   const { releases } = await fetchAllReleases({})
 
-  // const paths = locales.flatMap(locale =>
-  //   releases.map(release => ({ params: { slug: release.slug }, locale }))
-  // )
+  const paths = locales.flatMap(locale =>
+    releases.map(release => ({ params: { slug: release.slug }, locale }))
+  )
 
   return {
-    paths: releases.map(release => ({ params: { slug: release.slug } })),
+    paths,
     fallback: 'blocking'
   }
 }
