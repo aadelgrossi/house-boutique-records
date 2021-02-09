@@ -6,7 +6,7 @@ import Carousel from 'react-multi-carousel'
 
 import { Button, ReleaseCard, ArtistRowList, PlayButton } from '~/components'
 import { responsiveCardsConfig } from '~/constants'
-import { useTranslation } from '~/hooks/useTranslation'
+import { useTranslation } from '~/hooks'
 
 import {
   Container,

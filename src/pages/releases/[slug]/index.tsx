@@ -16,7 +16,7 @@ import {
   fetchRelatedReleases,
   fetchSingleRelease
 } from '~/graphql'
-import { useTranslation } from '~/hooks/useTranslation'
+import { useTranslation } from '~/hooks'
 import { formatLongDate } from '~/utils'
 
 import {

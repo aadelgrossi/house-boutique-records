@@ -1,20 +1,20 @@
+import { useState } from 'react'
+
 import { GetStaticProps, NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { FaSearch, FaChevronDown } from 'react-icons/fa'
+import { FaSearch } from 'react-icons/fa'
 
 import { ContainerBox } from '~/components'
 import { fetchAllReleases } from '~/graphql'
-import { useTranslation } from '~/hooks/useTranslation'
+import { useTranslation } from '~/hooks'
+import { debounce } from '~/utils/debounce'
 
 import {
   Input,
   Title,
   Filters,
-  SelectDateWrapper,
   SearchBox,
-  SearchButton,
-  DateSelect,
   ReleaseGrid,
   Release,
   Overlay,
@@ -28,38 +28,37 @@ interface ReleasesProps {
 }
 
 const Releases: NextPage<ReleasesProps> = ({ releases }) => {
+  const [items, setItems] = useState<Release[]>(releases)
   const { t } = useTranslation()
+
+  const handleSearch = debounce((query: string) => {
+    fetchAllReleases({ query }).then(response => {
+      setItems(response.releases)
+    })
+  }, 600)
 
   return (
     <ContainerBox>
       <Title>{t('header_releases')}</Title>
       <Filters>
         <SearchBox>
-          <Input placeholder="Search for name or artist" />
-          <SearchButton>
-            <FaSearch size={16} color="#fff" />
-          </SearchButton>
+          <Input
+            placeholder={t('releases_searchPlaceholder')}
+            onChange={e => handleSearch(e.target.value)}
+          />
+          <FaSearch size={16} color="#fff" style={{ marginRight: 16 }} />
         </SearchBox>
-
-        <SelectDateWrapper>
-          <DateSelect>
-            <option value="all">All</option>
-            <option value="upcoming">Upcoming</option>
-            <option value="released">Released</option>
-          </DateSelect>
-          <FaChevronDown size={16} color="#fff" />
-        </SelectDateWrapper>
         <p>
-          <strong>{releases.length}</strong> releases found
+          <strong>{items.length}</strong> {t('releases_resultsFound')}
         </p>
       </Filters>
       <ReleaseGrid>
-        {releases.map(release => (
+        {items.map(release => (
           <Release key={release.id}>
             <Image
               src={release.coverArt.url}
-              width={150}
-              height={150}
+              width={140}
+              height={140}
               layout="responsive"
             />
             <Link href={`/releases/${release.slug}`}>
@@ -70,7 +69,7 @@ const Releases: NextPage<ReleasesProps> = ({ releases }) => {
                     <ReleaseArtist key={artist.id}>{artist.name}</ReleaseArtist>
                   ))}
                 </ReleaseArtist>
-                <InfoButton>Ver detalhes</InfoButton>
+                <InfoButton>{t('releases_moreInfo')}</InfoButton>
               </Overlay>
             </Link>
           </Release>

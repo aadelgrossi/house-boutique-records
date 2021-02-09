@@ -6,8 +6,7 @@ import { FaChevronDown } from 'react-icons/fa'
 import { ImHeadphones } from 'react-icons/im'
 import { useTheme } from 'styled-components'
 
-import { usePlayer } from '~/hooks/usePlayer'
-import { useTranslation } from '~/hooks/useTranslation'
+import { useTranslation, usePlayer } from '~/hooks'
 
 import { ArtistRowList } from '../ArtistRowList'
 import customIcons from './custom_icons'

@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { socialIcons } from '~/constants'
-import { useTranslation } from '~/hooks/useTranslation'
+import { useTranslation } from '~/hooks'
 
 import {
   Container,

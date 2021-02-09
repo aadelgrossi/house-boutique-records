@@ -144,12 +144,11 @@ const RELATED_RELEASES = gql`
 `
 
 export const fetchAllReleases = async ({
-  query,
-  date
+  query = ''
 }: ReleasesQueryParams): Promise<ReleasesQueryResponse> => {
   const { releases } = await graphCmsClient.request<{
     releases: Release[]
-  }>(RELEASES, { query, date })
+  }>(RELEASES, { query })
 
   return { releases }
 }
@@ -159,7 +158,7 @@ export const fetchLatestReleases = async (): Promise<ReleasesHomeQueryResponse> 
 
   const { releases: upcoming } = await graphCmsClient.request<{
     releases: Release[]
-  }>(UPCOMING_RELEASES, { date: today, first: 4 })
+  }>(UPCOMING_RELEASES, { date: today, first: 4, query: '' })
 
   const { releases: latest } = await graphCmsClient.request<{
     releases: Release[]

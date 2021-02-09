@@ -4,7 +4,7 @@ import { GetStaticProps, NextPage } from 'next'
 import Link from 'next/link'
 
 import { fetchArtists } from '~/graphql'
-import { useTranslation } from '~/hooks/useTranslation'
+import { useTranslation } from '~/hooks'
 
 import {
   Container,
