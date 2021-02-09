@@ -72,8 +72,12 @@ const Artist: NextPage<ArtistPageProps> = ({
   )
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async ({ locales = ['pt'] }) => {
   const { artists } = await fetchArtists()
+
+  // const paths = locales.flatMap(locale =>
+  //   artists.map(artist => ({ params: { slug: artist.slug }, locale }))
+  // )
 
   return {
     paths: artists.map(artist => ({ params: { slug: artist.slug } })),
