@@ -14,6 +14,7 @@ export const Hero = styled.div`
   padding: 0 max(1rem, 5vw);
   min-height: 80vh;
   width: 100%;
+  position: relative;
   background-image: url('/hero-bg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -25,13 +26,13 @@ export const Hero = styled.div`
 
   box-shadow: inset 188px 51px 185px 72px rgb(0 0 0 / 50%);
 
-  &:before {
+  &:after {
     width: 100%;
+    height: 100%;
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    height: 80%;
     z-index: 0;
     background: linear-gradient(0deg, #111214 0%, rgba(255, 255, 255, 0) 70%);
   }
