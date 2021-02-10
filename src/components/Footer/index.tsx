@@ -1,11 +1,11 @@
 import { FC } from 'react'
 
-import Image from 'next/image'
 import Link from 'next/link'
 
 import { socialIcons } from '~/constants'
 import { useTranslation } from '~/hooks'
 
+import { FullMono as Logo } from '../Logo'
 import {
   Container,
   MainContent,
@@ -22,7 +22,7 @@ export const Footer: FC = () => {
   return (
     <Container>
       <MainContent>
-        <Image src="/logo.jpg" width={120} height={120} layout="fixed" />
+        <Logo />
 
         <Items>
           <Item>
