@@ -1,12 +1,11 @@
 import { FC, useEffect, useState } from 'react'
 
-import Image from 'next/image'
-
 import { debounce } from '~/utils/debounce'
 
+import { Full as FullLogo, Icon } from '../Logo'
 import { LanguageSwitcher } from './LanguageSwitcher'
 import { NavBar } from './NavBar'
-import { Container, Content } from './styles'
+import { Container, Content, LogoContainer } from './styles'
 
 export const Header: FC = () => {
   const [atTop, setAtTop] = useState(true)
@@ -41,7 +40,10 @@ export const Header: FC = () => {
       }}
     >
       <Content>
-        <Image src="/logo.jpg" width="130" height="130" />
+        <LogoContainer>
+          <FullLogo />
+          <Icon />
+        </LogoContainer>
         <NavBar />
         <LanguageSwitcher />
       </Content>

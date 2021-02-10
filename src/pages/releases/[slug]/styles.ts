@@ -21,9 +21,9 @@ export const ImageContainer = styled.div`
 export const Details = styled.div``
 
 export const ReleaseTitle = styled.h1`
-  font-family: 'Anton';
+  font-family: Anton;
+  letter-spacing: 1.4px;
   text-transform: uppercase;
-  font-weight: 700;
   line-height: 1;
   font-size: 60px;
   margin-top: 1rem;

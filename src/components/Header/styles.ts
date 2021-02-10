@@ -52,6 +52,22 @@ export const Content = styled.div`
   }
 `
 
+export const LogoContainer = styled.div`
+  > svg:nth-of-type(2) {
+    display: none;
+  }
+
+  @media (max-width: 600px) {
+    > svg:first-of-type {
+      display: none;
+    }
+
+    > svg:nth-of-type(2) {
+      display: unset;
+    }
+  }
+`
+
 export const MenuItem = styled.a<{ active: boolean }>`
   text-decoration: none;
 

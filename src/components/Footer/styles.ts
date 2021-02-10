@@ -17,14 +17,14 @@ export const Title = styled.h1`
 export const MainContent = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding: min(2rem, 7vw);
+  gap: 2rem;
+  margin: 3rem max(2rem, 10vw);
 
   transition: 0.2s all ease-in-out;
 
   @media (min-width: 860px) {
     flex-direction: row;
-    gap: 3rem;
+    gap: 4vw;
 
     > div {
       flex-direction: row;
