@@ -1,6 +1,7 @@
 import { ParsedUrlQuery } from 'querystring'
 
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
@@ -47,9 +48,12 @@ const Release: NextPage<ReleasePageProps> = ({ release, relatedReleases }) => {
 
   return (
     <ContainerBox>
+      <Head>
+        <title>{title} | House Boutique Records</title>
+      </Head>
       <ReleaseInfo>
         <ImageContainer>
-          <Image src={coverArt.url} width={300} height={300} />
+          <Image src={coverArt.url} width={300} height={300} alt={title} />
         </ImageContainer>
         <Details>
           <ReleaseTitle>{title}</ReleaseTitle>

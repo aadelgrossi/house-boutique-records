@@ -36,7 +36,5 @@ export const Container = styled.a<Props>`
       }
     `}
 
-  > span {
-    font-weight: bold;
-  }
+  font-weight: bold;
 `

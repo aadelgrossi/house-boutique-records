@@ -1,4 +1,4 @@
-import React from 'react'
+import { FC } from 'react'
 
 import Image from 'next/image'
 import Link from 'next/link'
@@ -14,7 +14,7 @@ interface Props {
   data: Release
 }
 
-export const ReleaseCard: React.FC<Props> = ({ data }) => {
+export const ReleaseCard: FC<Props> = ({ data }) => {
   const { locale } = useRouter()
   const { coverArt, releaseDate, artists, title, slug } = data
 
@@ -22,7 +22,7 @@ export const ReleaseCard: React.FC<Props> = ({ data }) => {
     <Container>
       <Link href={`/releases/${slug}`}>
         <ImageWrapper>
-          <Image src={coverArt.url} width={180} height={180} />
+          <Image src={coverArt.url} width={180} height={180} alt={title} />
           {!hasBeenReleased(releaseDate) && (
             <ReleaseDate>{formatDate(releaseDate, locale)}</ReleaseDate>
           )}

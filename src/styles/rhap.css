@@ -98,7 +98,7 @@
   height: 100%;
   position: absolute;
   z-index: 2;
-  background-color:#FF9F1C;
+  background-color:#e4627a;
   border-radius: 2px;
 }
 
@@ -122,9 +122,9 @@
   height: 20px;
   margin-left: -10px;
   top: -8px;
-  background: #FF9F1C;
+  background: #e4627a;
   border-radius: 50px;
-  box-shadow: rgba(255, 159, 28, 0.5) 0 0 5px;
+  box-shadow: rgb(228, 98, 122,0.5) 0 0 5px;
 }
 
 .rhap_controls-section {
@@ -170,7 +170,7 @@
   width: 48px;
   height: 48px;
   margin-right: 12px;
-  color:#FF9F1C;
+  color:#e4627a;
 }
 
 .rhap_volume-controls {

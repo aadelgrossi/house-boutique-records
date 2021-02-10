@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { GetStaticProps, NextPage } from 'next'
+import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FaSearch } from 'react-icons/fa'
@@ -39,6 +40,9 @@ const Releases: NextPage<ReleasesProps> = ({ releases }) => {
 
   return (
     <ContainerBox>
+      <Head>
+        <title>{t('header_releases')} | House Boutique Records</title>
+      </Head>
       <Title>{t('header_releases')}</Title>
       <Filters>
         <SearchBox>
@@ -53,19 +57,20 @@ const Releases: NextPage<ReleasesProps> = ({ releases }) => {
         </p>
       </Filters>
       <ReleaseGrid>
-        {items.map(release => (
-          <Release key={release.id}>
+        {items.map(({ id, coverArt, title, slug, artists }) => (
+          <Release key={id}>
             <Image
-              src={release.coverArt.url}
+              src={coverArt.url}
               width={140}
               height={140}
               layout="responsive"
+              alt={title}
             />
-            <Link href={`/releases/${release.slug}`}>
+            <Link href={`/releases/${slug}`}>
               <Overlay>
-                <ReleaseTitle>{release.title}</ReleaseTitle>
+                <ReleaseTitle>{title}</ReleaseTitle>
                 <ReleaseArtist>
-                  {release.artists.map(artist => (
+                  {artists.map(artist => (
                     <ReleaseArtist key={artist.id}>{artist.name}</ReleaseArtist>
                   ))}
                 </ReleaseArtist>

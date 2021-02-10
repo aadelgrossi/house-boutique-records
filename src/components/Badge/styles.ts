@@ -7,7 +7,7 @@ export const Container = styled.span`
   padding: 0.2em 0.8em;
   background-color: ${props => props.theme.colors.primary};
   border-radius: 1.2em;
-  font-size: 0.8em;
+  font-size: 0.9em;
   text-transform: uppercase;
   font-weight: bold;
 `

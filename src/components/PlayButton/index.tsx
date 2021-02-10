@@ -15,7 +15,10 @@ export const PlayButton: React.FC<PlayButtonProps> = ({ track: payload }) => {
   const { t } = useTranslation()
 
   return (
-    <Container onClick={() => dispatch({ name: 'load', payload })}>
+    <Container
+      onClick={() => dispatch({ name: 'load', payload })}
+      aria-label="play"
+    >
       <AiFillPlayCircle size={22} color="#fff" />
       <span>{t('preview')}</span>
     </Container>
