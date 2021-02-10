@@ -44,6 +44,7 @@ export const AudioPlayer: FC = () => {
               width={85}
               height={85}
               layout="intrinsic"
+              alt={currentTrack.title}
             />
             <ReleaseInfo>
               <NowPlayingText style={{ opacity: Number(playing) }}>

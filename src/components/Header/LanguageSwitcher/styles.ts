@@ -13,10 +13,6 @@ export const Container = styled.ul`
   flex-direction: row;
   justify-content: center;
 
-  /* @media (max-width: 800px) {
-    display: none;
-  } */
-
   > li + li {
     margin-left: 32px;
     position: relative;

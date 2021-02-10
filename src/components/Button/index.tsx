@@ -16,9 +16,7 @@ export const Button: FC<ButtonProps> = ({
 }) => {
   return (
     <Container outline={outline}>
-      <Link href={href}>
-        <span>{children}</span>
-      </Link>
+      <Link href={href}>{children}</Link>
     </Container>
   )
 }

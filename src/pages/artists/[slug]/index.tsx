@@ -1,8 +1,7 @@
 import { ParsedUrlQuery } from 'querystring'
 
-import React from 'react'
-
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import Head from 'next/head'
 import Image from 'next/image'
 import Carousel from 'react-multi-carousel'
 
@@ -38,12 +37,16 @@ const Artist: NextPage<ArtistPageProps> = ({
 
   return (
     <Container>
+      <Head>
+        <title>{name} | House Boutique Records</title>
+      </Head>
       <ImageContainer>
         <Image
           src={backgroundImage.url}
           layout="responsive"
           width={1200}
           height={750}
+          alt={name}
         />
       </ImageContainer>
       <Content>

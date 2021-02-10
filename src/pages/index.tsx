@@ -67,6 +67,7 @@ const Home: NextPage<HomeProps> = ({
                       width={250}
                       height={250}
                       layout="fixed"
+                      alt={featured.title}
                     />
                   </FeaturedImageWrapper>
                 </Link>

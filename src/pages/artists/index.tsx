@@ -1,6 +1,5 @@
-import React from 'react'
-
 import { GetStaticProps, NextPage } from 'next'
+import Head from 'next/head'
 import Link from 'next/link'
 
 import { fetchArtists } from '~/graphql'
@@ -24,13 +23,17 @@ const Artists: NextPage<ArtistsPageProps> = ({ artists }) => {
   const { t } = useTranslation()
   return (
     <Container>
+      <Head>
+        <title>{t('header_artists')} | House Boutique Records</title>
+      </Head>
+
       <Title>{t('header_artists')}</Title>
       <Contents>
-        {artists.map(artist => (
-          <ArtistCard key={artist.id}>
-            <ArtistThumb src={artist.thumb.url} width={500} height={500} />
-            <Name>{artist.name}</Name>
-            <Link href={`artists/${artist.slug}`}>
+        {artists.map(({ id, thumb, name, slug }) => (
+          <ArtistCard key={id}>
+            <ArtistThumb src={thumb.url} width={500} height={500} />
+            <Name>{name}</Name>
+            <Link href={`artists/${slug}`}>
               <ArtistButton>{t('home_artistsReadMore')}</ArtistButton>
             </Link>
           </ArtistCard>
