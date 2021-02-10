@@ -45,11 +45,12 @@ export const Contents = styled.div`
 `
 
 export const HeroTitle = styled.h1`
-  font-size: clamp(38px, 6rem, 4.5vw);
-  font-family: 'Anton';
+  font-size: clamp(48px, 6rem, 4.2vw);
+  font-family: Anton;
   width: clamp(359px, 37rem, 56vw);
-  line-height: 0.95;
-  text-shadow: 25px 25px 40px ${props => props.theme.colors.black};
+  letter-spacing: 1.2px;
+  line-height: 1;
+  text-shadow: 25px 5px 30px ${props => props.theme.colors.black};
 `
 
 export const ButtonGroup = styled.div`

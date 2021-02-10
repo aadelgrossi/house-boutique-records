@@ -1,3 +1,5 @@
+import { useCallback, useEffect, useState } from 'react'
+
 import { GetStaticProps, NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -26,6 +28,7 @@ import {
   LatestReleasesCards,
   UpcomingReleasesContainer
 } from '~/styles/pages'
+import { debounce } from '~/utils/debounce'
 
 interface HomeProps {
   releases: {

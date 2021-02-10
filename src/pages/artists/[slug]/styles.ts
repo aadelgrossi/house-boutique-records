@@ -46,9 +46,9 @@ export const ArtistSocials = styled.div`
 `
 
 export const Name = styled.h1`
-  font-family: 'Anton';
+  font-family: Anton;
+  letter-spacing: 1.4px;
   text-transform: uppercase;
-  font-weight: 700;
   line-height: 1;
   font-size: max(52px, 4.5vw);
 `
