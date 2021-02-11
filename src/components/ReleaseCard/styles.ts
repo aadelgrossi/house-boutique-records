@@ -21,8 +21,8 @@ export const ReleaseDate = styled.p`
   left: 6px;
   font-weight: 700;
   color: ${props => props.theme.colors.white};
-  font-size: 0.6em;
-  font-weight: 500;
+  font-size: 0.9em;
+  font-weight: bold;
   background-color: ${props => props.theme.colors.secondary};
   width: fit-content;
   padding: 0.1rem 0.5rem;

@@ -1,8 +1,10 @@
 import styled, { css } from 'styled-components'
 
-type Props = { outline: boolean }
+interface ButtonProps {
+  outline?: boolean
+}
 
-export const Container = styled.a<Props>`
+export const Container = styled.a<ButtonProps>`
   padding: 0.8rem 1.6rem;
   height: 56px;
   cursor: pointer;
@@ -18,7 +20,7 @@ export const Container = styled.a<Props>`
   transition: 0.2s all ease-in-out;
 
   &:hover {
-    background-color: ${props => props.theme.colors.ice};
+    background-color: ${props => props.theme.colors.white};
     transform: translateY(-5px);
     color: ${props => props.theme.colors.secondary};
   }
@@ -31,8 +33,8 @@ export const Container = styled.a<Props>`
 
       &:hover {
         background-color: unset;
-        color: ${props => props.theme.colors.ice};
-        box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colors.ice};
+        color: ${props => props.theme.colors.white};
+        box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colors.white};
       }
     `}
 

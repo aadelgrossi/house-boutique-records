@@ -11,9 +11,9 @@ export const Container = styled.button`
 
   > span {
     margin: 0 0.4em;
-    font-size: 0.9em;
+    font-size: 14px;
     font-weight: bold;
     text-transform: uppercase;
-    color: ${props => props.theme.colors.ice};
+    color: ${props => props.theme.colors.white};
   }
 `

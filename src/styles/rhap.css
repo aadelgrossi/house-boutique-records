@@ -69,7 +69,6 @@
   align-self: center;
   margin: 0 calc(10px + 1%);
   cursor: pointer;
-  -webkit-user-select: none;
 }
 .rhap_progress-container:focus:not(:focus-visible) {
   outline: 0;
@@ -194,7 +193,6 @@
   align-items: center;
   flex: 0 1 100px;
   margin-left: 1rem;
-  -webkit-user-select: none;
 }
 
 .rhap_volume-bar-area {

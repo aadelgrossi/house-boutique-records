@@ -46,10 +46,12 @@ const Home: NextPage<HomeProps> = ({
         <Contents>
           <HeroTitle>{t('home_heroTitle')}</HeroTitle>
           <ButtonGroup>
-            <Button href="/releases">{t('home_releasesButton')}</Button>
-            <Button href="/artists" outline>
-              {t('home_artistsButton')}
-            </Button>
+            <Link href="/releases">
+              <Button>{t('home_releasesButton')}</Button>
+            </Link>
+            <Link href="/artists">
+              <Button outline>{t('home_artistsButton')}</Button>
+            </Link>
           </ButtonGroup>
         </Contents>
       </Hero>
@@ -78,7 +80,11 @@ const Home: NextPage<HomeProps> = ({
                   </Link>
                   <ArtistRowList data={featured.artists} fontSize="1.2em" />
                   <PlayButton track={featured} />
-                  <Button href={featured.link}>{t('streamNow')}</Button>
+                  {featured.link && (
+                    <Link href={featured.link}>
+                      <Button>{t('streamNow')}</Button>
+                    </Link>
+                  )}
                 </FeaturedInfo>
               </FeaturedContent>
             </FeaturedContainer>
