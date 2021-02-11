@@ -3,6 +3,7 @@ import { ParsedUrlQuery } from 'querystring'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import {
@@ -70,7 +71,11 @@ const Release: NextPage<ReleasePageProps> = ({ release, relatedReleases }) => {
             <p>{formatLongDate(releaseDate, locale)}</p>
           </ReleaseDate>
 
-          {link && <Button href={link}>{t('streamNow')}</Button>}
+          {link && (
+            <Link href={link}>
+              <Button>{t('streamNow')}</Button>
+            </Link>
+          )}
         </Details>
       </ReleaseInfo>
 
