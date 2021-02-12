@@ -48,12 +48,16 @@ const Home: NextPage<HomeProps> = ({
         description={`${t('home_heroTitle')} ${t('since')}`}
         canonical="https://www.houseboutiquerecords.com/"
         openGraph={{
+          title: `House Boutique Records | ${t('officialWebsite')}`,
           url: 'https://www.houseboutiquerecords.com',
+          description: `${t('home_heroTitle')} ${t('since')}`,
+          defaultImageWidth: 1200,
+          defaultImageHeight: 630,
           images: [
             {
               url: 'https://www.houseboutiquerecords.com/hb-light.jpg',
-              width: 800,
-              height: 600,
+              width: 1200,
+              height: 630,
               alt: 'House Boutique Records'
             }
           ]
