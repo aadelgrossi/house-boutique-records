@@ -5,7 +5,7 @@ import Carousel from 'react-multi-carousel'
 
 import { ArtistRowList, Button, PlayButton, ReleaseCard } from '~/components'
 import { responsiveCardsConfig } from '~/constants'
-import { fetchLatestReleases } from '~/graphql'
+import { fetchHomeReleases } from '~/graphql'
 import { useTranslation } from '~/hooks'
 import {
   Container,
@@ -117,7 +117,7 @@ const Home: NextPage<HomeProps> = ({
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const releases = await fetchLatestReleases()
+  const releases = await fetchHomeReleases()
 
   return {
     props: { releases }
