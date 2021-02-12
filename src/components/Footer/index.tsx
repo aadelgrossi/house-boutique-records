@@ -40,7 +40,9 @@ export const Footer: FC = () => {
 
           <Item>
             <Title>{t('footer_contact')}</Title>
-            <p>contact@houseboutiquerecords.com</p>
+            <Link href="mailto:info@houseboutiquerecords.com">
+              <a>info@houseboutiquerecords.com</a>
+            </Link>
           </Item>
         </Items>
       </MainContent>

@@ -48,6 +48,10 @@ export const Item = styled.div`
   > p {
     line-height: 0.8;
   }
+
+  > a:hover {
+    text-decoration: underline;
+  }
 `
 
 export const SocialIcons = styled.div`
