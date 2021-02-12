@@ -9,11 +9,7 @@ import Link from 'next/link'
 import { FaSearch } from 'react-icons/fa'
 
 import { ContainerBox, Select } from '~/components'
-import {
-  fetchAllReleases,
-  fetchReleasedReleases,
-  fetchUpcomingReleases
-} from '~/graphql'
+import { fetchReleases } from '~/graphql'
 import { useTranslation } from '~/hooks'
 
 import {
@@ -48,23 +44,9 @@ const Releases: NextPage<ReleasesProps> = ({ releases, search = '' }) => {
   const { t } = useTranslation()
 
   useEffect(() => {
-    switch (dateFilter) {
-      case 'all':
-        fetchAllReleases({ query }).then(({ releases }) => {
-          setItems(releases)
-        })
-        break
-      case 'available':
-        fetchReleasedReleases({ query }).then(({ releases }) => {
-          setItems(releases)
-        })
-        break
-      case 'upcoming':
-        fetchUpcomingReleases({ query }).then(({ releases }) => {
-          setItems(releases)
-        })
-        break
-    }
+    fetchReleases({ query, date: dateFilter }).then(response =>
+      setItems(response.releases)
+    )
   }, [dateFilter, query])
 
   const onSelectChange = useCallback((value: DateFilter) => {
@@ -136,7 +118,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 }: {
   query: ReleasesQueryStringParams
 }) => {
-  const { releases } = await fetchAllReleases({ query: search })
+  const { releases } = await fetchReleases({ query: search })
 
   return { props: { releases, search } }
 }

@@ -162,14 +162,33 @@ const RELATED = gql`
   }
 `
 
-export const fetchAllReleases = async ({
-  query = ''
+export const fetchReleases = async ({
+  query = '',
+  date = 'all'
 }: ReleasesQueryParams): Promise<ReleasesQueryResponse> => {
-  const { releases } = await graphCmsClient.request<{
-    releases: Release[]
-  }>(ALL, { query })
-
-  return { releases }
+  switch (date) {
+    case 'all': {
+      const { releases } = await graphCmsClient.request<ReleasesQueryResponse>(
+        ALL,
+        { query }
+      )
+      return { releases }
+    }
+    case 'available': {
+      const { releases } = await graphCmsClient.request<ReleasesQueryResponse>(
+        RELEASED,
+        { query }
+      )
+      return { releases }
+    }
+    case 'upcoming': {
+      const { releases } = await graphCmsClient.request<ReleasesQueryResponse>(
+        UPCOMING,
+        { query }
+      )
+      return { releases }
+    }
+  }
 }
 
 export const fetchHomeReleases = async (): Promise<ReleasesHomeQueryResponse> => {

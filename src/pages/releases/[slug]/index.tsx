@@ -14,7 +14,7 @@ import {
   ContainerBox
 } from '~/components'
 import {
-  fetchAllReleases,
+  fetchReleases,
   fetchRelatedReleases,
   fetchSingleRelease
 } from '~/graphql'
@@ -58,7 +58,7 @@ const Release: NextPage<ReleasePageProps> = ({ release, relatedReleases }) => {
         </ImageContainer>
         <Details>
           <ReleaseTitle>{title}</ReleaseTitle>
-          <ArtistRowList data={artists} />
+          <ArtistRowList data={artists} fontSize="1rem" />
 
           <Description allowDangerousHtml={true}>
             {localizations[0]?.description?.html}
@@ -92,7 +92,7 @@ const Release: NextPage<ReleasePageProps> = ({ release, relatedReleases }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async ({ locales = ['pt'] }) => {
-  const { releases } = await fetchAllReleases({})
+  const { releases } = await fetchReleases({})
 
   const paths = locales.flatMap(locale =>
     releases.map(release => ({ params: { slug: release.slug }, locale }))
