@@ -4,26 +4,29 @@ export const Title = styled.h1`
   text-transform: uppercase;
 `
 
-export const Filters = styled.div`
+export const Filters = styled.form`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 1em;
+  gap: 1rem;
   max-width: 1200px;
-  justify-content: space-between;
   align-items: flex-end;
 
   p {
     text-align: right;
   }
 
+  > div {
+    width: 100%;
+  }
+
   @media (min-width: 700px) {
-    > div {
-      width: 37%;
+    > div:first-of-type {
+      width: 35%;
     }
 
-    > p {
-      width: 18%;
+    > div:nth-of-type(2) {
+      width: 25%;
     }
   }
 `
@@ -43,12 +46,17 @@ export const SearchBox = styled(FilterItem)`
   border-bottom: 1px solid gray;
 `
 
+export const ResultsCount = styled.p`
+  margin-left: auto;
+`
+
 export const Input = styled.input`
   width: 90%;
   background-color: transparent;
   height: 56px;
   color: white;
-  padding-right: 2rem;
+  padding-right: 0.6rem;
+  padding-left: 1rem;
   font-size: 16px;
   font-family: Yantramanav;
 `

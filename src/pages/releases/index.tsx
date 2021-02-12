@@ -1,15 +1,20 @@
-import { useState } from 'react'
+import { ParsedUrlQuery } from 'querystring'
 
-import { GetStaticProps, NextPage } from 'next'
+import { useCallback, useEffect, useState } from 'react'
+
+import { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FaSearch } from 'react-icons/fa'
 
-import { ContainerBox } from '~/components'
-import { fetchAllReleases } from '~/graphql'
+import { ContainerBox, Select } from '~/components'
+import {
+  fetchAllReleases,
+  fetchReleasedReleases,
+  fetchUpcomingReleases
+} from '~/graphql'
 import { useTranslation } from '~/hooks'
-import { debounce } from '~/utils/debounce'
 
 import {
   Input,
@@ -21,22 +26,50 @@ import {
   Overlay,
   ReleaseArtist,
   ReleaseTitle,
-  InfoButton
+  InfoButton,
+  ResultsCount
 } from './styles'
 
-interface ReleasesProps {
-  releases: Release[]
+type DateFilter = 'all' | 'available' | 'upcoming'
+
+interface ReleasesQueryStringParams extends ParsedUrlQuery {
+  search?: string
 }
 
-const Releases: NextPage<ReleasesProps> = ({ releases }) => {
+type ReleasesProps = {
+  releases: Release[]
+} & ReleasesQueryStringParams
+
+const Releases: NextPage<ReleasesProps> = ({ releases, search = '' }) => {
+  const [query, setQuery] = useState(search)
+  const [dateFilter, setDateFilter] = useState<DateFilter>('all')
+
   const [items, setItems] = useState<Release[]>(releases)
   const { t } = useTranslation()
 
-  const handleSearch = debounce((query: string) => {
-    fetchAllReleases({ query }).then(response => {
-      setItems(response.releases)
-    })
-  }, 600)
+  useEffect(() => {
+    switch (dateFilter) {
+      case 'all':
+        fetchAllReleases({ query }).then(({ releases }) => {
+          setItems(releases)
+        })
+        break
+      case 'available':
+        fetchReleasedReleases({ query }).then(({ releases }) => {
+          setItems(releases)
+        })
+        break
+      case 'upcoming':
+        fetchUpcomingReleases({ query }).then(({ releases }) => {
+          setItems(releases)
+        })
+        break
+    }
+  }, [dateFilter, query])
+
+  const onSelectChange = useCallback((value: DateFilter) => {
+    setDateFilter(value)
+  }, [])
 
   return (
     <ContainerBox>
@@ -44,18 +77,32 @@ const Releases: NextPage<ReleasesProps> = ({ releases }) => {
         <title>{t('header_releases')} | House Boutique Records</title>
       </Head>
       <Title>{t('header_releases')}</Title>
-      <Filters>
+      <Filters autoComplete="off">
         <SearchBox>
           <Input
+            name="search"
+            onChange={e => setQuery(e.target.value)}
+            enterKeyHint="send"
+            defaultValue={search}
             placeholder={t('releases_searchPlaceholder')}
-            onChange={e => handleSearch(e.target.value)}
           />
           <FaSearch size={16} color="#fff" style={{ marginRight: 16 }} />
         </SearchBox>
-        <p>
+
+        <Select
+          onChange={onSelectChange}
+          value="all"
+          options={[
+            { value: 'all', label: t('releases_all') },
+            { value: 'available', label: t('releases_available') },
+            { value: 'upcoming', label: t('releases_upcoming') }
+          ]}
+        />
+        <ResultsCount>
           <strong>{items.length}</strong> {t('releases_resultsFound')}
-        </p>
+        </ResultsCount>
       </Filters>
+
       <ReleaseGrid>
         {items.map(({ id, coverArt, title, slug, artists }) => (
           <Release key={id}>
@@ -84,10 +131,14 @@ const Releases: NextPage<ReleasesProps> = ({ releases }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const { releases } = await fetchAllReleases({ query: '' })
+export const getServerSideProps: GetServerSideProps = async ({
+  query: { search = '' }
+}: {
+  query: ReleasesQueryStringParams
+}) => {
+  const { releases } = await fetchAllReleases({ query: search })
 
-  return { props: { releases } }
+  return { props: { releases, search } }
 }
 
 export default Releases
