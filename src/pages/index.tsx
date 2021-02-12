@@ -51,7 +51,7 @@ const Home: NextPage<HomeProps> = ({
           url: 'https://www.houseboutiquerecords.com',
           images: [
             {
-              url: 'https://www.houseboutiquerecords.com/hero-bg-2.jpg',
+              url: 'https://www.houseboutiquerecords.com/hb-dark.jpg',
               width: 800,
               height: 600,
               alt: 'House Boutique Records'

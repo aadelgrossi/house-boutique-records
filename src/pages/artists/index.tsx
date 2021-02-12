@@ -32,7 +32,7 @@ const Artists: NextPage<ArtistsPageProps> = ({ artists }) => {
           url: 'https://www.houseboutiquerecords.com/artists',
           images: [
             {
-              url: 'https://www.houseboutiquerecords.com/hero-bg-2.jpg',
+              url: 'https://www.houseboutiquerecords.com/hb-light.jpg',
               width: 800,
               height: 600,
               alt: 'House Boutique Records'
