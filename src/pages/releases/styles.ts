@@ -58,7 +58,6 @@ export const Input = styled.input`
   padding-right: 0.6rem;
   padding-left: 1rem;
   font-size: 16px;
-  font-family: Yantramanav;
 `
 
 export const Release = styled.div`
@@ -101,7 +100,7 @@ export const ReleaseGrid = styled.div`
   display: grid;
   margin: 3rem 0;
   gap: max(2vw, 1rem);
-  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
 `
 
 export const InfoButton = styled.div`

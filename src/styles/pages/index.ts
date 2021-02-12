@@ -12,16 +12,16 @@ export const Hero = styled.div`
   justify-content: flex-end;
   flex-direction: column;
   padding: 0 max(1rem, 5vw);
-  min-height: 80vh;
+  min-height: 100vh;
   width: 100%;
   position: relative;
   background-image: url('/hero-bg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: 50% 0;
+  background-position: 70% 0;
 
-  @media (min-width: 720px) {
-    background-position: center;
+  @media (min-width: 900px) {
+    background-position: 50% 20%;
   }
 
   box-shadow: inset 188px 51px 185px 72px rgb(0 0 0 / 50%);
@@ -39,18 +39,20 @@ export const Hero = styled.div`
 `
 
 export const Contents = styled.div`
+  display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  margin-bottom: 5rem;
+  max-width: 1368px;
   z-index: 1;
 `
 
 export const HeroTitle = styled.h1`
-  font-size: clamp(48px, 6rem, 4.2vw);
+  font-size: clamp(52px, 5rem, 4.7vw);
   font-family: Anton;
   width: clamp(359px, 37rem, 56vw);
-  letter-spacing: 1.2px;
   line-height: 1;
-  text-shadow: 25px 5px 30px ${props => props.theme.colors.black};
+  text-shadow: 10px 5px 30px ${props => props.theme.colors.black};
 `
 
 export const ButtonGroup = styled.div`

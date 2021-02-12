@@ -12,11 +12,12 @@ export const GlobalStyle = createGlobalStyle`
     background: #111214;
     color: #F5F5F5;
     overflow-x: hidden;
-    font: 15px Quicksand, sans-serif;
+    font: 15px 'Quicksand', sans-serif;
+    -webkit-font-smoothing: antialised;
   }
 
   input, button, textarea,p {
-    font: 16px Yantramanav, sans-serif;
+    font: 16px 'Yantramanav', sans-serif;
   }
 
   p {
@@ -29,12 +30,12 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   h1 {
-    font-family: Ramabhadra;
+    font-family: 'Ramabhadra';
     text-transform: uppercase;
   }
 
   h2 {
-    font-family: Quicksand;
+    font-family: 'Quicksand';
     font-weight: 700;
   }
 
@@ -50,7 +51,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   input, select {
-    font-family: Quicksand;
+    font-family: 'Yantramanav';
     font-size: 1em;
     border: none;
     background-color: transparent;

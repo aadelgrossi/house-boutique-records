@@ -13,8 +13,9 @@ import { GlobalStyle } from '~/styles'
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <>
-      <GlobalStyle />
       <AppProvider>
+        <GlobalStyle />
+
         <Layout>
           <Head>
             <title>House Boutique Records</title>
