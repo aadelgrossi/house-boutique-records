@@ -93,7 +93,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
 
   const { artist } = await fetchSingleArtist({ slug, locale })
 
-  return { props: { artist } }
+  return { props: { artist }, revalidate: 100 }
 }
 
 export default Artist

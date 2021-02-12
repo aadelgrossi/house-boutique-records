@@ -116,7 +116,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
     artists: artists.map(a => a.slug)
   })
 
-  return { props: { release, relatedReleases } }
+  return { props: { release, relatedReleases }, revalidate: 60 }
 }
 
 export default Release

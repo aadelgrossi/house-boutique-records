@@ -46,7 +46,7 @@ const Artists: NextPage<ArtistsPageProps> = ({ artists }) => {
 export const getStaticProps: GetStaticProps = async () => {
   const { artists } = await fetchArtists()
 
-  return { props: { artists } }
+  return { props: { artists }, revalidate: 60 }
 }
 
 export default Artists

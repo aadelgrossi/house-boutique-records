@@ -1,4 +1,4 @@
-import { GetStaticProps, NextPage } from 'next'
+import { GetServerSideProps, NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import Carousel from 'react-multi-carousel'
@@ -116,7 +116,7 @@ const Home: NextPage<HomeProps> = ({
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const releases = await fetchHomeReleases()
 
   return {
