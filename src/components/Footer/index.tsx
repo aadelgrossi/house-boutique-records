@@ -29,11 +29,9 @@ export const Footer: FC = () => {
             <Title>{t('footer_socials')}</Title>
             <SocialIcons>
               {socialIcons.map(({ Icon, url, color }) => (
-                <Link key={url} href={url}>
-                  <SocialButton color={color}>
-                    <Icon color="#fff" size={22} />
-                  </SocialButton>
-                </Link>
+                <SocialButton key={url} color={color} href={url}>
+                  <Icon color="#fff" size={22} />
+                </SocialButton>
               ))}
             </SocialIcons>
           </Item>
