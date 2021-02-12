@@ -8,6 +8,7 @@ export const Filters = styled.form`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin: 2rem 0;
   gap: 1rem;
   max-width: 1200px;
   align-items: flex-end;
@@ -26,7 +27,7 @@ export const Filters = styled.form`
     }
 
     > div:nth-of-type(2) {
-      width: 25%;
+      width: 30%;
     }
   }
 `
