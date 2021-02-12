@@ -6,7 +6,7 @@ export type ReleasesHomeQueryResponse = {
 
 export type ReleasesQueryParams = {
   query?: string
-  date?: Date
+  first?: number
 }
 
 export type ReleasesQueryResponse = {
@@ -25,4 +25,10 @@ export type ReleaseSingleQueryResponse = {
 export type ReleaseRelatedQueryParams = {
   slug: string
   artists: string[]
+}
+
+export type QueryVariables = {
+  date: string
+  first?: number
+  query: string
 }

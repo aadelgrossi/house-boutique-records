@@ -11,6 +11,7 @@
   "author": "Andre Grossi",
   "license": "MIT",
   "dependencies": {
+    "date-fns": "^2.17.0",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
     "next": "10.0.4",
