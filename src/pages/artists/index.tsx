@@ -29,6 +29,7 @@ const Artists: NextPage<ArtistsPageProps> = ({ artists }) => {
         description={`${t('home_heroTitle')} ${t('since')}`}
         canonical="https://www.houseboutiquerecords.com/artists"
         openGraph={{
+          type: 'website',
           title: `House Boutique Records | ${t('officialWebsite')}`,
           url: 'https://www.houseboutiquerecords.com/artists',
           description: `${t('home_heroTitle')} ${t('since')}`,

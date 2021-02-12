@@ -48,6 +48,7 @@ const Home: NextPage<HomeProps> = ({
         description={`${t('home_heroTitle')} ${t('since')}`}
         canonical="https://www.houseboutiquerecords.com/"
         openGraph={{
+          type: 'website',
           title: `House Boutique Records | ${t('officialWebsite')}`,
           url: 'https://www.houseboutiquerecords.com',
           description: `${t('home_heroTitle')} ${t('since')}`,

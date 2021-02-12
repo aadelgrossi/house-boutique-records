@@ -45,6 +45,7 @@ const Artist: NextPage<ArtistPageProps> = ({
         description={localizations[0]?.bio.text}
         canonical={`https://www.houseboutiquerecords.com/artists/${query.slug}`}
         openGraph={{
+          type: 'profile',
           title: `${name} | House Boutique Records`,
           description: localizations[0]?.bio.text,
           url: `https://www.houseboutiquerecords.com/artists/${query.slug}`,
