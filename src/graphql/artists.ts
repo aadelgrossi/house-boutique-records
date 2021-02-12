@@ -28,6 +28,7 @@ const SINGLE_ARTIST = gql`
       localizations(includeCurrent: true, locales: [$locale]) {
         bio {
           html
+          text
         }
         locale
       }

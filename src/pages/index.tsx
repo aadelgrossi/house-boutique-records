@@ -1,4 +1,5 @@
 import { GetServerSideProps, NextPage } from 'next'
+import { NextSeo } from 'next-seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import Carousel from 'react-multi-carousel'
@@ -41,78 +42,96 @@ const Home: NextPage<HomeProps> = ({
   const { t } = useTranslation()
 
   return (
-    <Container>
-      <Hero>
-        <Contents>
-          <HeroTitle>{t('home_heroTitle')}</HeroTitle>
-          <ButtonGroup>
-            <Link href="/releases">
-              <Button>{t('home_releasesButton')}</Button>
-            </Link>
-            <Link href="/artists">
-              <Button outline>{t('home_artistsButton')}</Button>
-            </Link>
-          </ButtonGroup>
-        </Contents>
-      </Hero>
+    <>
+      <NextSeo
+        title={`House Boutique Records | ${t('officialWebsite')}`}
+        description={`${t('home_heroTitle')} ${t('since')}`}
+        canonical="https://www.houseboutiquerecords.com/"
+        openGraph={{
+          url: 'https://www.houseboutiquerecords.com',
+          images: [
+            {
+              url: 'https://www.houseboutiquerecords.com/hero-bg-2.jpg',
+              width: 800,
+              height: 600,
+              alt: 'House Boutique Records'
+            }
+          ]
+        }}
+      />
+      <Container>
+        <Hero>
+          <Contents>
+            <HeroTitle>{t('home_heroTitle')}</HeroTitle>
+            <ButtonGroup>
+              <Link href="/releases">
+                <Button>{t('home_releasesButton')}</Button>
+              </Link>
+              <Link href="/artists">
+                <Button outline>{t('home_artistsButton')}</Button>
+              </Link>
+            </ButtonGroup>
+          </Contents>
+        </Hero>
 
-      <ReleasesContainer>
-        <ReleasesContent>
-          <ReleasedContainer>
-            <FeaturedContainer>
-              <Title>{t('home_featuredReleaseHeading')}</Title>
-              <FeaturedContent>
-                <Link href={`/releases/${featured.slug}`}>
-                  <FeaturedImageWrapper>
-                    <Image
-                      src={featured.coverArt.url as string}
-                      width={250}
-                      height={250}
-                      layout="fixed"
-                      alt={featured.title}
-                    />
-                  </FeaturedImageWrapper>
-                </Link>
-
-                <FeaturedInfo>
+        <ReleasesContainer>
+          <ReleasesContent>
+            <ReleasedContainer>
+              <FeaturedContainer>
+                <Title>{t('home_featuredReleaseHeading')}</Title>
+                <FeaturedContent>
                   <Link href={`/releases/${featured.slug}`}>
-                    <TrackTitle>{featured?.title}</TrackTitle>
+                    <FeaturedImageWrapper>
+                      <Image
+                        src={featured.coverArt.url as string}
+                        width={250}
+                        height={250}
+                        layout="fixed"
+                        alt={featured.title}
+                      />
+                    </FeaturedImageWrapper>
                   </Link>
-                  <ArtistRowList data={featured.artists} fontSize="1.2em" />
-                  <PlayButton track={featured} />
-                  {featured.link && (
-                    <Link href={featured.link}>
-                      <Button>{t('streamNow')}</Button>
+
+                  <FeaturedInfo>
+                    <Link href={`/releases/${featured.slug}`}>
+                      <TrackTitle>{featured?.title}</TrackTitle>
                     </Link>
-                  )}
-                </FeaturedInfo>
-              </FeaturedContent>
-            </FeaturedContainer>
+                    <ArtistRowList data={featured.artists} fontSize="1.2em" />
+                    <PlayButton track={featured} />
+                    {featured.link && (
+                      <Link href={featured.link}>
+                        <Button>{t('streamNow')}</Button>
+                      </Link>
+                    )}
+                  </FeaturedInfo>
+                </FeaturedContent>
+              </FeaturedContainer>
 
-            <LatestReleasesContainer>
-              <Title>{t('home_releasesButton')}</Title>
+              <LatestReleasesContainer>
+                <Title>{t('home_releasesButton')}</Title>
 
-              <LatestReleasesCards>
-                {latest.map(release => (
-                  <ReleaseCard key={release.id} data={release} />
-                ))}
-              </LatestReleasesCards>
-            </LatestReleasesContainer>
-          </ReleasedContainer>
+                <LatestReleasesCards>
+                  {latest.map(release => (
+                    <ReleaseCard key={release.id} data={release} />
+                  ))}
+                </LatestReleasesCards>
+              </LatestReleasesContainer>
+            </ReleasedContainer>
 
-          <UpcomingReleasesContainer>
-            <Title>{t('home_upcomingReleasesHeading')}</Title>
-            <div style={{ width: '100%' }}>
-              <Carousel ssr responsive={responsiveCardsConfig}>
-                {upcoming.map(release => (
-                  <ReleaseCard key={release.id} data={release} />
-                ))}
-              </Carousel>
-            </div>
-          </UpcomingReleasesContainer>
-        </ReleasesContent>
-      </ReleasesContainer>
-    </Container>
+            <UpcomingReleasesContainer>
+              <Title>{t('home_upcomingReleasesHeading')}</Title>
+              <div style={{ width: '100%' }}>
+                <Carousel ssr responsive={responsiveCardsConfig}>
+                  {upcoming.map(release => (
+                    <ReleaseCard key={release.id} data={release} />
+                  ))}
+                </Carousel>
+              </div>
+            </UpcomingReleasesContainer>
+          </ReleasesContent>
+        </ReleasesContainer>
+      </Container>
+    </>
   )
 }
 

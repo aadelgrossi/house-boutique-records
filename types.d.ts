@@ -22,6 +22,7 @@ interface Asset {
 
 interface Markdown {
   html: string
+  text: string
 }
 
 interface Release {

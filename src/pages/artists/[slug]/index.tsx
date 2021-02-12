@@ -1,8 +1,10 @@
 import { ParsedUrlQuery } from 'querystring'
 
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import { NextSeo } from 'next-seo'
 import Head from 'next/head'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import Carousel from 'react-multi-carousel'
 
 import { SocialIcon, ReleaseCard } from '~/components'
@@ -34,44 +36,63 @@ const Artist: NextPage<ArtistPageProps> = ({
   artist: { backgroundImage, name, localizations, artistPlatforms, releases }
 }) => {
   const { t } = useTranslation()
+  const { query } = useRouter()
 
   return (
-    <Container>
-      <Head>
-        <title>{name} | House Boutique Records</title>
-      </Head>
-      <ImageContainer>
-        <Image
-          src={backgroundImage.url}
-          layout="responsive"
-          width={1200}
-          height={750}
-          alt={name}
-        />
-      </ImageContainer>
-      <Content>
-        <ArtistHeader>
-          <ArtistSocials>
-            {artistPlatforms.map(platform => (
-              <SocialIcon key={platform.id} {...platform} />
-            ))}
-          </ArtistSocials>
-          <Name>{name}</Name>
-        </ArtistHeader>
-        <Bio allowDangerousHtml={true}>{localizations[0]?.bio.html}</Bio>
-        <ReleasesContainer>
-          <Title>
-            {t('artists_tracksBy')}
-            {` ${name}`}
-          </Title>
-          <Carousel responsive={responsiveCardsConfig}>
-            {releases.map(release => (
-              <ReleaseCard key={release.id} data={release} />
-            ))}
-          </Carousel>
-        </ReleasesContainer>
-      </Content>
-    </Container>
+    <>
+      <NextSeo
+        title={`${name} | House Boutique Records`}
+        description={localizations[0]?.bio.text}
+        canonical={`https://www.houseboutiquerecords.com/artists/${query.slug}`}
+        openGraph={{
+          url: `https://www.houseboutiquerecords.com/artists/${query.slug}`,
+          images: [
+            {
+              url: backgroundImage.url,
+              width: 800,
+              height: 600,
+              alt: name
+            }
+          ]
+        }}
+      />
+      <Container>
+        <Head>
+          <title>{name} | House Boutique Records</title>
+        </Head>
+        <ImageContainer>
+          <Image
+            src={backgroundImage.url}
+            layout="responsive"
+            width={1200}
+            height={750}
+            alt={name}
+          />
+        </ImageContainer>
+        <Content>
+          <ArtistHeader>
+            <ArtistSocials>
+              {artistPlatforms.map(platform => (
+                <SocialIcon key={platform.id} {...platform} />
+              ))}
+            </ArtistSocials>
+            <Name>{name}</Name>
+          </ArtistHeader>
+          <Bio allowDangerousHtml={true}>{localizations[0]?.bio.html}</Bio>
+          <ReleasesContainer>
+            <Title>
+              {t('artists_tracksBy')}
+              {` ${name}`}
+            </Title>
+            <Carousel responsive={responsiveCardsConfig}>
+              {releases.map(release => (
+                <ReleaseCard key={release.id} data={release} />
+              ))}
+            </Carousel>
+          </ReleasesContainer>
+        </Content>
+      </Container>
+    </>
   )
 }
 

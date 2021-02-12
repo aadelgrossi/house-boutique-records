@@ -10,7 +10,7 @@ export const messages: Translation = {
     header_news: 'Notícias',
     header_radio: 'Podcast',
     home_heroTitle:
-      'SEU NOVO LUGAR PARA O MELHOR DO TRIBAL, CIRCUIT & HOUSE MUSIC',
+      'Seu novo lugar para o melhor do tribal, circuit & house music',
     home_releasesButton: 'Novos lançamentos',
     home_artistsButton: 'Conheça os artistas',
     home_featuredReleaseHeading: 'Destaque',
@@ -32,7 +32,9 @@ export const messages: Translation = {
     relatedReleases: 'Lançamentos relacionados',
     nowPlaying: 'Ouvindo agora',
     preview: 'Prévia',
-    noTrackLoaded: 'O player está vazio.'
+    noTrackLoaded: 'O player está vazio.',
+    officialWebsite: 'Site Oficial',
+    since: 'desde 2021.'
   },
   en: {
     header_home: 'Home',
@@ -40,7 +42,7 @@ export const messages: Translation = {
     header_artists: 'Artists',
     header_news: 'News',
     header_radio: 'Radio',
-    home_heroTitle: 'YOUR PLACE FOR THE FINEST TRIBAL,CIRCUIT & HOUSE MUSIC',
+    home_heroTitle: 'Your place for the finest tribal, circuit & house music',
     home_releasesButton: 'Latest Releases',
     home_artistsButton: 'Meet the artists',
     home_featuredReleaseHeading: 'Featured Release',
@@ -62,6 +64,8 @@ export const messages: Translation = {
     relatedReleases: 'Related releases',
     nowPlaying: 'Now playing',
     preview: 'Preview',
-    noTrackLoaded: 'Player is empty'
+    noTrackLoaded: 'Player is empty',
+    officialWebsite: 'Official Website',
+    since: 'since 2021.'
   }
 }
