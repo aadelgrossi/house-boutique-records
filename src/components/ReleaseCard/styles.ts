@@ -37,4 +37,5 @@ export const TrackTitle = styled.a`
   font-weight: 700;
   text-transform: uppercase;
   line-height: 1;
+  width: 90%;
 `

@@ -87,7 +87,10 @@ const Artist: NextPage<ArtistPageProps> = ({
               {t('artists_tracksBy')}
               {` ${name}`}
             </Title>
-            <Carousel responsive={responsiveCardsConfig}>
+            <Carousel
+              responsive={responsiveCardsConfig}
+              itemClass="carousel-item-padding-0-px"
+            >
               {releases.map(release => (
                 <ReleaseCard key={release.id} data={release} />
               ))}

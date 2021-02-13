@@ -42,7 +42,7 @@ export const Contents = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
   max-width: 1368px;
   z-index: 1;
 `
@@ -73,7 +73,7 @@ export const ReleasesContainer = styled.section`
   display: flex;
   justify-content: center;
   width: 100%;
-  padding: 3rem max(1rem, 5vw);
+  padding: 0 max(1rem, 5vw) 3rem;
 
   @media (min-width: 1024px) {
     align-items: flex-start;
@@ -81,29 +81,30 @@ export const ReleasesContainer = styled.section`
 `
 
 export const ReleasesContent = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: 1368px;
   gap: 3rem;
-`
 
-export const ReleasedContainer = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 3rem;
-  margin: 1rem 0 3rem;
+  @media (min-width: 1280px) {
+    display: grid;
+    grid-column-gap: 1rem;
+    grid-row-gap: 3rem;
+    grid-template-areas:
+      'featured upcoming'
+      'released released';
 
-  @media (min-width: 1200px) {
-    flex-direction: row;
+    grid-template-columns: 52% auto;
+    grid-template-rows: auto;
   }
 `
 
 export const FeaturedContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  max-width: 30rem;
+  grid-area: featured;
 `
 
 export const FeaturedImageWrapper = styled.div`
@@ -136,11 +137,15 @@ export const TrackTitle = styled.h3`
 
 export const FeaturedContent = styled.div`
   display: flex;
+  justify-content: flex-start;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1rem;
 `
 export const FeaturedInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+
   > a:last-of-type {
     margin-top: 1rem;
   }
@@ -149,8 +154,7 @@ export const FeaturedInfo = styled.div`
 export const LatestReleasesContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  max-width: 820px;
+  grid-area: released;
 `
 
 export const UpcomingReleasesContainer = styled.div`
@@ -159,11 +163,22 @@ export const UpcomingReleasesContainer = styled.div`
   align-items: flex-start;
   width: 100%;
   max-width: 800px;
+  grid-area: upcoming;
 `
 
-export const LatestReleasesCards = styled.div`
-  display: flex;
-  flex-direction: row;
+const BaseGrid = styled.div`
+  width: 100%;
+  display: grid;
+  justify-content: center;
   flex-wrap: wrap;
+`
+
+export const UpcomingReleasesGrid = styled(BaseGrid)`
+  grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+  gap: 2rem;
+`
+
+export const LatestReleasesGrid = styled(BaseGrid)`
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
   gap: 1rem;
 `

@@ -39,22 +39,22 @@ export const socialIcons = [
 
 export const responsiveCardsConfig = {
   xl: {
-    breakpoint: { max: 3000, min: 1024 },
+    breakpoint: { max: 3000, min: 1200 },
     items: 4,
     slidesToSlide: 2 // optional, default to 1.
   },
   lg: {
-    breakpoint: { max: 1024, min: 680 },
+    breakpoint: { max: 1200, min: 800 },
     items: 3,
     slidesToSlide: 2 // optional, default to 1.
   },
   md: {
-    breakpoint: { max: 680, min: 400 },
+    breakpoint: { max: 800, min: 500 },
     items: 2,
     slidesToSlide: 1 // optional, default to 1.
   },
   sm: {
-    breakpoint: { max: 400, min: 0 },
+    breakpoint: { max: 500, min: 0 },
     items: 1,
     slidesToSlide: 1 // optional, default to 1.
   }

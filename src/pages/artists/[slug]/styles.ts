@@ -76,7 +76,7 @@ export const Content = styled.div`
 `
 
 export const ReleasesContainer = styled.div`
-  max-width: 820px;
+  max-width: 1024px;
 `
 
 export const Releases = styled.div`

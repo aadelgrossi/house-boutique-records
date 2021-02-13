@@ -22,7 +22,7 @@ export const ReleaseCard: FC<Props> = ({ data }) => {
     <Container>
       <Link href={`/releases/${slug}`}>
         <ImageWrapper>
-          <Image src={coverArt.url} width={180} height={180} alt={title} />
+          <Image src={coverArt.url} width={220} height={220} alt={title} />
           {!hasBeenReleased(releaseDate) && (
             <ReleaseDate>{formatDate(releaseDate, locale)}</ReleaseDate>
           )}

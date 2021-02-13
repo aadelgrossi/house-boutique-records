@@ -2,10 +2,8 @@ import { GetServerSideProps, NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import Image from 'next/image'
 import Link from 'next/link'
-import Carousel from 'react-multi-carousel'
 
 import { ArtistRowList, Button, PlayButton, ReleaseCard } from '~/components'
-import { responsiveCardsConfig } from '~/constants'
 import { fetchHomeReleases } from '~/graphql'
 import { useTranslation } from '~/hooks'
 import {
@@ -17,14 +15,14 @@ import {
   ButtonGroup,
   ReleasesContainer,
   ReleasesContent,
-  ReleasedContainer,
   FeaturedContainer,
   FeaturedImageWrapper,
   FeaturedInfo,
   TrackTitle,
   FeaturedContent,
   LatestReleasesContainer,
-  LatestReleasesCards,
+  UpcomingReleasesGrid,
+  LatestReleasesGrid,
   UpcomingReleasesContainer
 } from '~/styles/pages'
 
@@ -40,6 +38,8 @@ const Home: NextPage<HomeProps> = ({
   releases: { featured, latest, upcoming }
 }) => {
   const { t } = useTranslation()
+
+  console.log({ upcoming })
 
   return (
     <>
@@ -81,56 +81,54 @@ const Home: NextPage<HomeProps> = ({
 
         <ReleasesContainer>
           <ReleasesContent>
-            <ReleasedContainer>
-              <FeaturedContainer>
-                <Title>{t('home_featuredReleaseHeading')}</Title>
-                <FeaturedContent>
+            <FeaturedContainer>
+              <Title>{t('home_featuredReleaseHeading')}</Title>
+              <FeaturedContent>
+                <Link href={`/releases/${featured.slug}`}>
+                  <FeaturedImageWrapper>
+                    <Image
+                      src={featured.coverArt.url as string}
+                      width={300}
+                      height={300}
+                      alt={featured.title}
+                    />
+                  </FeaturedImageWrapper>
+                </Link>
+
+                <FeaturedInfo>
                   <Link href={`/releases/${featured.slug}`}>
-                    <FeaturedImageWrapper>
-                      <Image
-                        src={featured.coverArt.url as string}
-                        width={250}
-                        height={250}
-                        layout="fixed"
-                        alt={featured.title}
-                      />
-                    </FeaturedImageWrapper>
+                    <TrackTitle>{featured?.title}</TrackTitle>
                   </Link>
+                  <ArtistRowList data={featured.artists} fontSize="1.2em" />
+                  <PlayButton track={featured} />
+                  {featured.link && (
+                    <Button href={featured.link}>{t('streamNow')}</Button>
+                  )}
+                </FeaturedInfo>
+              </FeaturedContent>
+            </FeaturedContainer>
 
-                  <FeaturedInfo>
-                    <Link href={`/releases/${featured.slug}`}>
-                      <TrackTitle>{featured?.title}</TrackTitle>
-                    </Link>
-                    <ArtistRowList data={featured.artists} fontSize="1.2em" />
-                    <PlayButton track={featured} />
-                    {featured.link && (
-                      <Button href={featured.link}>{t('streamNow')}</Button>
-                    )}
-                  </FeaturedInfo>
-                </FeaturedContent>
-              </FeaturedContainer>
+            <LatestReleasesContainer>
+              <Title>{t('home_releasesButton')}</Title>
 
-              <LatestReleasesContainer>
-                <Title>{t('home_releasesButton')}</Title>
+              <LatestReleasesGrid>
+                {latest.map(release => (
+                  <ReleaseCard key={release.id} data={release} />
+                ))}
+              </LatestReleasesGrid>
+            </LatestReleasesContainer>
 
-                <LatestReleasesCards>
-                  {latest.map(release => (
-                    <ReleaseCard key={release.id} data={release} />
-                  ))}
-                </LatestReleasesCards>
-              </LatestReleasesContainer>
-            </ReleasedContainer>
+            {upcoming.length ? (
+              <UpcomingReleasesContainer>
+                <Title>{t('home_upcomingReleasesHeading')}</Title>
 
-            <UpcomingReleasesContainer>
-              <Title>{t('home_upcomingReleasesHeading')}</Title>
-              <div style={{ width: '100%' }}>
-                <Carousel ssr responsive={responsiveCardsConfig}>
+                <UpcomingReleasesGrid>
                   {upcoming.map(release => (
                     <ReleaseCard key={release.id} data={release} />
                   ))}
-                </Carousel>
-              </div>
-            </UpcomingReleasesContainer>
+                </UpcomingReleasesGrid>
+              </UpcomingReleasesContainer>
+            ) : null}
           </ReleasesContent>
         </ReleasesContainer>
       </Container>
