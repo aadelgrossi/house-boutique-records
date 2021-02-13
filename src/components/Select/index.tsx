@@ -17,20 +17,11 @@ type Props = {
 
 export const Select: FC<Props> = ({ options, onChange, value }: Props) => {
   const [isOpen, setOpen] = useState(false)
-  const [selected, setSelected] = useState(value)
   const selectRef = useRef(null)
 
   useOutsideClick(selectRef, () => {
     setOpen(false)
   })
-
-  const handleClick = useCallback(
-    (item: Item) => {
-      onChange(item.value)
-      setSelected(item.value)
-    },
-    [onChange]
-  )
 
   return (
     <Container isOpen={isOpen}>
@@ -49,24 +40,19 @@ export const Select: FC<Props> = ({ options, onChange, value }: Props) => {
       >
         <div className={`custom-select ${isOpen && 'open'}`}>
           <div className="custom-select__trigger">
-            <span>
-              {
-                options.find(i => i.value === value || i.value === selected)
-                  ?.label
-              }
-            </span>
+            <span>{options.find(i => i.value === value)?.label}</span>
             <div className="arrow" />
           </div>
           <div className="custom-options">
             {options.map(item => (
               <div
                 key={item.value}
-                onClick={() => handleClick(item)}
+                onClick={() => onChange(item.value)}
                 className="option-container"
               >
                 <span
                   className={`custom-option ${
-                    selected === item.value && 'selected'
+                    value === item.value && 'selected'
                   } `}
                   data-value={item.value}
                 >
