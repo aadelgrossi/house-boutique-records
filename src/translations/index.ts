@@ -34,7 +34,8 @@ export const messages: Translation = {
     preview: 'Prévia',
     noTrackLoaded: 'O player está vazio.',
     officialWebsite: 'Site Oficial',
-    since: 'desde 2021.'
+    since: 'desde 2021.',
+    clearFilters: 'Limpar filtros'
   },
   en: {
     header_home: 'Home',
@@ -66,6 +67,7 @@ export const messages: Translation = {
     preview: 'Preview',
     noTrackLoaded: 'Player is empty',
     officialWebsite: 'Official Website',
-    since: 'since 2021.'
+    since: 'since 2021.',
+    clearFilters: 'Reset filters'
   }
 }

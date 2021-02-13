@@ -7,6 +7,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FaSearch } from 'react-icons/fa'
+import { RiFilterOffLine } from 'react-icons/ri'
 
 import { ContainerBox, Select } from '~/components'
 import { fetchReleases } from '~/graphql'
@@ -23,28 +24,39 @@ import {
   ReleaseArtist,
   ReleaseTitle,
   InfoButton,
-  ResultsCount
+  ResultsCount,
+  ClearFilters
 } from './styles'
 
 type DateFilter = 'all' | 'available' | 'upcoming'
 
 interface ReleasesQueryStringParams extends ParsedUrlQuery {
   search?: string
+  type?: DateFilter
 }
 
 type ReleasesProps = {
   releases: Release[]
 } & ReleasesQueryStringParams
 
-const Releases: NextPage<ReleasesProps> = ({ releases, search = '' }) => {
+const Releases: NextPage<ReleasesProps> = ({
+  releases,
+  search = '',
+  type = 'all'
+}) => {
   const [query, setQuery] = useState(search)
-  const [dateFilter, setDateFilter] = useState<DateFilter>('all')
+  const [dateFilter, setDateFilter] = useState<DateFilter>(type)
 
   const [items, setItems] = useState<Release[]>(releases)
   const { t } = useTranslation()
 
+  const resetFilters = useCallback(() => {
+    setQuery('')
+    setDateFilter('all')
+  }, [])
+
   useEffect(() => {
-    fetchReleases({ query, date: dateFilter }).then(response =>
+    fetchReleases({ query, type: dateFilter }).then(response =>
       setItems(response.releases)
     )
   }, [dateFilter, query])
@@ -59,13 +71,13 @@ const Releases: NextPage<ReleasesProps> = ({ releases, search = '' }) => {
         <title>{t('header_releases')} | House Boutique Records</title>
       </Head>
       <Title>{t('header_releases')}</Title>
-      <Filters autoComplete="off">
+      <Filters>
         <SearchBox>
           <Input
             name="search"
             onChange={e => setQuery(e.target.value)}
             enterKeyHint="send"
-            defaultValue={search}
+            value={query}
             placeholder={t('releases_searchPlaceholder')}
           />
           <FaSearch size={16} color="#fff" style={{ marginRight: 16 }} />
@@ -73,13 +85,22 @@ const Releases: NextPage<ReleasesProps> = ({ releases, search = '' }) => {
 
         <Select
           onChange={onSelectChange}
-          value="all"
+          value={dateFilter}
           options={[
             { value: 'all', label: t('releases_all') },
             { value: 'available', label: t('releases_available') },
             { value: 'upcoming', label: t('releases_upcoming') }
           ]}
         />
+
+        <ClearFilters
+          onClick={resetFilters}
+          aria-label="clear-filters"
+          title={t('clearFilters')}
+        >
+          <RiFilterOffLine size={22} color="#fff" />
+        </ClearFilters>
+
         <ResultsCount>
           <strong>{items.length}</strong> {t('releases_resultsFound')}
         </ResultsCount>
@@ -114,13 +135,13 @@ const Releases: NextPage<ReleasesProps> = ({ releases, search = '' }) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({
-  query: { search = '' }
+  query: { search = '', type = 'all' }
 }: {
   query: ReleasesQueryStringParams
 }) => {
-  const { releases } = await fetchReleases({ query: search })
+  const { releases } = await fetchReleases({ query: search, type })
 
-  return { props: { releases, search } }
+  return { props: { releases, search, type } }
 }
 
 export default Releases

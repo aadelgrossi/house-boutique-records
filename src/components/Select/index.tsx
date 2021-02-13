@@ -50,7 +50,10 @@ export const Select: FC<Props> = ({ options, onChange, value }: Props) => {
         <div className={`custom-select ${isOpen && 'open'}`}>
           <div className="custom-select__trigger">
             <span>
-              {options.find(item => item.value === selected)?.label || 'Select'}
+              {
+                options.find(i => i.value === value || i.value === selected)
+                  ?.label
+              }
             </span>
             <div className="arrow" />
           </div>

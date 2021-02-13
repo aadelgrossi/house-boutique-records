@@ -4,9 +4,10 @@ export const Title = styled.h1`
   text-transform: uppercase;
 `
 
-export const Filters = styled.form`
+export const Filters = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   flex-wrap: wrap;
   margin: 2rem 0;
   gap: 1rem;
@@ -59,6 +60,10 @@ export const Input = styled.input`
   padding-right: 0.6rem;
   padding-left: 1rem;
   font-size: 16px;
+`
+
+export const ClearFilters = styled.button`
+  padding: 0.5em;
 `
 
 export const Release = styled.div`

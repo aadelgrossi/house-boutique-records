@@ -6,7 +6,7 @@ export type ReleasesHomeQueryResponse = {
 
 export type ReleasesQueryParams = {
   query?: string
-  date?: 'all' | 'available' | 'upcoming'
+  type?: 'all' | 'available' | 'upcoming'
   first?: number
 }
 

@@ -164,26 +164,20 @@ const RELATED = gql`
 
 export const fetchReleases = async ({
   query = '',
-  date = 'all'
+  type
 }: ReleasesQueryParams): Promise<ReleasesQueryResponse> => {
-  switch (date) {
-    case 'all': {
-      const { releases } = await graphCmsClient.request<ReleasesQueryResponse>(
-        ALL,
-        { query }
-      )
-      return { releases }
-    }
+  switch (type) {
     case 'available': {
-      const { releases } = await graphCmsClient.request<ReleasesQueryResponse>(
-        RELEASED,
-        { query }
-      )
+      const { releases } = await fetchReleasedReleases({ query })
       return { releases }
     }
     case 'upcoming': {
+      const { releases } = await fetchUpcomingReleases({ query })
+      return { releases }
+    }
+    default: {
       const { releases } = await graphCmsClient.request<ReleasesQueryResponse>(
-        UPCOMING,
+        ALL,
         { query }
       )
       return { releases }
