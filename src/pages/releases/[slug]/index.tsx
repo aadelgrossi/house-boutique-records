@@ -49,19 +49,18 @@ const Release: NextPage<ReleasePageProps> = ({ release, relatedReleases }) => {
 
   const artistsNames = artists.flatMap(artist => artist.name).join(', ')
 
-  const metaDescription = `
-    ${localizations[0]?.description?.text ?? ''}${t('by')} ${artistsNames}. 
+  const metaDescription = `"${title}" ${t('by')} ${artistsNames}. 
     ${t('releaseDate')}: ${formatLongDate(releaseDate, locale)}`
 
   return (
     <>
       <NextSeo
-        title={`${title} | ${t('header_releases')} | House Boutique Records`}
+        title={`${title} | House Boutique Records`}
         description={metaDescription}
         canonical={`https://www.houseboutiquerecords.com/releases/${query.slug}`}
         openGraph={{
           type: 'music.song',
-          title: `${title} | ${t('header_releases')} | House Boutique Records`,
+          title: `${title} | House Boutique Records`,
           description: metaDescription,
           url: `https://www.houseboutiquerecords.com/releases/${query.slug}`,
           images: [
@@ -73,7 +72,6 @@ const Release: NextPage<ReleasePageProps> = ({ release, relatedReleases }) => {
             }
           ]
         }}
-        additionalMetaTags={[{ property: 'og:audio', content: link }]}
       />
       <ContainerBox>
         <Head>

@@ -43,7 +43,7 @@ export const messages: Translation = {
     releasesMetaDescription:
       'Lançamentos e catálogo digital House Boutique Records.',
     artistsMetaDescription: 'DJs e produtores integrantes do selo',
-    by: 'Por'
+    by: 'por'
   },
   en: {
     header_home: 'Home',
@@ -85,6 +85,6 @@ export const messages: Translation = {
     releasesMetaDescription:
       'Available and upcoming tracks & releases by House Boutique Records artists.',
     artistsMetaDescription: 'DJs & producers signed by House Boutique Records',
-    by: 'By'
+    by: 'by'
   }
 }
