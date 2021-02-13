@@ -1,8 +1,8 @@
-import { FC } from 'react'
+import { AnchorHTMLAttributes, FC } from 'react'
 
 import { Container } from './styles'
 
-interface ButtonProps {
+interface ButtonProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   outline?: boolean
 }
 

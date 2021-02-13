@@ -104,9 +104,7 @@ const Home: NextPage<HomeProps> = ({
                     <ArtistRowList data={featured.artists} fontSize="1.2em" />
                     <PlayButton track={featured} />
                     {featured.link && (
-                      <Link href={featured.link}>
-                        <Button>{t('streamNow')}</Button>
-                      </Link>
+                      <Button href={featured.link}>{t('streamNow')}</Button>
                     )}
                   </FeaturedInfo>
                 </FeaturedContent>
