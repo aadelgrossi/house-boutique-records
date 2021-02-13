@@ -50,7 +50,7 @@ const Release: NextPage<ReleasePageProps> = ({ release, relatedReleases }) => {
   const artistsNames = artists.flatMap(artist => artist.name).join(', ')
 
   const metaDescription = `
-    ${localizations[0]?.description.text ?? ''}${t('by')} ${artistsNames}. 
+    ${localizations[0]?.description?.text ?? ''}${t('by')} ${artistsNames}. 
     ${t('releaseDate')}: ${formatLongDate(releaseDate, locale)}`
 
   return (
