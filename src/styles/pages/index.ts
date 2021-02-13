@@ -95,7 +95,7 @@ export const ReleasesContent = styled.div`
       'featured released'
       'upcoming upcoming';
 
-    grid-template-columns: 52% auto;
+    grid-template-columns: 50% auto;
     grid-template-rows: auto;
   }
 `
@@ -103,7 +103,6 @@ export const ReleasesContent = styled.div`
 export const FeaturedContainer = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 30rem;
   grid-area: featured;
 `
 
@@ -171,14 +170,13 @@ const BaseGrid = styled.div`
   display: grid;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 1rem;
 `
 
 export const UpcomingReleasesGrid = styled(BaseGrid)`
   grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
-  gap: 2rem;
 `
 
 export const LatestReleasesGrid = styled(BaseGrid)`
-  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
 `

@@ -86,8 +86,8 @@ const Home: NextPage<HomeProps> = ({
                   <FeaturedImageWrapper>
                     <Image
                       src={featured.coverArt.url as string}
-                      width={300}
-                      height={300}
+                      width={280}
+                      height={280}
                       alt={featured.title}
                     />
                   </FeaturedImageWrapper>
