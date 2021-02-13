@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-export const Title = styled.h1`
-  text-transform: uppercase;
+export const Title = styled.h2`
+  font-size: 2.5em;
 `
 
 export const Filters = styled.div`
@@ -91,9 +91,8 @@ export const Overlay = styled.div`
   }
 `
 
-export const ReleaseTitle = styled.h2`
+export const ReleaseTitle = styled.h3`
   text-align: center;
-  text-transform: uppercase;
   font-size: 1.4em;
 `
 
@@ -115,6 +114,6 @@ export const InfoButton = styled.div`
   background-color: ${props => props.theme.colors.secondary};
 
   text-transform: uppercase;
-  font-weight: bold;
-  font-size: 0.9em;
+  font-family: Quicksand;
+  font-weight: 700;
 `

@@ -54,8 +54,12 @@ export const RelatedReleasesGrid = styled.div`
 export const ReleaseDate = styled.div`
   margin: 1rem 0 2rem;
 
+  > strong {
+    font-family: Quicksand;
+  }
+
   > p,
   strong {
-    font-size: 0.9em;
+    font-size: 1em;
   }
 `

@@ -31,7 +31,8 @@ export const ReleaseDate = styled.p`
   border-radius: 1rem;
 `
 
-export const TrackTitle = styled.a`
+export const TrackTitle = styled.h3`
+  cursor: pointer;
   margin-top: 0.2em;
   font-size: 1.2em;
   font-weight: 700;

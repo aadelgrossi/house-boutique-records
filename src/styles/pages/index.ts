@@ -117,7 +117,6 @@ export const FeaturedImageWrapper = styled.div`
 
 export const Title = styled.h2`
   text-transform: uppercase;
-  font-family: 'Ramabhadra';
   margin-bottom: 1em;
 `
 
@@ -174,9 +173,9 @@ const BaseGrid = styled.div`
 `
 
 export const UpcomingReleasesGrid = styled(BaseGrid)`
-  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
 `
 
 export const LatestReleasesGrid = styled(BaseGrid)`
-  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
 `

@@ -13,6 +13,8 @@ export const Container = styled.a<ButtonProps>`
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  font-family: Quicksand;
+  font-weight: 700;
   max-width: 350px;
   background-color: ${props =>
     props.outline ? 'transparent' : props.theme.colors.secondary};
@@ -37,6 +39,4 @@ export const Container = styled.a<ButtonProps>`
         box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colors.white};
       }
     `}
-
-  font-weight: bold;
 `

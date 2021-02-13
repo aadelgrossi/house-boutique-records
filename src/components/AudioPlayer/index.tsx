@@ -17,7 +17,8 @@ import {
   ReleaseDetails,
   NowPlayingText,
   HideButton,
-  EmptyPlayer
+  EmptyPlayer,
+  Title
 } from './styles'
 
 export const AudioPlayer: FC = () => {
@@ -50,7 +51,7 @@ export const AudioPlayer: FC = () => {
               <NowPlayingText style={{ opacity: Number(playing) }}>
                 {t('nowPlaying')}
               </NowPlayingText>
-              <strong>{currentTrack.title}</strong>
+              <Title title={currentTrack.title}>{currentTrack.title}</Title>
               <ArtistRowList data={currentTrack.artists} />
             </ReleaseInfo>
           </ReleaseDetails>

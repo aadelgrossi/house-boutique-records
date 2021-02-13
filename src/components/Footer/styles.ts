@@ -7,10 +7,10 @@ export const Container = styled.footer`
   background-color: ${props => props.theme.colors.primary};
 `
 
-export const Title = styled.h1`
+export const Title = styled.h2`
   text-transform: uppercase;
   font-size: 1.3em;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 0.5em;
 `
 

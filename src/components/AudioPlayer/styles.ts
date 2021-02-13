@@ -8,7 +8,7 @@ export const Container = styled.div<{ playerVisible: boolean }>`
   width: 100%;
   bottom: 0;
   left: 0;
-  padding: 1rem;
+  padding: 0.5rem;
   transition: all 0.5s;
   z-index: 20;
   transform: translateY(100%);
@@ -31,7 +31,7 @@ export const Wrapper = styled.div`
 
   @media (min-width: 800px) {
     align-items: center;
-    max-width: 1200px;
+    max-width: 1400px;
 
     flex-direction: row;
   }
@@ -39,7 +39,7 @@ export const Wrapper = styled.div`
 
 export const ReleaseDetails = styled.div`
   display: flex;
-  min-width: 300px;
+  min-width: 350px;
   flex-direction: row;
   align-items: center;
 `
@@ -48,15 +48,23 @@ export const ReleaseInfo = styled.div`
   display: flex;
   flex-direction: column;
   height: 85px;
-  justify-content: flex-end;
-  margin-bottom: 0.5rem;
+  justify-content: center;
+  margin-bottom: 0.3rem;
 
   margin-left: 20px;
 `
 
-export const NowPlayingText = styled.h1`
+export const Title = styled.h3`
   font-size: 1.2em;
-  margin-bottom: 0.5rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 230px;
+`
+
+export const NowPlayingText = styled.h2`
+  font-size: 1em;
+  font-weight: 900;
+  margin-bottom: 0.2rem;
   color: ${props => props.theme.colors.secondary};
   transition: 0.3s opacity ease-in-out;
 `
@@ -116,7 +124,7 @@ export const HideButton = styled.button<PlayerControlProps>`
     !props.active &&
     css`
       background-color: ${props => props.theme.colors.secondary};
-      top: -120px;
+      top: -145px;
       right: 30px;
       width: 80px;
       height: 80px;

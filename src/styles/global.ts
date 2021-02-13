@@ -12,12 +12,17 @@ export const GlobalStyle = createGlobalStyle`
     background: #111214;
     color: #F5F5F5;
     overflow-x: hidden;
-    font: 15px 'Quicksand', sans-serif;
+    font: 15px Yantramanav, sans-serif;
+    font-weight: 400;
     -webkit-font-smoothing: antialised;
   }
 
-  input, button, textarea,p {
-    font: 16px 'Yantramanav', sans-serif;
+  input, button, p {
+    font: 16px Yantramanav, sans-serif;
+  }
+
+  li {
+    font-family: Quicksand;
   }
 
   p {
@@ -26,16 +31,21 @@ export const GlobalStyle = createGlobalStyle`
 
   h1, h2, h3, h4, h5, h6 {
     line-height: 1;
+    text-transform: uppercase;
     overflow-wrap: break-word;
   }
 
   h1 {
-    font-family: 'Ramabhadra';
-    text-transform: uppercase;
+    font-family: Anton;
   }
 
   h2 {
-    font-family: 'Quicksand';
+    font-weight: 900;
+    letter-spacing: 0.7;
+  }
+
+  h3 {
+    font-family: Quicksand;
     font-weight: 700;
   }
 

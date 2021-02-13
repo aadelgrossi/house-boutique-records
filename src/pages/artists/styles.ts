@@ -7,10 +7,8 @@ export const Container = styled(ContainerBox)`
   margin: 4rem 0;
 `
 
-export const Title = styled.h1`
-  color: ${props => props.theme.colors.white};
-  font-size: 2em;
-  text-transform: uppercase;
+export const Title = styled.h2`
+  font-size: 2.5em;
   margin-bottom: 2rem;
 `
 

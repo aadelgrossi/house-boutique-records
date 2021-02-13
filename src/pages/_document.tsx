@@ -43,15 +43,11 @@ export default class MyDocument extends Document {
           <meta charSet="utf-8" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Ramabhadra&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap"
             rel="stylesheet"
           />
           <link
-            href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap"
-            rel="stylesheet"
-          />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Yantramanav:wght@100;300;400;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Yantramanav:wght@300;400;700;900&display=swap"
             rel="stylesheet"
           />
           <link
