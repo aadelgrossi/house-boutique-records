@@ -117,6 +117,7 @@ const SINGLE_RELEASE = gql`
       localizations(includeCurrent: true, locales: [$locale]) {
         description {
           html
+          text
         }
         locale
       }

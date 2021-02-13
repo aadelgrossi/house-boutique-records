@@ -42,7 +42,8 @@ export const messages: Translation = {
       'Selo digital de tribal, circuit e house music fundado em 2021.',
     releasesMetaDescription:
       'Lançamentos e catálogo digital House Boutique Records.',
-    artistsMetaDescription: 'DJs e produtores integrantes do selo'
+    artistsMetaDescription: 'DJs e produtores integrantes do selo',
+    by: 'Por'
   },
   en: {
     header_home: 'Home',
@@ -83,6 +84,7 @@ export const messages: Translation = {
       'Tribal, circuit and house music record label. Since 2021.',
     releasesMetaDescription:
       'Available and upcoming tracks & releases by House Boutique Records artists.',
-    artistsMetaDescription: 'DJs & producers signed by House Boutique Records'
+    artistsMetaDescription: 'DJs & producers signed by House Boutique Records',
+    by: 'By'
   }
 }
