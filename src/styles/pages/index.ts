@@ -15,10 +15,10 @@ export const Hero = styled.div`
   min-height: 100vh;
   width: 100%;
   position: relative;
-  background-image: url('/hero-bg.jpg');
+  background-image: url('/hero-bg.webp');
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: 70% 0;
+  background-position: 60% 0;
 
   @media (min-width: 900px) {
     background-position: 50% 20%;
