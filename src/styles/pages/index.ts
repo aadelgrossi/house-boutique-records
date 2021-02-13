@@ -48,10 +48,11 @@ export const Contents = styled.div`
 `
 
 export const HeroTitle = styled.h1`
-  font-size: clamp(52px, 5rem, 4.7vw);
+  font-size: clamp(52px, 5rem, 5vw);
   font-family: Anton;
-  width: clamp(359px, 37rem, 56vw);
-  line-height: 1;
+  min-width: 400px;
+  line-height: 1.05;
+  letter-spacing: 1px;
   text-shadow: 10px 5px 30px ${props => props.theme.colors.black};
 `
 

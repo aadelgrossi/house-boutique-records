@@ -26,13 +26,13 @@ const Artists: NextPage<ArtistsPageProps> = ({ artists }) => {
     <>
       <NextSeo
         title={`${t('header_artists')} | House Boutique Records`}
-        description={`${t('home_heroTitle')} ${t('since')}`}
+        description={`${t('artistsMetaDescription')}`}
         canonical="https://www.houseboutiquerecords.com/artists"
         openGraph={{
           type: 'website',
-          title: `House Boutique Records | ${t('officialWebsite')}`,
+          title: `${t('header_artists')} | House Boutique Records`,
           url: 'https://www.houseboutiquerecords.com/artists',
-          description: `${t('home_heroTitle')} ${t('since')}`,
+          description: `${t('artistsMetaDescription')}`,
           defaultImageWidth: 1200,
           defaultImageHeight: 630,
           images: [

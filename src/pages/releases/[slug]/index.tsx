@@ -1,6 +1,7 @@
 import { ParsedUrlQuery } from 'querystring'
 
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import { NextSeo } from 'next-seo'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -44,45 +45,66 @@ interface Params extends ParsedUrlQuery {
 const Release: NextPage<ReleasePageProps> = ({ release, relatedReleases }) => {
   const { title, artists, localizations, coverArt, link, releaseDate } = release
   const { t } = useTranslation()
-  const { locale } = useRouter()
+  const { locale, query } = useRouter()
 
   return (
-    <ContainerBox>
-      <Head>
-        <title>{title} | House Boutique Records</title>
-      </Head>
-      <ReleaseInfo>
-        <ImageContainer>
-          <Image src={coverArt.url} width={300} height={300} alt={title} />
-        </ImageContainer>
-        <Details>
-          <ReleaseTitle>{title}</ReleaseTitle>
-          <ArtistRowList data={artists} fontSize="1rem" />
+    <>
+      <NextSeo
+        title={`${title} | ${t('header_releases')} | House Boutique Records`}
+        description={localizations[0]?.description.text}
+        canonical={`https://www.houseboutiquerecords.com/releases/${query.slug}`}
+        openGraph={{
+          type: 'music',
+          title: `${title} | ${t('header_releases')} | House Boutique Records`,
+          description: localizations[0]?.description.text,
+          url: `https://www.houseboutiquerecords.com/releases/${query.slug}`,
+          images: [
+            {
+              url: coverArt.url,
+              width: 500,
+              height: 500,
+              alt: title
+            }
+          ]
+        }}
+      />
+      <ContainerBox>
+        <Head>
+          <title>{title} | House Boutique Records</title>
+        </Head>
+        <ReleaseInfo>
+          <ImageContainer>
+            <Image src={coverArt.url} width={300} height={300} alt={title} />
+          </ImageContainer>
+          <Details>
+            <ReleaseTitle>{title}</ReleaseTitle>
+            <ArtistRowList data={artists} fontSize="1rem" />
 
-          <Description allowDangerousHtml={true}>
-            {localizations[0]?.description?.html}
-          </Description>
+            <Description allowDangerousHtml={true}>
+              {localizations[0]?.description?.html}
+            </Description>
 
-          <PlayButton track={release} />
+            <PlayButton track={release} />
 
-          <ReleaseDate>
-            <strong>{t('releaseDate')}</strong>
-            <p>{formatLongDate(releaseDate, locale)}</p>
-          </ReleaseDate>
+            <ReleaseDate>
+              <strong>{t('releaseDate')}</strong>
+              <p>{formatLongDate(releaseDate, locale)}</p>
+            </ReleaseDate>
 
-          {link && <Button href={link}>{t('streamNow')}</Button>}
-        </Details>
-      </ReleaseInfo>
+            {link && <Button href={link}>{t('streamNow')}</Button>}
+          </Details>
+        </ReleaseInfo>
 
-      <RelatedReleasesContainer>
-        <RelatedReleasesTitle>{t('relatedReleases')}</RelatedReleasesTitle>
-        <RelatedReleasesGrid>
-          {relatedReleases?.map(related => (
-            <ReleaseCard key={related.id} data={related} />
-          ))}
-        </RelatedReleasesGrid>
-      </RelatedReleasesContainer>
-    </ContainerBox>
+        <RelatedReleasesContainer>
+          <RelatedReleasesTitle>{t('relatedReleases')}</RelatedReleasesTitle>
+          <RelatedReleasesGrid>
+            {relatedReleases?.map(related => (
+              <ReleaseCard key={related.id} data={related} />
+            ))}
+          </RelatedReleasesGrid>
+        </RelatedReleasesContainer>
+      </ContainerBox>
+    </>
   )
 }
 

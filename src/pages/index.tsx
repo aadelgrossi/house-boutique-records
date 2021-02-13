@@ -43,13 +43,13 @@ const Home: NextPage<HomeProps> = ({
     <>
       <NextSeo
         title={`House Boutique Records | ${t('officialWebsite')}`}
-        description={`${t('home_heroTitle')} ${t('since')}`}
+        description={`${t('metaDescription')}`}
         canonical="https://www.houseboutiquerecords.com/"
         openGraph={{
           type: 'website',
           title: `House Boutique Records | ${t('officialWebsite')}`,
           url: 'https://www.houseboutiquerecords.com',
-          description: `${t('home_heroTitle')} ${t('since')}`,
+          description: `${t('metaDescription')}`,
           defaultImageWidth: 1200,
           defaultImageHeight: 630,
           images: [
@@ -65,7 +65,12 @@ const Home: NextPage<HomeProps> = ({
       <Container>
         <Hero>
           <Contents>
-            <HeroTitle>{t('home_heroTitle')}</HeroTitle>
+            <HeroTitle>
+              {t('home_heroTitle')}
+              <br /> {t('home_heroTitle2')}
+              <br /> {t('home_heroTitle3')}
+              <br /> {t('home_heroTitle4')}
+            </HeroTitle>
             <ButtonGroup>
               <Link href="/releases">
                 <Button>{t('home_releasesButton')}</Button>

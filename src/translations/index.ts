@@ -9,8 +9,10 @@ export const messages: Translation = {
     header_artists: 'Artistas',
     header_news: 'Notícias',
     header_radio: 'Podcast',
-    home_heroTitle:
-      'Seu novo lugar para o melhor do tribal, circuit & house music',
+    home_heroTitle: `Seu novo lugar `,
+    home_heroTitle2: `para o melhor `,
+    home_heroTitle3: `do tribal, circuit`,
+    home_heroTitle4: ' & house music',
     home_releasesButton: 'Ver catálogo',
     home_artistsButton: 'Conheça os artistas',
     home_featuredReleaseHeading: 'Destaque',
@@ -35,7 +37,12 @@ export const messages: Translation = {
     noTrackLoaded: 'O player está vazio.',
     officialWebsite: 'Site Oficial',
     since: 'desde 2021.',
-    clearFilters: 'Limpar filtros'
+    clearFilters: 'Limpar filtros',
+    metaDescription:
+      'Selo digital de tribal, circuit e house music fundado em 2021.',
+    releasesMetaDescription:
+      'Lançamentos e catálogo digital House Boutique Records.',
+    artistsMetaDescription: 'DJs e produtores integrantes do selo'
   },
   en: {
     header_home: 'Home',
@@ -43,7 +50,10 @@ export const messages: Translation = {
     header_artists: 'Artists',
     header_news: 'News',
     header_radio: 'Radio',
-    home_heroTitle: 'Your place for the finest tribal, circuit & house music',
+    home_heroTitle: 'Your place',
+    home_heroTitle2: 'for the finest',
+    home_heroTitle3: 'tribal, circuit',
+    home_heroTitle4: ' & house music',
     home_releasesButton: 'Check the catalog',
     home_artistsButton: 'Meet the artists',
     home_featuredReleaseHeading: 'Featured Release',
@@ -68,6 +78,11 @@ export const messages: Translation = {
     noTrackLoaded: 'Player is empty',
     officialWebsite: 'Official Website',
     since: 'since 2021.',
-    clearFilters: 'Reset filters'
+    clearFilters: 'Reset filters',
+    metaDescription:
+      'Tribal, circuit and house music record label. Since 2021.',
+    releasesMetaDescription:
+      'Available and upcoming tracks & releases by House Boutique Records artists.',
+    artistsMetaDescription: 'DJs & producers signed by House Boutique Records'
   }
 }

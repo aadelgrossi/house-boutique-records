@@ -48,6 +48,7 @@ export const ArtistButton = styled.a`
   padding: 0.8rem 1.2rem;
   height: 48px;
   cursor: pointer;
+  font-family: Quicksand;
   text-transform: uppercase;
   display: flex;
   flex-shrink: 0;

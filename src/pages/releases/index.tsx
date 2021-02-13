@@ -3,6 +3,7 @@ import { ParsedUrlQuery } from 'querystring'
 import { useCallback, useEffect, useState } from 'react'
 
 import { GetServerSideProps, NextPage } from 'next'
+import { NextSeo } from 'next-seo'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -66,71 +67,96 @@ const Releases: NextPage<ReleasesProps> = ({
   }, [])
 
   return (
-    <ContainerBox>
-      <Head>
-        <title>{t('header_releases')} | House Boutique Records</title>
-      </Head>
-      <Title>{t('header_releases')}</Title>
-      <Filters>
-        <SearchBox>
-          <Input
-            name="search"
-            onChange={e => setQuery(e.target.value)}
-            enterKeyHint="send"
-            value={query}
-            placeholder={t('releases_searchPlaceholder')}
-          />
-          <FaSearch size={16} color="#fff" style={{ marginRight: 16 }} />
-        </SearchBox>
-
-        <Select
-          onChange={onSelectChange}
-          value={dateFilter}
-          options={[
-            { value: 'all', label: t('releases_all') },
-            { value: 'available', label: t('releases_available') },
-            { value: 'upcoming', label: t('releases_upcoming') }
-          ]}
-        />
-
-        <ClearFilters
-          onClick={resetFilters}
-          aria-label="clear-filters"
-          title={t('clearFilters')}
-        >
-          <RiFilterOffLine size={22} color="#fff" />
-        </ClearFilters>
-
-        <ResultsCount>
-          <strong>{items.length}</strong> {t('releases_resultsFound')}
-        </ResultsCount>
-      </Filters>
-
-      <ReleaseGrid>
-        {items.map(({ id, coverArt, title, slug, artists }) => (
-          <Release key={id}>
-            <Image
-              src={coverArt.url}
-              width={140}
-              height={140}
-              layout="responsive"
-              alt={title}
+    <>
+      <NextSeo
+        title={`${t('header_releases')} | House Boutique Records`}
+        description={`${t('releasesMetaDescription')}`}
+        canonical="https://www.houseboutiquerecords.com/artists"
+        openGraph={{
+          type: 'website',
+          title: `${t('header_releases')} | House Boutique Records`,
+          url: 'https://www.houseboutiquerecords.com/releases',
+          description: `${t('releasesMetaDescription')}`,
+          defaultImageWidth: 1200,
+          defaultImageHeight: 630,
+          images: [
+            {
+              url: 'https://www.houseboutiquerecords.com/hb-light.jpg',
+              width: 1200,
+              height: 630,
+              alt: 'House Boutique Records'
+            }
+          ]
+        }}
+      />
+      <ContainerBox>
+        <Head>
+          <title>{t('header_releases')} | House Boutique Records</title>
+        </Head>
+        <Title>{t('header_releases')}</Title>
+        <Filters>
+          <SearchBox>
+            <Input
+              name="search"
+              onChange={e => setQuery(e.target.value)}
+              enterKeyHint="send"
+              value={query}
+              placeholder={t('releases_searchPlaceholder')}
             />
-            <Link href={`/releases/${slug}`}>
-              <Overlay>
-                <ReleaseTitle>{title}</ReleaseTitle>
-                <ReleaseArtist>
-                  {artists.map(artist => (
-                    <ReleaseArtist key={artist.id}>{artist.name}</ReleaseArtist>
-                  ))}
-                </ReleaseArtist>
-                <InfoButton>{t('releases_moreInfo')}</InfoButton>
-              </Overlay>
-            </Link>
-          </Release>
-        ))}
-      </ReleaseGrid>
-    </ContainerBox>
+            <FaSearch size={16} color="#fff" style={{ marginRight: 16 }} />
+          </SearchBox>
+
+          <Select
+            onChange={onSelectChange}
+            value={dateFilter}
+            options={[
+              { value: 'all', label: t('releases_all') },
+              { value: 'available', label: t('releases_available') },
+              { value: 'upcoming', label: t('releases_upcoming') }
+            ]}
+          />
+
+          <ClearFilters
+            onClick={resetFilters}
+            aria-label="clear-filters"
+            title={t('clearFilters')}
+          >
+            <RiFilterOffLine size={22} color="#fff" />
+          </ClearFilters>
+
+          <ResultsCount>
+            <strong>{items.length}</strong> {t('releases_resultsFound')}
+          </ResultsCount>
+        </Filters>
+
+        <ReleaseGrid>
+          {items.map(({ id, coverArt, title, slug, artists }) => (
+            <Release key={id}>
+              <Image
+                src={coverArt.url}
+                width={140}
+                height={140}
+                layout="responsive"
+                alt={title}
+              />
+              <Link href={`/releases/${slug}`}>
+                <Overlay>
+                  <ReleaseTitle>{title}</ReleaseTitle>
+                  <ReleaseArtist>
+                    {artists.map(artist => (
+                      <ReleaseArtist key={artist.id}>
+                        {artist.name}
+                      </ReleaseArtist>
+                    ))}
+                  </ReleaseArtist>
+                  <InfoButton>{t('releases_moreInfo')}</InfoButton>
+                </Overlay>
+              </Link>
+            </Release>
+          ))}
+        </ReleaseGrid>
+      </ContainerBox>
+    </>
   )
 }
 

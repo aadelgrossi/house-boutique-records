@@ -15,6 +15,7 @@ export const Container = styled.a<ButtonProps>`
   flex-shrink: 0;
   font-family: Quicksand;
   font-weight: 700;
+  min-width: 235px;
   max-width: 350px;
   background-color: ${props =>
     props.outline ? 'transparent' : props.theme.colors.secondary};
