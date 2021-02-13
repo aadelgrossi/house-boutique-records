@@ -193,7 +193,7 @@ export const fetchReleases = async ({
 
 export const fetchHomeReleases = async (): Promise<ReleasesHomeQueryResponse> => {
   const { releases: upcoming } = await fetchUpcomingReleases({ first: 4 })
-  const { releases: latest } = await fetchReleasedReleases({ first: 5 })
+  const { releases: latest } = await fetchReleasedReleases({ first: 4 })
 
   return {
     featured: latest[0],

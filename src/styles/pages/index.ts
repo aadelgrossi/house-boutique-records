@@ -92,8 +92,8 @@ export const ReleasesContent = styled.div`
     grid-column-gap: 1rem;
     grid-row-gap: 3rem;
     grid-template-areas:
-      'featured upcoming'
-      'released released';
+      'featured released'
+      'upcoming upcoming';
 
     grid-template-columns: 52% auto;
     grid-template-rows: auto;
@@ -174,7 +174,7 @@ const BaseGrid = styled.div`
 `
 
 export const UpcomingReleasesGrid = styled(BaseGrid)`
-  grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
   gap: 2rem;
 `
 

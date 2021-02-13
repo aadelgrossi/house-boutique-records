@@ -39,8 +39,6 @@ const Home: NextPage<HomeProps> = ({
 }) => {
   const { t } = useTranslation()
 
-  console.log({ upcoming })
-
   return (
     <>
       <NextSeo
