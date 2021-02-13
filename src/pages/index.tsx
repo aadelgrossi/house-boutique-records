@@ -107,7 +107,7 @@ const Home: NextPage<HomeProps> = ({
             </FeaturedContainer>
 
             <LatestReleasesContainer>
-              <Title>{t('home_releasesButton')}</Title>
+              <Title>{t('home_latestReleasesHeading')}</Title>
 
               <LatestReleasesGrid>
                 {latest.map(release => (
