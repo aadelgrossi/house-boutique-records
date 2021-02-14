@@ -170,13 +170,13 @@ const BaseGrid = styled.div`
   display: grid;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.5rem;
 `
 
 export const UpcomingReleasesGrid = styled(BaseGrid)`
-  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
 `
 
 export const LatestReleasesGrid = styled(BaseGrid)`
-  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
 `
