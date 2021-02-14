@@ -97,6 +97,7 @@ const ALL = gql`
       artists {
         id
         name
+        slug
       }
       coverArt {
         url

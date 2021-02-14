@@ -85,6 +85,10 @@ export const Overlay = styled.div`
   padding: 0 0.5rem;
   transition: 0.2s ease;
 
+  > div {
+    justify-content: center;
+  }
+
   &:hover {
     opacity: 1;
   }
@@ -104,7 +108,7 @@ export const ReleaseGrid = styled.div`
   display: grid;
   margin: 3rem 0;
   gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
 `
 
 export const InfoButton = styled.a`
