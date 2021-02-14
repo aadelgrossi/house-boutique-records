@@ -6,5 +6,5 @@ export const Container = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   grid-gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
 `
