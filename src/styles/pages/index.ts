@@ -90,7 +90,7 @@ export const ReleasesContent = styled.div`
 
   @media (min-width: 1100px) {
     display: grid;
-    grid-column-gap: 1rem;
+    grid-column-gap: 4rem;
     grid-row-gap: 2rem;
     grid-template-areas:
       'featured released'
@@ -121,12 +121,25 @@ export const FeaturedImageWrapper = styled.div`
   }
 `
 
-export const Title = styled.h2`
-  text-transform: uppercase;
+export const TitleGroup = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
   margin-bottom: 1em;
 `
 
-export const FeaturedTitle = styled(Title)`
+export const SeeAll = styled.h2`
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1.2em;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`
+
+export const FeaturedTitle = styled.h2`
   font-size: 2em;
 `
 

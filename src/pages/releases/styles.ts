@@ -67,7 +67,6 @@ export const ClearFilters = styled.button`
 `
 
 export const Release = styled.div`
-  cursor: pointer;
   position: relative;
 `
 
@@ -108,7 +107,7 @@ export const ReleaseGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
 `
 
-export const InfoButton = styled.div`
+export const InfoButton = styled.a`
   padding: 0.5rem;
   margin-top: 0.5rem;
   background-color: ${props => props.theme.colors.secondary};

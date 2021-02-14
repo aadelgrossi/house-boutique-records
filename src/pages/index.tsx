@@ -4,6 +4,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { ArtistRowList, Button, PlayButton, ReleaseCard } from '~/components'
+import {
+  Featured as FeaturedSkeleton,
+  Cards as ReleaseCardsSkeleton
+} from '~/components/Skeleton'
 import { fetchHomeReleases } from '~/graphql'
 import { useTranslation } from '~/hooks'
 import {
@@ -11,7 +15,6 @@ import {
   Hero,
   Contents,
   HeroTitle,
-  Title,
   ButtonGroup,
   ReleasesContainer,
   ReleasesContent,
@@ -19,12 +22,14 @@ import {
   FeaturedImageWrapper,
   FeaturedInfo,
   TrackTitle,
+  TitleGroup,
   FeaturedTitle,
   FeaturedContent,
   LatestReleasesContainer,
   UpcomingReleasesGrid,
   LatestReleasesGrid,
-  UpcomingReleasesContainer
+  UpcomingReleasesContainer,
+  SeeAll
 } from '~/styles/pages'
 
 interface HomeProps {
@@ -86,48 +91,75 @@ const Home: NextPage<HomeProps> = ({
         <ReleasesContainer>
           <ReleasesContent>
             <FeaturedContainer>
-              <FeaturedTitle>{t('home_featuredReleaseHeading')}</FeaturedTitle>
-              <FeaturedContent>
-                <Link href={`/releases/${featured.slug}`}>
-                  <FeaturedImageWrapper>
-                    <Image
-                      src={featured.coverArt.url as string}
-                      width={280}
-                      height={280}
-                      layout="responsive"
-                      alt={featured.title}
-                    />
-                  </FeaturedImageWrapper>
-                </Link>
+              {featured ? (
+                <>
+                  <TitleGroup>
+                    <FeaturedTitle>
+                      {t('home_featuredReleaseHeading')}
+                    </FeaturedTitle>
+                  </TitleGroup>
+                  <FeaturedContent>
+                    <Link href={`/releases/${featured.slug}`}>
+                      <FeaturedImageWrapper>
+                        <Image
+                          src={featured.coverArt.url as string}
+                          width={280}
+                          height={280}
+                          layout="responsive"
+                          alt={featured.title}
+                        />
+                      </FeaturedImageWrapper>
+                    </Link>
 
-                <FeaturedInfo>
-                  <Link href={`/releases/${featured.slug}`}>
-                    <TrackTitle>{featured?.title}</TrackTitle>
-                  </Link>
-                  <ArtistRowList data={featured.artists} fontSize="1.2em" />
-                  <PlayButton track={featured} />
-                  {featured.link && (
-                    <Button style={{ marginTop: '3rem' }} href={featured.link}>
-                      {t('streamNow')}
-                    </Button>
-                  )}
-                </FeaturedInfo>
-              </FeaturedContent>
+                    <FeaturedInfo>
+                      <Link href={`/releases/${featured.slug}`}>
+                        <TrackTitle>{featured?.title}</TrackTitle>
+                      </Link>
+                      <ArtistRowList data={featured.artists} fontSize="1.2em" />
+                      <PlayButton track={featured} />
+                      {featured.link && (
+                        <Button
+                          style={{ marginTop: '3rem' }}
+                          href={featured.link}
+                        >
+                          {t('streamNow')}
+                        </Button>
+                      )}
+                    </FeaturedInfo>
+                  </FeaturedContent>
+                </>
+              ) : (
+                <FeaturedSkeleton />
+              )}
             </FeaturedContainer>
-
             <LatestReleasesContainer>
-              <Title>{t('home_latestReleasesHeading')}</Title>
+              {latest ? (
+                <>
+                  <TitleGroup>
+                    <h2>{t('home_latestReleasesHeading')}</h2>
+                    <Link href={`/releases?type=available`}>
+                      <SeeAll>{t('seeAll')}</SeeAll>
+                    </Link>
+                  </TitleGroup>
 
-              <LatestReleasesGrid>
-                {latest.map(release => (
-                  <ReleaseCard key={release.id} data={release} />
-                ))}
-              </LatestReleasesGrid>
+                  <LatestReleasesGrid>
+                    {latest.map(release => (
+                      <ReleaseCard key={release.id} data={release} />
+                    ))}
+                  </LatestReleasesGrid>
+                </>
+              ) : (
+                <ReleaseCardsSkeleton />
+              )}
             </LatestReleasesContainer>
+
+            {!upcoming && <ReleaseCardsSkeleton />}
 
             {upcoming.length ? (
               <UpcomingReleasesContainer>
-                <Title>{t('home_upcomingReleasesHeading')}</Title>
+                <TitleGroup>
+                  <h2>{t('home_upcomingReleasesHeading')}</h2>
+                </TitleGroup>
 
                 <UpcomingReleasesGrid>
                   {upcoming.map(release => (
