@@ -104,8 +104,8 @@ export const ReleaseArtist = styled.p`
 export const ReleaseGrid = styled.div`
   display: grid;
   margin: 3rem 0;
-  gap: max(2vw, 1rem);
-  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
 `
 
 export const InfoButton = styled.div`

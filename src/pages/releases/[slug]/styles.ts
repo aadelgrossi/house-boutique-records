@@ -37,7 +37,7 @@ export const Description = styled(ReactMarkdown)`
 export const RelatedReleasesContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 3rem 0 1rem;
+  margin: 6rem 0 1rem;
 `
 
 export const RelatedReleasesTitle = styled.h3`
@@ -48,8 +48,7 @@ export const RelatedReleasesGrid = styled.div`
   margin-top: 1rem;
   display: grid;
   gap: max(2vw, 2rem);
-  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
-  max-width: 820px;
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
 `
 export const ReleaseDate = styled.div`
   margin: 1rem 0 2rem;
