@@ -5,10 +5,8 @@ import { NextSeo } from 'next-seo'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import Carousel from 'react-multi-carousel'
 
-import { SocialIcon, ReleaseCard } from '~/components'
-import { responsiveCardsConfig } from '~/constants'
+import { SocialIcon, ReleaseCard, ReleasesGrid } from '~/components'
 import { fetchArtists, fetchSingleArtist } from '~/graphql'
 import { useTranslation } from '~/hooks'
 
@@ -87,14 +85,11 @@ const Artist: NextPage<ArtistPageProps> = ({
               {t('artists_tracksBy')}
               {` ${name}`}
             </Title>
-            <Carousel
-              responsive={responsiveCardsConfig}
-              itemClass="carousel-item-padding-0-px"
-            >
+            <ReleasesGrid>
               {releases.map(release => (
                 <ReleaseCard key={release.id} data={release} />
               ))}
-            </Carousel>
+            </ReleasesGrid>
           </ReleasesContainer>
         </Content>
       </Container>

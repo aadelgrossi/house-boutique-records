@@ -40,16 +40,11 @@ export const RelatedReleasesContainer = styled.div`
   margin: 6rem 0 1rem;
 `
 
-export const RelatedReleasesTitle = styled.h3`
+export const RelatedReleasesTitle = styled.h2`
   font-size: 1.5em;
+  margin-bottom: 1rem;
 `
 
-export const RelatedReleasesGrid = styled.div`
-  margin-top: 1rem;
-  display: grid;
-  gap: max(2vw, 2rem);
-  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
-`
 export const ReleaseDate = styled.div`
   margin: 1rem 0 2rem;
 

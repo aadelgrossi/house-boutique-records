@@ -40,7 +40,7 @@ const SINGLE_ARTIST = gql`
         platform
         url
       }
-      releases(first: 5, orderBy: releaseDate_DESC) {
+      releases(first: 4, orderBy: releaseDate_DESC) {
         id
         title
         slug

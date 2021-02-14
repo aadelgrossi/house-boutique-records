@@ -88,16 +88,16 @@ export const ReleasesContent = styled.div`
   max-width: 1368px;
   gap: 3rem;
 
-  @media (min-width: 1280px) {
+  @media (min-width: 1100px) {
     display: grid;
     grid-column-gap: 1rem;
-    grid-row-gap: 3rem;
+    grid-row-gap: 2rem;
     grid-template-areas:
       'featured released'
-      'upcoming upcoming';
+      'upcoming released';
 
     grid-template-columns: 50% auto;
-    grid-template-rows: auto;
+    grid-template-rows: auto auto;
   }
 `
 
@@ -187,14 +187,14 @@ const BaseGrid = styled.div`
   display: grid;
   justify-content: center;
   flex-wrap: wrap;
-  grid-column-gap: 1rem;
+  grid-column-gap: 2rem;
   grid-row-gap: 2rem;
 `
 
 export const UpcomingReleasesGrid = styled(BaseGrid)`
-  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
 `
 
 export const LatestReleasesGrid = styled(BaseGrid)`
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
 `

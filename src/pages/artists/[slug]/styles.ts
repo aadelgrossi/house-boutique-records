@@ -76,14 +76,8 @@ export const Content = styled.div`
 `
 
 export const ReleasesContainer = styled.div`
-  max-width: 1024px;
-`
-
-export const Releases = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  gap: 1rem;
+  max-width: 800px;
+  margin-bottom: 4rem;
 `
 
 export const Title = styled.h2`

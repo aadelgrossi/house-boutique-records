@@ -11,7 +11,8 @@ import {
   ReleaseCard,
   ArtistRowList,
   PlayButton,
-  ContainerBox
+  ContainerBox,
+  ReleasesGrid
 } from '~/components'
 import {
   fetchReleases,
@@ -29,7 +30,6 @@ import {
   ReleaseInfo,
   RelatedReleasesContainer,
   ReleaseDate,
-  RelatedReleasesGrid,
   RelatedReleasesTitle
 } from './styles'
 
@@ -102,11 +102,11 @@ const Release: NextPage<ReleasePageProps> = ({ release, relatedReleases }) => {
 
         <RelatedReleasesContainer>
           <RelatedReleasesTitle>{t('relatedReleases')}</RelatedReleasesTitle>
-          <RelatedReleasesGrid>
+          <ReleasesGrid>
             {relatedReleases?.map(related => (
               <ReleaseCard key={related.id} data={related} />
             ))}
-          </RelatedReleasesGrid>
+          </ReleasesGrid>
         </RelatedReleasesContainer>
       </ContainerBox>
     </>
