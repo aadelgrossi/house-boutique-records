@@ -10,7 +10,8 @@ import Link from 'next/link'
 import { FaSearch } from 'react-icons/fa'
 import { RiFilterOffLine } from 'react-icons/ri'
 
-import { ContainerBox, Select } from '~/components'
+import { ArtistRowList, ContainerBox, Select } from '~/components'
+import { ReleaseCover } from '~/components/Skeleton'
 import { fetchReleases } from '~/graphql'
 import { useTranslation } from '~/hooks'
 
@@ -130,30 +131,26 @@ const Releases: NextPage<ReleasesProps> = ({
         </Filters>
 
         <ReleaseGrid>
-          {items.map(({ id, coverArt, title, slug, artists }) => (
-            <Release key={id}>
-              <Image
-                src={coverArt.url}
-                width={140}
-                height={140}
-                layout="responsive"
-                alt={title}
-              />
-              <Link href={`/releases/${slug}`}>
-                <Overlay>
-                  <ReleaseTitle>{title}</ReleaseTitle>
-                  <ReleaseArtist>
-                    {artists.map(artist => (
-                      <ReleaseArtist key={artist.id}>
-                        {artist.name}
-                      </ReleaseArtist>
-                    ))}
-                  </ReleaseArtist>
-                  <InfoButton>{t('releases_moreInfo')}</InfoButton>
-                </Overlay>
-              </Link>
-            </Release>
-          ))}
+          {items.length
+            ? items.map(({ id, coverArt, title, slug, artists }) => (
+                <Release key={id}>
+                  <Image
+                    src={coverArt.url}
+                    width={140}
+                    height={140}
+                    layout="responsive"
+                    alt={title}
+                  />
+                  <Overlay>
+                    <ReleaseTitle>{title}</ReleaseTitle>
+                    <ArtistRowList data={artists} />
+                    <Link href={`/releases/${slug}`}>
+                      <InfoButton>{t('releases_moreInfo')}</InfoButton>
+                    </Link>
+                  </Overlay>
+                </Release>
+              ))
+            : [...Array(10)].map((_, i) => <ReleaseCover key={i} />)}
         </ReleaseGrid>
       </ContainerBox>
     </>

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Container = styled.span`
+export const Container = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,6 +8,7 @@ export const Container = styled.span`
   background-color: ${props => props.theme.colors.primary};
   border-radius: 1.2em;
   font-size: 0.9em;
+  white-space: nowrap;
   text-transform: uppercase;
   font-weight: bold;
 `

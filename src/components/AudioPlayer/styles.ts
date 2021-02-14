@@ -57,6 +57,7 @@ export const ReleaseInfo = styled.div`
 export const Title = styled.h3`
   font-size: 1.2em;
   text-overflow: ellipsis;
+  overflow: hidden;
   white-space: nowrap;
   max-width: 230px;
 `
