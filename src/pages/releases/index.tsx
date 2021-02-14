@@ -58,12 +58,10 @@ const Releases: NextPage<ReleasesProps> = ({
   }, [])
 
   useEffect(() => {
-    if (!releases) {
-      fetchReleases({ query, type: dateFilter }).then(response =>
-        setItems(response.releases)
-      )
-    }
-  }, [dateFilter, query, releases])
+    fetchReleases({ query, type: dateFilter }).then(response =>
+      setItems(response.releases)
+    )
+  }, [dateFilter, query])
 
   const onSelectChange = useCallback((value: DateFilter) => {
     setDateFilter(value)

@@ -3,7 +3,13 @@ import { NextSeo } from 'next-seo'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { ArtistRowList, Button, PlayButton, ReleaseCard } from '~/components'
+import {
+  ArtistRowList,
+  Badge,
+  Button,
+  PlayButton,
+  ReleaseCard
+} from '~/components'
 import {
   Featured as FeaturedSkeleton,
   Cards as ReleaseCardsSkeleton
@@ -28,8 +34,7 @@ import {
   LatestReleasesContainer,
   UpcomingReleasesGrid,
   LatestReleasesGrid,
-  UpcomingReleasesContainer,
-  SeeAll
+  UpcomingReleasesContainer
 } from '~/styles/pages'
 
 interface HomeProps {
@@ -137,9 +142,9 @@ const Home: NextPage<HomeProps> = ({
                 <>
                   <TitleGroup>
                     <h2>{t('home_latestReleasesHeading')}</h2>
-                    <Link href={`/releases?type=available`}>
-                      <SeeAll>{t('seeAll')}</SeeAll>
-                    </Link>
+                    <Badge>
+                      <Link href="/releases?type=available">{t('seeAll')}</Link>
+                    </Badge>
                   </TitleGroup>
 
                   <LatestReleasesGrid>

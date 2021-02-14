@@ -76,12 +76,28 @@ export const Content = styled.div`
 `
 
 export const ReleasesContainer = styled.div`
-  max-width: 800px;
+  max-width: 1024px;
   margin-bottom: 4rem;
 `
 
-export const Title = styled.h2`
-  text-transform: uppercase;
+export const TitleGroup = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
   margin-bottom: 1em;
-  line-height: 0.95;
+`
+
+export const SeeAll = styled.h2`
+  font-weight: 500;
+  font-size: 1.2em;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`
+
+export const Title = styled.h2`
+  font-size: 1.8em;
+  margin-right: 1rem;
 `

@@ -4,9 +4,10 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import { SocialIcon, ReleaseCard, ReleasesGrid } from '~/components'
+import { SocialIcon, ReleaseCard, ReleasesGrid, Badge } from '~/components'
 import { fetchArtists, fetchSingleArtist } from '~/graphql'
 import { useTranslation } from '~/hooks'
 
@@ -19,6 +20,7 @@ import {
   ArtistSocials,
   ArtistHeader,
   ReleasesContainer,
+  TitleGroup,
   Title
 } from './styles'
 
@@ -81,10 +83,15 @@ const Artist: NextPage<ArtistPageProps> = ({
           </ArtistHeader>
           <Bio allowDangerousHtml={true}>{localizations[0]?.bio.html}</Bio>
           <ReleasesContainer>
-            <Title>
-              {t('artists_tracksBy')}
-              {` ${name}`}
-            </Title>
+            <TitleGroup>
+              <Title>
+                {t('artists_tracksBy')}
+                {` ${name}`}
+              </Title>
+              <Badge>
+                <Link href={`/releases?search=${name}`}>{t('seeAll')}</Link>
+              </Badge>
+            </TitleGroup>
             <ReleasesGrid>
               {releases.map(release => (
                 <ReleaseCard key={release.id} data={release} />
