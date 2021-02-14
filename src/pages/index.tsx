@@ -19,6 +19,7 @@ import {
   FeaturedImageWrapper,
   FeaturedInfo,
   TrackTitle,
+  FeaturedTitle,
   FeaturedContent,
   LatestReleasesContainer,
   UpcomingReleasesGrid,
@@ -85,7 +86,7 @@ const Home: NextPage<HomeProps> = ({
         <ReleasesContainer>
           <ReleasesContent>
             <FeaturedContainer>
-              <Title>{t('home_featuredReleaseHeading')}</Title>
+              <FeaturedTitle>{t('home_featuredReleaseHeading')}</FeaturedTitle>
               <FeaturedContent>
                 <Link href={`/releases/${featured.slug}`}>
                   <FeaturedImageWrapper>
@@ -93,6 +94,7 @@ const Home: NextPage<HomeProps> = ({
                       src={featured.coverArt.url as string}
                       width={280}
                       height={280}
+                      layout="responsive"
                       alt={featured.title}
                     />
                   </FeaturedImageWrapper>
@@ -105,7 +107,9 @@ const Home: NextPage<HomeProps> = ({
                   <ArtistRowList data={featured.artists} fontSize="1.2em" />
                   <PlayButton track={featured} />
                   {featured.link && (
-                    <Button href={featured.link}>{t('streamNow')}</Button>
+                    <Button style={{ marginTop: '3rem' }} href={featured.link}>
+                      {t('streamNow')}
+                    </Button>
                   )}
                 </FeaturedInfo>
               </FeaturedContent>

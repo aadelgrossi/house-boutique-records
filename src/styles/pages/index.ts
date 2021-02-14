@@ -109,6 +109,11 @@ export const FeaturedContainer = styled.div`
 
 export const FeaturedImageWrapper = styled.div`
   cursor: pointer;
+  width: 100%;
+
+  @media (min-width: 600px) {
+    width: 250px;
+  }
 
   transition: 0.2s transform ease-in-out;
   &:hover {
@@ -121,10 +126,14 @@ export const Title = styled.h2`
   margin-bottom: 1em;
 `
 
+export const FeaturedTitle = styled(Title)`
+  font-size: 2em;
+`
+
 export const TrackTitle = styled.h3`
   cursor: pointer;
   margin-top: 0.2em;
-  font-size: 1.6em;
+  font-size: 1.8em;
   text-transform: uppercase;
   line-height: 1;
   transition: 0.2s all ease-in-out;
@@ -144,6 +153,14 @@ export const FeaturedContent = styled.div`
 export const FeaturedInfo = styled.div`
   display: flex;
   flex-direction: column;
+
+  margin: 0 auto;
+  align-items: center;
+
+  @media (min-width: 600px) {
+    margin: unset;
+    align-items: flex-start;
+  }
 
   > a:last-of-type {
     margin-top: 1rem;
@@ -170,7 +187,8 @@ const BaseGrid = styled.div`
   display: grid;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  grid-column-gap: 1rem;
+  grid-row-gap: 2rem;
 `
 
 export const UpcomingReleasesGrid = styled(BaseGrid)`
@@ -178,5 +196,5 @@ export const UpcomingReleasesGrid = styled(BaseGrid)`
 `
 
 export const LatestReleasesGrid = styled(BaseGrid)`
-  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
 `

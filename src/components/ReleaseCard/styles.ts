@@ -38,5 +38,5 @@ export const TrackTitle = styled.h3`
   font-weight: 700;
   text-transform: uppercase;
   line-height: 1;
-  width: 90%;
+  width: 98%;
 `
