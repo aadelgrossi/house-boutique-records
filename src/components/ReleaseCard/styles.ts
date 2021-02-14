@@ -32,10 +32,13 @@ export const ReleaseDate = styled.p`
 
 export const TrackTitle = styled.h3`
   cursor: pointer;
-  margin-top: 0.2em;
+  margin-top: 0.4em;
   font-size: 1.2em;
   font-weight: 700;
   text-transform: uppercase;
   line-height: 1;
-  width: 98%;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `

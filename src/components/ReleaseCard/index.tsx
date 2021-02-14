@@ -35,7 +35,7 @@ export const ReleaseCard: FC<Props> = ({ data }) => {
         </ImageWrapper>
       </Link>
       <Link href={`/releases/${slug}`}>
-        <TrackTitle>{title}</TrackTitle>
+        <TrackTitle title={title}>{title}</TrackTitle>
       </Link>
 
       <ArtistRowList data={artists} />
