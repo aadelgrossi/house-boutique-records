@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { FC } from 'react'
 
 import { Container } from './styles'
 
-export const Badge: React.FC = ({ children }) => {
+export const Badge: FC = ({ children }) => {
   return <Container>{children}</Container>
 }
