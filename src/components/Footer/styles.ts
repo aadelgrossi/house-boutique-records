@@ -85,6 +85,6 @@ export const FooterDetail = styled.div`
   padding: 0.5rem;
 
   > p {
-    font-size: 0.7em;
+    font-size: 0.9em;
   }
 `
