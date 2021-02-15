@@ -1,7 +1,20 @@
-import React, { FC } from 'react'
+import React, {
+  AnchorHTMLAttributes,
+  forwardRef,
+  ForwardRefRenderFunction
+} from 'react'
 
 import { Container } from './styles'
 
-export const Badge: FC = ({ children }) => {
-  return <Container>{children}</Container>
+const BadgeComponent: ForwardRefRenderFunction<
+  HTMLAnchorElement,
+  AnchorHTMLAttributes<HTMLAnchorElement>
+> = ({ children, href }, ref) => {
+  return (
+    <Container ref={ref} href={href}>
+      {children}
+    </Container>
+  )
 }
+
+export const Badge = forwardRef(BadgeComponent)

@@ -19,25 +19,20 @@ export const Container = styled.a<ButtonProps>`
   max-width: 350px;
   background-color: ${props =>
     props.outline ? 'transparent' : props.theme.colors.secondary};
+  color: ${props =>
+    props.outline
+      ? props.theme.colors.secondary
+      : props.theme.colors.white} !important;
 
   transition: 0.2s all ease-in-out;
 
   &:hover {
-    background-color: ${props => props.theme.colors.white};
     transform: translateY(-5px);
-    color: ${props => props.theme.colors.secondary};
   }
 
   ${props =>
     props.outline &&
     css`
-      color: ${props => props.theme.colors.secondary};
       box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colors.secondary};
-
-      &:hover {
-        background-color: unset;
-        color: ${props => props.theme.colors.white};
-        box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colors.white};
-      }
     `}
 `

@@ -8,7 +8,6 @@ export const MenuItem = styled.a<{ active: boolean }>`
 `
 
 export const Container = styled.ul`
-  min-width: 110px;
   display: flex;
   flex-direction: row;
   justify-content: center;

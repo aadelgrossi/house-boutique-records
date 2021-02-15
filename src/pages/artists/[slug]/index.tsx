@@ -89,7 +89,9 @@ const Artist: NextPage<ArtistPageProps> = ({
                 {` ${name}`}
               </Title>
               <Badge>
-                <Link href={`/releases?search=${name}`}>{t('seeAll')}</Link>
+                <Link href={{ pathname: 'releases', query: { search: name } }}>
+                  {t('seeAll')}
+                </Link>
               </Badge>
             </TitleGroup>
             <ReleasesGrid>

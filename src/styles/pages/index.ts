@@ -129,22 +129,14 @@ export const TitleGroup = styled.div`
   margin-bottom: 1em;
 `
 
-export const SeeAll = styled.h2`
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 1.2em;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`
-
 export const FeaturedTitle = styled.h2`
   font-size: 2em;
 `
 
-export const TrackTitle = styled.h3`
+export const TrackTitle = styled.a`
   cursor: pointer;
+  font-family: Quicksand;
+  font-weight: 700;
   margin-top: 0.2em;
   font-size: 1.8em;
   text-transform: uppercase;

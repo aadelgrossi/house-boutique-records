@@ -30,8 +30,10 @@ export const ReleaseDate = styled.p`
   border-radius: 1rem;
 `
 
-export const TrackTitle = styled.h3`
+export const TrackTitle = styled.a`
   cursor: pointer;
+  font-family: Quicksand;
+  font-weight: 700;
   margin-top: 0.4em;
   font-size: 1.2em;
   font-weight: 700;

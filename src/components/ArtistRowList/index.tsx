@@ -13,7 +13,7 @@ export const ArtistRowList: FC<Props> = ({ data, fontSize = '1em' }) => {
   return (
     <Container>
       {data.map(artist => (
-        <Link key={artist.id} href={`/artists/${artist.slug}`}>
+        <Link key={artist.id} href={`/artists/${artist.slug}`} passHref>
           <Artist style={{ fontSize }}>{artist.name}</Artist>
         </Link>
       ))}

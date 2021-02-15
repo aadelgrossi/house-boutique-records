@@ -32,7 +32,6 @@ export const VerticalList = styled.ul`
 
 export const Title = styled.h2`
   text-transform: uppercase;
-  font-family: 'Ramabhadra';
   margin-bottom: 1em;
   font-size: 2rem;
 `

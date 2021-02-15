@@ -83,10 +83,11 @@ const Home: NextPage<HomeProps> = ({
               <br /> {t('home_heroTitle4')}
             </HeroTitle>
             <ButtonGroup>
-              <Link href="/releases">
+              <Link href="/releases" passHref>
                 <Button>{t('home_releasesButton')}</Button>
               </Link>
-              <Link href="/artists">
+
+              <Link href="/artists" passHref>
                 <Button outline>{t('home_artistsButton')}</Button>
               </Link>
             </ButtonGroup>
@@ -117,15 +118,15 @@ const Home: NextPage<HomeProps> = ({
                     </Link>
 
                     <FeaturedInfo>
-                      <Link href={`/releases/${featured.slug}`}>
+                      <Link href={`/releases/${featured.slug}`} passHref>
                         <TrackTitle>{featured?.title}</TrackTitle>
                       </Link>
                       <ArtistRowList data={featured.artists} fontSize="1.2em" />
                       <PlayButton track={featured} />
                       {featured.link && (
                         <Button
-                          style={{ marginTop: '3rem' }}
                           href={featured.link}
+                          style={{ marginTop: '3rem' }}
                         >
                           {t('streamNow')}
                         </Button>
@@ -142,9 +143,15 @@ const Home: NextPage<HomeProps> = ({
                 <>
                   <TitleGroup>
                     <h2>{t('home_latestReleasesHeading')}</h2>
-                    <Badge>
-                      <Link href="/releases?type=available">{t('seeAll')}</Link>
-                    </Badge>
+                    <Link
+                      href={{
+                        pathname: '/releases',
+                        query: { type: 'available' }
+                      }}
+                      passHref
+                    >
+                      <Badge>{t('seeAll')}</Badge>
+                    </Link>
                   </TitleGroup>
 
                   <LatestReleasesGrid>

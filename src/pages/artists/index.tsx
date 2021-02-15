@@ -51,7 +51,7 @@ const Artists: NextPage<ArtistsPageProps> = ({ artists }) => {
             <ArtistCard key={id}>
               <ArtistThumb src={thumb.url} width={500} height={500} />
               <Name>{name}</Name>
-              <Link href={`artists/${slug}`}>
+              <Link href={`artists/${slug}`} passHref>
                 <ArtistButton>{t('home_artistsReadMore')}</ArtistButton>
               </Link>
             </ArtistCard>

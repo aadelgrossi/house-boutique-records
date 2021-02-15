@@ -25,7 +25,7 @@ export const MenuItems: FC<Props> = ({ toggleMobileMenu }) => {
     <>
       {navItems.map(({ name, route }) => (
         <li key={name}>
-          <Link href={route} locale={activeLocale}>
+          <Link href={route} locale={activeLocale} passHref>
             <MenuItem onClick={toggleMobileMenu} active={isRouteActive(route)}>
               {t(`header_${name}`)}
             </MenuItem>

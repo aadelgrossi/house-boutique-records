@@ -34,7 +34,7 @@ export const ReleaseCard: FC<Props> = ({ data }) => {
           )}
         </ImageWrapper>
       </Link>
-      <Link href={`/releases/${slug}`}>
+      <Link href={`/releases/${slug}`} passHref>
         <TrackTitle title={title}>{title}</TrackTitle>
       </Link>
 

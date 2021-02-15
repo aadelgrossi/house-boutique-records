@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const Container = styled.a`
   display: flex;
   align-items: center;
+  height: 28px;
   justify-content: center;
   padding: 0.2em 0.8em;
   background-color: ${props => props.theme.colors.primary};

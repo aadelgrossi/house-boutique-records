@@ -18,7 +18,7 @@ export const LanguageSwitcher: React.FC<Props> = ({ close }) => {
     <Container>
       {locales.map(({ label, locale }) => (
         <li key={locale}>
-          <Link href={asPath} locale={locale}>
+          <Link href={asPath} locale={locale} passHref>
             <MenuItem active={locale === activeLocale} onClick={close}>
               {label}
             </MenuItem>

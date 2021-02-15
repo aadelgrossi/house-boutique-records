@@ -1,4 +1,8 @@
-import { AnchorHTMLAttributes, FC } from 'react'
+import {
+  AnchorHTMLAttributes,
+  forwardRef,
+  ForwardRefRenderFunction
+} from 'react'
 
 import { Container } from './styles'
 
@@ -6,10 +10,15 @@ interface ButtonProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   outline?: boolean
 }
 
-export const Button: FC<ButtonProps> = ({ children, ...props }) => {
-  return <Container {...props}>{children}</Container>
+const ButtonElement: ForwardRefRenderFunction<
+  HTMLAnchorElement,
+  ButtonProps
+> = ({ children, outline = false, ...rest }, ref) => {
+  return (
+    <Container ref={ref} outline={outline} {...rest}>
+      {children}
+    </Container>
+  )
 }
 
-Button.defaultProps = {
-  outline: false
-}
+export const Button = forwardRef(ButtonElement)
