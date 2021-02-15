@@ -1,5 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 
+import Link from 'next/link'
+
 import { debounce } from '~/utils/debounce'
 
 import { Full as FullLogo, Icon } from '../Logo'
@@ -18,7 +20,7 @@ export const Header: FC = () => {
     setVisible(
       (prevScrollPos > currentScrollPos &&
         prevScrollPos - currentScrollPos > 90) ||
-        currentScrollPos < 250
+        currentScrollPos < 180
     )
 
     setAtTop(currentScrollPos < 400)
@@ -40,10 +42,12 @@ export const Header: FC = () => {
       }}
     >
       <Content>
-        <LogoContainer>
-          <FullLogo />
-          <Icon />
-        </LogoContainer>
+        <Link href="/" passHref>
+          <LogoContainer>
+            <FullLogo />
+            <Icon />
+          </LogoContainer>
+        </Link>
         <NavBar />
         <LanguageSwitcher />
       </Content>

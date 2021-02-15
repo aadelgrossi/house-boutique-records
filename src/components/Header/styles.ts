@@ -45,14 +45,23 @@ export const Content = styled.div`
   padding: 0 max(1rem, 5vw);
 
   > ul {
-    @media (max-width: 800px) {
-      visibility: hidden;
-      display: none;
+    visibility: hidden;
+    display: none;
+  }
+
+  @media (min-width: 800px) {
+    display: grid;
+    grid-template-columns: 210px auto 210px;
+
+    > ul {
+      visibility: visible;
+      display: flex;
     }
   }
 `
 
 export const LogoContainer = styled.div`
+  cursor: pointer;
   > svg:nth-of-type(2) {
     display: none;
   }
