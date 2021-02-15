@@ -15,8 +15,6 @@ export const Title = styled.h2`
 export const Contents = styled.div`
   display: grid;
   gap: 2rem;
-
-  gap: max(2vw, 1rem);
   grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
 `
 export const ArtistCard = styled.div`
