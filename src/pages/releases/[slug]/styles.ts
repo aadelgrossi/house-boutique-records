@@ -38,6 +38,7 @@ export const RelatedReleasesContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 6rem 0 1rem;
+  max-width: 900px;
 `
 
 export const RelatedReleasesTitle = styled.h2`
