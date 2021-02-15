@@ -23,7 +23,6 @@ import {
   ReleaseGrid,
   Release,
   Overlay,
-  ReleaseArtist,
   ReleaseTitle,
   InfoButton,
   ResultsCount,
@@ -131,7 +130,7 @@ const Releases: NextPage<ReleasesProps> = ({
         </Filters>
 
         <ReleaseGrid>
-          {items.length
+          {items
             ? items.map(({ id, coverArt, title, slug, artists }) => (
                 <Release key={id}>
                   <Image
