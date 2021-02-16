@@ -87,7 +87,7 @@ export const HideButton = styled.button<PlayerControlProps>`
   height: 40px;
   border-radius: 20px;
   border: unset;
-  background-color: ${props => props.theme.colors.secondary};
+  background-color: ${props => props.theme.colors.secondaryLight};
   transition: 0.2s all ease-in-out;
   transform: translateY(0) scale(1);
   overflow: hidden;
@@ -124,7 +124,7 @@ export const HideButton = styled.button<PlayerControlProps>`
   ${props =>
     !props.active &&
     css`
-      background-color: ${props => props.theme.colors.secondary};
+      background-color: ${props => props.theme.colors.secondaryLight};
       top: -145px;
       right: 30px;
       width: 80px;

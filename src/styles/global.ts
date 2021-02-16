@@ -12,7 +12,7 @@ export const GlobalStyle = createGlobalStyle`
     background: #111214;
     color: #F5F5F5;
     overflow-x: hidden;
-    font: 15px Yantramanav, sans-serif;
+    font: 16px Yantramanav, sans-serif;
     font-weight: 400;
     -webkit-font-smoothing: antialised;
   }

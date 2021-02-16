@@ -89,7 +89,7 @@ export const AudioPlayer: FC = () => {
       )}
 
       <HideButton
-        draggable
+        aria-label="player"
         onClick={handleHidePlayer}
         active={playerVisible}
         cover={currentTrack?.coverArt.url}
@@ -97,9 +97,9 @@ export const AudioPlayer: FC = () => {
       >
         {playerVisible && <FaChevronDown size={15} color={colors.white} />}
 
-        {!playerVisible && !playing && (
+        {!(playerVisible || playing) ? (
           <ImHeadphones size={25} color={colors.white} style={{ zIndex: 50 }} />
-        )}
+        ) : null}
       </HideButton>
     </Container>
   )

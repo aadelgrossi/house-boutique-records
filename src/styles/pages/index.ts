@@ -138,7 +138,7 @@ export const TrackTitle = styled.a`
   font-family: Quicksand;
   font-weight: 700;
   margin-top: 0.2em;
-  font-size: 1.8em;
+  font-size: 1.6em;
   text-transform: uppercase;
   line-height: 1;
   transition: 0.2s all ease-in-out;
