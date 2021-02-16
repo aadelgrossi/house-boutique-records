@@ -13,7 +13,7 @@ export const Container = styled.div<{ playerVisible: boolean }>`
   z-index: 20;
   transform: translateY(100%);
   background-color: ${props => props.theme.colors.background};
-  border-top: 2px solid ${props => props.theme.colors.secondary};
+  border-top: 2px solid ${props => props.theme.colors.secondaryLight};
 
   ${props =>
     props.playerVisible &&
@@ -66,7 +66,7 @@ export const NowPlayingText = styled.h2`
   font-size: 1em;
   font-weight: 900;
   margin-bottom: 0.2rem;
-  color: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.secondaryLight};
   transition: 0.3s opacity ease-in-out;
 `
 
