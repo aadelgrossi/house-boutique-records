@@ -15,18 +15,18 @@ export const Hero = styled.div`
   min-height: 100vh;
   width: 100%;
   position: relative;
-  background-image: url('/hero-bg.webp');
+  background-image: url('/hero-bg-2.webp');
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: 60% 0;
+  background-position: 90% 0;
 
   @media (min-width: 900px) {
-    background-position: 50% 20%;
+    background-position: 50% 30%;
   }
 
-  box-shadow: inset 188px 51px 185px 72px rgb(0 0 0 / 50%);
+  box-shadow: inset 188px 51px 185px 72px rgb(0 0 0 / 60%);
 
-  &:after {
+  /* &:after {
     width: 100%;
     height: 100%;
     content: '';
@@ -35,7 +35,7 @@ export const Hero = styled.div`
     left: 0;
     z-index: 0;
     background: linear-gradient(0deg, #111214 0%, rgba(255, 255, 255, 0) 70%);
-  }
+  } */
 `
 
 export const Contents = styled.div`
@@ -74,7 +74,7 @@ export const ReleasesContainer = styled.section`
   display: flex;
   justify-content: center;
   width: 100%;
-  padding: 0 max(1rem, 5vw) 3rem;
+  padding: 6rem max(1rem, 5vw) 3rem;
 
   @media (min-width: 1024px) {
     align-items: flex-start;

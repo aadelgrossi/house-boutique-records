@@ -19,10 +19,7 @@ export const Container = styled.a<ButtonProps>`
   max-width: 350px;
   background-color: ${props =>
     props.outline ? 'transparent' : props.theme.colors.secondary};
-  color: ${props =>
-    props.outline
-      ? props.theme.colors.secondaryLight
-      : props.theme.colors.white} !important;
+  color: ${props => props.theme.colors.white};
 
   transition: 0.2s all ease-in-out;
 
@@ -33,7 +30,6 @@ export const Container = styled.a<ButtonProps>`
   ${props =>
     props.outline &&
     css`
-      box-shadow: inset 0px 0px 0px 2px
-        ${props => props.theme.colors.secondaryLight};
+      box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colors.white};
     `}
 `
