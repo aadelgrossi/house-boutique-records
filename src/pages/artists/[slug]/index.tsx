@@ -89,7 +89,7 @@ const Artist: NextPage<ArtistPageProps> = ({
                 {` ${name}`}
               </Title>
               <Badge>
-                <Link href={{ pathname: 'releases', query: { search: name } }}>
+                <Link href={{ pathname: '/releases', query: { search: name } }}>
                   {t('seeAll')}
                 </Link>
               </Badge>
