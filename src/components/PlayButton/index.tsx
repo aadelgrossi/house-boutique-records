@@ -14,7 +14,9 @@ export const PlayButton: React.FC<PlayButtonProps> = ({ track: payload }) => {
   const { dispatch } = usePlayer()
   const { t } = useTranslation()
 
-  return (
+  const { audioPreview } = payload
+
+  return audioPreview ? (
     <Container
       onClick={() => dispatch({ name: 'load', payload })}
       aria-label="play"
@@ -22,5 +24,5 @@ export const PlayButton: React.FC<PlayButtonProps> = ({ track: payload }) => {
       <AiFillPlayCircle size={22} color="#fff" />
       <span>{t('preview')}</span>
     </Container>
-  )
+  ) : null
 }
