@@ -134,6 +134,7 @@ const SINGLE_RELEASE = gql`
       audioPreview {
         url
       }
+      genres
     }
   }
 `

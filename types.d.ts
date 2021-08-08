@@ -38,4 +38,5 @@ interface Release {
   link: string
   coverArt: Asset
   audioPreview: Asset
+  genres: string[]
 }
