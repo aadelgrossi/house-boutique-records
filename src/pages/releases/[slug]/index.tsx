@@ -12,7 +12,8 @@ import {
   ArtistRowList,
   PlayButton,
   ContainerBox,
-  ReleasesGrid
+  ReleasesGrid,
+  Badge
 } from '~/components'
 import {
   fetchReleases,
@@ -30,7 +31,8 @@ import {
   ReleaseInfo,
   RelatedReleasesContainer,
   ReleaseDate,
-  RelatedReleasesTitle
+  RelatedReleasesTitle,
+  Genres
 } from './styles'
 
 interface ReleasePageProps {
@@ -43,7 +45,15 @@ interface Params extends ParsedUrlQuery {
 }
 
 const Release: NextPage<ReleasePageProps> = ({ release, relatedReleases }) => {
-  const { title, artists, localizations, coverArt, link, releaseDate } = release
+  const {
+    title,
+    artists,
+    localizations,
+    coverArt,
+    link,
+    releaseDate,
+    genres
+  } = release
   const { t } = useTranslation()
   const { locale, query } = useRouter()
 
@@ -82,7 +92,14 @@ const Release: NextPage<ReleasePageProps> = ({ release, relatedReleases }) => {
             <Image src={coverArt.url} width={300} height={300} alt={title} />
           </ImageContainer>
           <Details>
+            <Genres>
+              {genres.map(genre => (
+                <Badge key={genre}>{genre.replace('_', ' ')}</Badge>
+              ))}
+            </Genres>
+
             <ReleaseTitle>{title}</ReleaseTitle>
+
             <ArtistRowList data={artists} fontSize="1rem" />
 
             <Description allowDangerousHtml={true}>

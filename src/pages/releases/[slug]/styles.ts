@@ -20,6 +20,11 @@ export const ImageContainer = styled.div`
 
 export const Details = styled.div``
 
+export const Genres = styled.div`
+  display: flex;
+  gap: 0.5em;
+`
+
 export const ReleaseTitle = styled.h1`
   font-family: Anton;
   letter-spacing: 1.4px;
