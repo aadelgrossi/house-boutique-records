@@ -31,7 +31,7 @@ export const ReleaseTitle = styled.h1`
   text-transform: uppercase;
   line-height: 1;
   font-size: 60px;
-  margin-top: 1rem;
+  margin: 1rem 0 0.5rem;
 `
 
 export const Description = styled(ReactMarkdown)`
