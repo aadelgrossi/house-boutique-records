@@ -1,4 +1,4 @@
-import { useState, useRef, FC, useCallback } from 'react'
+import { useState, useRef, FC } from 'react'
 
 import { useOutsideClick } from '~/hooks'
 
