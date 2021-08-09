@@ -12,7 +12,7 @@ import { RiFilterOffLine } from 'react-icons/ri'
 
 import { ArtistRowList, ContainerBox, Select } from '~/components'
 import { ReleaseCover } from '~/components/Skeleton'
-import { fetchReleases } from '~/graphql'
+import { fetchAllGenres, fetchReleases } from '~/graphql'
 import { useTranslation } from '~/hooks'
 
 import {
@@ -34,19 +34,24 @@ type DateFilter = 'all' | 'available' | 'upcoming'
 interface ReleasesQueryStringParams extends ParsedUrlQuery {
   search?: string
   type?: DateFilter
+  genre?: string
 }
 
 type ReleasesProps = {
   releases: Release[]
+  genres: { name: string }[]
 } & ReleasesQueryStringParams
 
 const Releases: NextPage<ReleasesProps> = ({
   releases,
+  genres,
+  genre = '',
   search = '',
   type = 'all'
 }) => {
   const [query, setQuery] = useState(search)
   const [dateFilter, setDateFilter] = useState<DateFilter>(type)
+  const [genreFilter, setGenreFilter] = useState(genre)
 
   const [items, setItems] = useState<Release[]>(releases)
   const { t } = useTranslation()
@@ -62,8 +67,12 @@ const Releases: NextPage<ReleasesProps> = ({
     )
   }, [dateFilter, query])
 
-  const onSelectChange = useCallback((value: DateFilter) => {
+  const onSelectDateChange = useCallback((value: DateFilter) => {
     setDateFilter(value)
+  }, [])
+
+  const onSelectGenreChange = useCallback((value: string) => {
+    setGenreFilter(value)
   }, [])
 
   return (
@@ -107,12 +116,24 @@ const Releases: NextPage<ReleasesProps> = ({
           </SearchBox>
 
           <Select
-            onChange={onSelectChange}
+            onChange={onSelectDateChange}
             value={dateFilter}
             options={[
               { value: 'all', label: t('releases_all') },
               { value: 'available', label: t('releases_available') },
               { value: 'upcoming', label: t('releases_upcoming') }
+            ]}
+          />
+
+          <Select
+            onChange={onSelectGenreChange}
+            value={genreFilter}
+            options={[
+              { value: '', label: t('releases_all_genres') },
+              ...genres.map(genre => ({
+                value: genre.name,
+                label: genre.name.replace('_', ' ')
+              }))
             ]}
           />
 
@@ -163,7 +184,11 @@ export const getServerSideProps: GetServerSideProps = async ({
 }) => {
   const { releases } = await fetchReleases({ query: search, type })
 
-  return { props: { releases, search, type } }
+  const {
+    __type: { enumValues: genres }
+  } = await fetchAllGenres()
+
+  return { props: { releases, search, type, genres } }
 }
 
 export default Releases
