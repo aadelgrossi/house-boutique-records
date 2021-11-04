@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import 'react-multi-carousel/lib/styles.css'
-import '../styles/rhap.css'
+import '../src/styles/rhap.css'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
