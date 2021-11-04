@@ -3,7 +3,7 @@
     "lib": [
       "dom",
       "DOM.Iterable",
-      "esnext",
+      "esnext"
     ],
     "target": "es5",
     "module": "esnext",
@@ -23,6 +23,7 @@
         "./*"
       ]
     },
+    "incremental": true
   },
   "include": [
     "types.d.ts",
