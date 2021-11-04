@@ -23,11 +23,7 @@ export const Filters = styled.div`
   }
 
   @media (min-width: 700px) {
-    > div:first-of-type {
-      width: 35%;
-    }
-
-    > div:nth-of-type(2) {
+    > div {
       width: 30%;
     }
   }

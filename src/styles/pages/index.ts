@@ -12,7 +12,7 @@ export const Hero = styled.div`
   justify-content: flex-end;
   flex-direction: column;
   padding: 0 max(1rem, 5vw);
-  min-height: 100vh;
+  min-height: 90vh;
   width: 100%;
   position: relative;
   background-image: url('/hero-bg-2.webp');
@@ -50,9 +50,8 @@ export const Contents = styled.div`
 export const HeroTitle = styled.h1`
   font-size: clamp(52px, 5rem, 5vw);
   font-family: Anton;
-  min-width: 400px;
   line-height: 1.05;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   text-shadow: 10px 5px 30px ${props => props.theme.colors.black};
 `
 

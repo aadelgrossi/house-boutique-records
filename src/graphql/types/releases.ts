@@ -6,6 +6,7 @@ export type ReleasesHomeQueryResponse = {
 
 export type ReleasesQueryParams = {
   query?: string
+  genre?: string
   type?: 'all' | 'available' | 'upcoming'
   first?: number
 }
@@ -30,6 +31,7 @@ export type ReleaseRelatedQueryParams = {
 
 export type QueryVariables = {
   date: string
+  genre?: string
   first?: number
   query: string
 }

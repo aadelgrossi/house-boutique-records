@@ -20,13 +20,18 @@ export const ImageContainer = styled.div`
 
 export const Details = styled.div``
 
+export const Genres = styled.div`
+  display: flex;
+  gap: 0.5em;
+`
+
 export const ReleaseTitle = styled.h1`
   font-family: Anton;
   letter-spacing: 1.4px;
   text-transform: uppercase;
   line-height: 1;
   font-size: 60px;
-  margin-top: 1rem;
+  margin: 1rem 0 0.5rem;
 `
 
 export const Description = styled(ReactMarkdown)`

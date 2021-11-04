@@ -1,5 +1,7 @@
-interface Artist {
+interface RootType {
   id: string
+}
+interface Artist extends RootType {
   name: string
   slug: string
   localizations: Array<{
@@ -25,8 +27,7 @@ interface Markdown {
   text: string
 }
 
-interface Release {
-  id: string
+interface Release extends RootType {
   title: string
   localizations: Array<{
     description: Markdown
@@ -38,4 +39,9 @@ interface Release {
   link: string
   coverArt: Asset
   audioPreview: Asset
+  genres: Genre[]
+}
+
+interface Genre extends RootType {
+  name: string
 }
