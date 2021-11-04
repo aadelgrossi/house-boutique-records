@@ -6,11 +6,9 @@ import { AllGenresQueryResponse } from './types'
 
 const ALL_GENRES = gql`
   query allGenres {
-    __type(name: "Genre") {
+    genres {
+      id
       name
-      enumValues {
-        name
-      }
     }
   }
 `

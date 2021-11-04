@@ -62,10 +62,14 @@ const Releases: NextPage<ReleasesProps> = ({
   }, [])
 
   useEffect(() => {
-    fetchReleases({ query, type: dateFilter }).then(response =>
+    fetchReleases({
+      query,
+      type: dateFilter,
+      genre: genreFilter
+    }).then(response => {
       setItems(response.releases)
-    )
-  }, [dateFilter, query])
+    })
+  }, [dateFilter, query, genreFilter])
 
   const onSelectDateChange = useCallback((value: DateFilter) => {
     setDateFilter(value)
@@ -129,10 +133,13 @@ const Releases: NextPage<ReleasesProps> = ({
             onChange={onSelectGenreChange}
             value={genreFilter}
             options={[
-              { value: '', label: t('releases_all_genres') },
-              ...genres.map(genre => ({
-                value: genre.name,
-                label: genre.name.replace('_', ' ')
+              {
+                value: '',
+                label: t('releases_all_genres')
+              },
+              ...genres.map(({ name }) => ({
+                value: name,
+                label: name
               }))
             ]}
           />
@@ -178,17 +185,19 @@ const Releases: NextPage<ReleasesProps> = ({
 }
 
 export const getServerSideProps: GetServerSideProps = async ({
-  query: { search = '', type = 'all' }
+  query: { search = '', type = 'all', genre = '' }
 }: {
   query: ReleasesQueryStringParams
 }) => {
-  const { releases } = await fetchReleases({ query: search, type })
+  const { releases } = await fetchReleases({
+    query: search,
+    genre,
+    type
+  })
 
-  const {
-    __type: { enumValues: genres }
-  } = await fetchAllGenres()
+  const { genres } = await fetchAllGenres()
 
-  return { props: { releases, search, type, genres } }
+  return { props: { releases, search, type, genres, genre } }
 }
 
 export default Releases

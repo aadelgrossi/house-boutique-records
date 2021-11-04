@@ -14,10 +14,16 @@ import {
 } from './types'
 
 const UPCOMING = gql`
-  query upcomingReleases($query: String, $date: Date!, $first: Int!) {
+  query upcomingReleases(
+    $query: String
+    $genre: String
+    $date: Date!
+    $first: Int!
+  ) {
     releases(
       where: {
         releaseDate_gt: $date
+        genres_some: { name_contains: $genre }
         OR: [
           { title_contains: $query }
           { artists_some: { name_contains: $query } }
@@ -47,11 +53,17 @@ const UPCOMING = gql`
 `
 
 const RELEASED = gql`
-  query latestReleases($query: String, $date: Date!, $first: Int) {
+  query latestReleases(
+    $query: String
+    $genre: String
+    $date: Date!
+    $first: Int
+  ) {
     releases(
       where: {
         releaseDate_lte: $date
         OR: [
+          { genres_some: { name_contains: $genre } }
           { title_contains: $query }
           { artists_some: { name_contains: $query } }
         ]
@@ -80,9 +92,10 @@ const RELEASED = gql`
 `
 
 const ALL = gql`
-  query allReleases($query: String) {
+  query allReleases($query: String, $genre: String) {
     releases(
       where: {
+        genres_some: { name_contains: $genre }
         OR: [
           { title_contains: $query }
           { artists_some: { name_contains: $query } }
@@ -134,7 +147,9 @@ const SINGLE_RELEASE = gql`
       audioPreview {
         url
       }
-      genres
+      genres {
+        name
+      }
     }
   }
 `
@@ -167,21 +182,22 @@ const RELATED = gql`
 
 export const fetchReleases = async ({
   query = '',
+  genre = '',
   type
 }: ReleasesQueryParams): Promise<ReleasesQueryResponse> => {
   switch (type) {
     case 'available': {
-      const { releases } = await fetchReleasedReleases({ query })
+      const { releases } = await fetchReleasedReleases({ query, genre })
       return { releases }
     }
     case 'upcoming': {
-      const { releases } = await fetchUpcomingReleases({ query })
+      const { releases } = await fetchUpcomingReleases({ query, genre })
       return { releases }
     }
     default: {
       const { releases } = await graphCmsClient.request<ReleasesQueryResponse>(
         ALL,
-        { query }
+        { query, genre }
       )
       return { releases }
     }
@@ -221,7 +237,8 @@ export const fetchRelatedReleases = async ({
 
 export const fetchUpcomingReleases = async ({
   query = '',
-  first = 20
+  first = 20,
+  genre
 }: ReleasesQueryParams): Promise<ReleasesQueryResponse> => {
   const date = startOfToday().toISOString().slice(0, 10)
 
@@ -229,6 +246,7 @@ export const fetchUpcomingReleases = async ({
     UPCOMING,
     {
       date,
+      genre,
       query,
       first
     }
@@ -237,7 +255,8 @@ export const fetchUpcomingReleases = async ({
 
 export const fetchReleasedReleases = async ({
   query = '',
-  first = 20
+  first = 20,
+  genre
 }: ReleasesQueryParams): Promise<ReleasesQueryResponse> => {
   const date = startOfToday().toISOString().slice(0, 10)
 
@@ -245,6 +264,7 @@ export const fetchReleasedReleases = async ({
     RELEASED,
     {
       date,
+      genre,
       query,
       first
     }
