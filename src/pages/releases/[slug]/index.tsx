@@ -93,8 +93,8 @@ const Release: NextPage<ReleasePageProps> = ({ release, relatedReleases }) => {
           </ImageContainer>
           <Details>
             <Genres>
-              {genres.map(genre => (
-                <Badge key={genre}>{genre.replace('_', ' ')}</Badge>
+              {genres.map(({ id, name }) => (
+                <Badge key={id}>{name.replace('_', ' ')}</Badge>
               ))}
             </Genres>
 
