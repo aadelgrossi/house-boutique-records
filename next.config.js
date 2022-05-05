@@ -4,7 +4,7 @@ module.exports = {
     locales: ['en', 'pt']
   },
   images: {
-    domains: ['media.graphcms.com']
+    domains: ['media.graphassets.com']
   },
   pageExtensions: ['tsx']
 }
