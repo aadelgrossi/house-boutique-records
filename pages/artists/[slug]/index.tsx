@@ -12,19 +12,7 @@ import rehypeRaw from 'rehype-raw'
 import { SocialIcon, ReleaseCard, ReleasesGrid, Badge } from '~/components'
 import { fetchArtists, fetchSingleArtist } from '~/graphql'
 import { useTranslation } from '~/hooks'
-
-import {
-  Container,
-  Content,
-  Bio,
-  Name,
-  ImageContainer,
-  ArtistSocials,
-  ArtistHeader,
-  ReleasesContainer,
-  TitleGroup,
-  Title
-} from './styles'
+import * as Styled from '~/styles/pages/artists/slug'
 
 interface ArtistPageProps {
   artist: Artist
@@ -61,11 +49,11 @@ const Artist: NextPage<ArtistPageProps> = ({
           ]
         }}
       />
-      <Container>
+      <Styled.Container>
         <Head>
           <title>{name} | House Boutique Records</title>
         </Head>
-        <ImageContainer>
+        <Styled.ImageContainer>
           <Image
             src={backgroundImage.url}
             layout="responsive"
@@ -73,38 +61,40 @@ const Artist: NextPage<ArtistPageProps> = ({
             height={750}
             alt={name}
           />
-        </ImageContainer>
-        <Content>
-          <ArtistHeader>
-            <ArtistSocials>
+        </Styled.ImageContainer>
+        <Styled.Content>
+          <Styled.ArtistHeader>
+            <Styled.ArtistSocials>
               {artistPlatforms.map(platform => (
                 <SocialIcon key={platform.id} {...platform} />
               ))}
-            </ArtistSocials>
-            <Name>{name}</Name>
-          </ArtistHeader>
-          <Bio rehypePlugins={[rehypeRaw]}>{localizations[0]?.bio.html}</Bio>
-          <ReleasesContainer>
-            <TitleGroup>
-              <Title>
+            </Styled.ArtistSocials>
+            <Styled.Name>{name}</Styled.Name>
+          </Styled.ArtistHeader>
+          <Styled.Bio rehypePlugins={[rehypeRaw]}>
+            {localizations[0]?.bio.html}
+          </Styled.Bio>
+          <Styled.ReleasesContainer>
+            <Styled.TitleGroup>
+              <Styled.Title>
                 {t('artists_tracksBy')}
                 {` ${name}`}
-              </Title>
+              </Styled.Title>
               <Link href={{ pathname: '/releases', query: { search: name } }}>
                 <Badge style={{ cursor: 'pointer' }}>
                   {t('seeAll')}
                   <FaChevronRight style={{ marginLeft: 4 }} size="12px" />
                 </Badge>
               </Link>
-            </TitleGroup>
+            </Styled.TitleGroup>
             <ReleasesGrid>
               {releases.map(release => (
                 <ReleaseCard key={release.id} data={release} />
               ))}
             </ReleasesGrid>
-          </ReleasesContainer>
-        </Content>
-      </Container>
+          </Styled.ReleasesContainer>
+        </Styled.Content>
+      </Styled.Container>
     </>
   )
 }

@@ -5,16 +5,7 @@ import Slider, { Settings } from 'react-slick'
 
 import { fetchArtists } from '~/graphql'
 import { useTranslation } from '~/hooks'
-
-import {
-  Container,
-  Title,
-  Contents,
-  ArtistCard,
-  ArtistButton,
-  Name,
-  ArtistThumb
-} from './styles'
+import * as Styled from '~/styles/pages/artists/index'
 
 interface ArtistsPageProps {
   artists: Artist[]
@@ -78,22 +69,24 @@ const Artists = ({ artists }: ArtistsPageProps) => {
           ]
         }}
       />
-      <Container>
-        <Title>{t('header_artists')}</Title>
-        <Contents>
+      <Styled.Container>
+        <Styled.Title>{t('header_artists')}</Styled.Title>
+        <Styled.Contents>
           <Slider {...settings}>
             {artists.map(({ id, thumb, name, slug }) => (
-              <ArtistCard key={id}>
-                <ArtistThumb src={thumb.url} width={500} height={500} />
-                <Name>{name}</Name>
+              <Styled.ArtistCard key={id}>
+                <Styled.ArtistThumb src={thumb.url} width={500} height={500} />
+                <Styled.Name>{name}</Styled.Name>
                 <Link href={`artists/${slug}`} passHref>
-                  <ArtistButton>{t('home_artistsReadMore')}</ArtistButton>
+                  <Styled.ArtistButton>
+                    {t('home_artistsReadMore')}
+                  </Styled.ArtistButton>
                 </Link>
-              </ArtistCard>
+              </Styled.ArtistCard>
             ))}
           </Slider>
-        </Contents>
-      </Container>
+        </Styled.Contents>
+      </Styled.Container>
     </>
   )
 }

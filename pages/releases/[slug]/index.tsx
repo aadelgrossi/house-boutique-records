@@ -22,19 +22,8 @@ import {
   fetchSingleRelease
 } from '~/graphql'
 import { useTranslation } from '~/hooks'
+import * as Styled from '~/styles/pages/releases/slug'
 import { formatLongDate } from '~/utils'
-
-import {
-  Details,
-  ReleaseTitle,
-  ImageContainer,
-  Description,
-  ReleaseInfo,
-  RelatedReleasesContainer,
-  ReleaseDate,
-  RelatedReleasesTitle,
-  Genres
-} from './styles'
 
 interface ReleasePageProps {
   release: Release
@@ -81,44 +70,46 @@ const Release: NextPage<ReleasePageProps> = ({ release, relatedReleases }) => {
         <Head>
           <title>{title} | House Boutique Records</title>
         </Head>
-        <ReleaseInfo>
-          <ImageContainer>
+        <Styled.ReleaseInfo>
+          <Styled.ImageContainer>
             <Image src={coverArt.url} width={300} height={300} alt={title} />
-          </ImageContainer>
-          <Details>
-            <Genres>
+          </Styled.ImageContainer>
+          <Styled.Details>
+            <Styled.Genres>
               {genres.map(({ id, name }) => (
                 <Badge key={id}>{name.replace('_', ' ')}</Badge>
               ))}
-            </Genres>
+            </Styled.Genres>
 
-            <ReleaseTitle>{title}</ReleaseTitle>
+            <Styled.ReleaseTitle>{title}</Styled.ReleaseTitle>
 
             <ArtistRowList data={artists} fontSize="1rem" />
 
-            <Description rehypePlugins={[rehypeRaw]}>
+            <Styled.Description rehypePlugins={[rehypeRaw]}>
               {localizations[0]?.description?.html}
-            </Description>
+            </Styled.Description>
 
             <PlayButton track={release} />
 
-            <ReleaseDate>
+            <Styled.ReleaseDate>
               <strong>{t('releaseDate')}</strong>
               <p>{formatLongDate(releaseDate, locale)}</p>
-            </ReleaseDate>
+            </Styled.ReleaseDate>
 
             {link && <Button href={link}>{t('streamNow')}</Button>}
-          </Details>
-        </ReleaseInfo>
+          </Styled.Details>
+        </Styled.ReleaseInfo>
 
-        <RelatedReleasesContainer>
-          <RelatedReleasesTitle>{t('relatedReleases')}</RelatedReleasesTitle>
+        <Styled.RelatedReleasesContainer>
+          <Styled.RelatedReleasesTitle>
+            {t('relatedReleases')}
+          </Styled.RelatedReleasesTitle>
           <ReleasesGrid>
             {relatedReleases?.map(related => (
               <ReleaseCard key={related.id} data={related} />
             ))}
           </ReleasesGrid>
-        </RelatedReleasesContainer>
+        </Styled.RelatedReleasesContainer>
       </ContainerBox>
     </>
   )

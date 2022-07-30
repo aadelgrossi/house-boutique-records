@@ -14,20 +14,7 @@ import { ArtistRowList, ContainerBox, Select } from '~/components'
 import { ReleaseCover } from '~/components/Skeleton'
 import { fetchAllGenres, fetchReleases } from '~/graphql'
 import { useTranslation } from '~/hooks'
-
-import {
-  Input,
-  Title,
-  Filters,
-  SearchBox,
-  ReleaseGrid,
-  Release,
-  Overlay,
-  ReleaseTitle,
-  InfoButton,
-  ResultsCount,
-  ClearFilters
-} from './styles'
+import * as Styled from '~/styles/pages/releases/index'
 
 type DateFilter = 'all' | 'available' | 'upcoming'
 
@@ -106,10 +93,10 @@ const Releases: NextPage<ReleasesProps> = ({
         <Head>
           <title>{t('header_releases')} | House Boutique Records</title>
         </Head>
-        <Title>{t('header_releases')}</Title>
-        <Filters>
-          <SearchBox>
-            <Input
+        <Styled.Title>{t('header_releases')}</Styled.Title>
+        <Styled.Filters>
+          <Styled.SearchBox>
+            <Styled.Input
               name="search"
               onChange={e => setQuery(e.target.value)}
               enterKeyHint="send"
@@ -117,7 +104,7 @@ const Releases: NextPage<ReleasesProps> = ({
               placeholder={t('releases_searchPlaceholder')}
             />
             <FaSearch size={16} color="#fff" style={{ marginRight: 16 }} />
-          </SearchBox>
+          </Styled.SearchBox>
 
           <Select
             onChange={onSelectDateChange}
@@ -144,23 +131,23 @@ const Releases: NextPage<ReleasesProps> = ({
             ]}
           />
 
-          <ClearFilters
+          <Styled.ClearFilters
             onClick={resetFilters}
             aria-label="clear-filters"
             title={t('clearFilters')}
           >
             <RiFilterOffLine size={22} color="#fff" />
-          </ClearFilters>
+          </Styled.ClearFilters>
 
-          <ResultsCount>
+          <Styled.ResultsCount>
             <strong>{items.length}</strong> {t('releases_resultsFound')}
-          </ResultsCount>
-        </Filters>
+          </Styled.ResultsCount>
+        </Styled.Filters>
 
-        <ReleaseGrid>
+        <Styled.ReleaseGrid>
           {items
             ? items.map(({ id, coverArt, title, slug, artists }) => (
-                <Release key={id}>
+                <Styled.Release key={id}>
                   <Image
                     src={coverArt.url}
                     width={140}
@@ -168,17 +155,19 @@ const Releases: NextPage<ReleasesProps> = ({
                     layout="responsive"
                     alt={title}
                   />
-                  <Overlay>
-                    <ReleaseTitle>{title}</ReleaseTitle>
+                  <Styled.Overlay>
+                    <Styled.ReleaseTitle>{title}</Styled.ReleaseTitle>
                     <ArtistRowList data={artists} />
                     <Link href={`/releases/${slug}`}>
-                      <InfoButton>{t('releases_moreInfo')}</InfoButton>
+                      <Styled.InfoButton>
+                        {t('releases_moreInfo')}
+                      </Styled.InfoButton>
                     </Link>
-                  </Overlay>
-                </Release>
+                  </Styled.Overlay>
+                </Styled.Release>
               ))
             : [...Array(10)].map((_, i) => <ReleaseCover key={i} />)}
-        </ReleaseGrid>
+        </Styled.ReleaseGrid>
       </ContainerBox>
     </>
   )
