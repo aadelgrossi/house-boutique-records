@@ -1,4 +1,4 @@
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 import { NextSeo } from 'next-seo'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -21,7 +21,7 @@ import * as Styled from '~/styles/pages/index'
 
 interface HomeProps {
   releases: {
-    featured?: Release
+    featured: Release
     upcoming: Release[]
     latest: Release[]
   }
@@ -171,11 +171,12 @@ const Home = ({ releases }: HomeProps) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const releases = await fetchHomeReleases()
 
   return {
-    props: { releases }
+    props: { releases },
+    revalidate: 120
   }
 }
 
