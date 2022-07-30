@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
+export const ReleasesGrid = styled.div`
   width: 100%;
   display: grid;
   justify-content: center;

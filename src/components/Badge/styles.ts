@@ -6,7 +6,7 @@ export const Container = styled.a`
   align-items: center;
   height: 28px;
   cursor: auto;
-  justify-content: center;
+  justify-content: space-between;
   padding: 0.2em 0.8em;
   background-color: ${props => props.theme.colors.secondary};
   border-radius: 1.2em;

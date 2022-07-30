@@ -1,3 +1,5 @@
+import { cloneElement } from 'react'
+
 import { FaFacebookF } from 'react-icons/fa'
 import {
   SiBeatport,
@@ -16,7 +18,9 @@ interface SocialIconProps {
   url: string
 }
 
-const iconsMap = {
+const iconsMap: {
+  [platform: string]: JSX.Element
+} = {
   beatport: <SiBeatport />,
   spotify: <SiSpotify />,
   soundcloud: <SiSoundcloud />,
@@ -26,7 +30,7 @@ const iconsMap = {
 
 export const SocialIcon = ({ platform, size = 24, url }: SocialIconProps) => {
   const { colors } = useTheme()
-  const icon = cloneElement(iconsMap[icon], { size, color: colors.ice })
+  const icon = cloneElement(iconsMap[platform], { size, color: colors.ice })
 
   return <Container href={url}>{icon}</Container>
 }

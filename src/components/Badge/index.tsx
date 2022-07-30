@@ -9,9 +9,9 @@ import { Container } from './styles'
 const BadgeComponent: ForwardRefRenderFunction<
   HTMLAnchorElement,
   AnchorHTMLAttributes<HTMLAnchorElement>
-> = ({ children, href }, ref) => {
+> = ({ children, href, ...rest }, ref) => {
   return (
-    <Container ref={ref} href={href}>
+    <Container {...rest} ref={ref} href={href}>
       {children}
     </Container>
   )
