@@ -204,16 +204,17 @@ export const fetchReleases = async ({
   }
 }
 
-export const fetchHomeReleases = async (): Promise<ReleasesHomeQueryResponse> => {
-  const { releases: upcoming } = await fetchUpcomingReleases({ first: 4 })
-  const { releases: latest } = await fetchReleasedReleases({ first: 4 })
+export const fetchHomeReleases =
+  async (): Promise<ReleasesHomeQueryResponse> => {
+    const { releases: upcoming } = await fetchUpcomingReleases({ first: 4 })
+    const { releases: latest } = await fetchReleasedReleases({ first: 4 })
 
-  return {
-    featured: latest[0],
-    latest: latest.slice(1),
-    upcoming
+    return {
+      featured: latest[0],
+      latest: latest.slice(1),
+      upcoming
+    }
   }
-}
 
 export const fetchSingleRelease = async ({
   slug,
@@ -238,7 +239,7 @@ export const fetchRelatedReleases = async ({
 export const fetchUpcomingReleases = async ({
   query = '',
   first = 20,
-  genre
+  genre = ''
 }: ReleasesQueryParams): Promise<ReleasesQueryResponse> => {
   const date = startOfToday().toISOString().slice(0, 10)
 
