@@ -15,19 +15,18 @@ export const Header = () => {
   const [visible, setVisible] = useState(true)
 
   const handleScroll = debounce(() => {
-    const currentScrollPos = window.pageYOffset
-    setVisible(prevScrollPos - currentScrollPos > 0)
+    const { pageYOffset } = window
+    setVisible(prevScrollPos - pageYOffset > 0)
+    setAtTop(pageYOffset < 300)
 
-    setAtTop(currentScrollPos < 400)
-
-    setPrevScrollPos(currentScrollPos)
-  }, 40)
+    setPrevScrollPos(pageYOffset)
+  }, 35)
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [prevScrollPos])
 
   return (
     <Container
