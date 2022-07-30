@@ -5,6 +5,7 @@ import { NextSeo } from 'next-seo'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import rehypeRaw from 'rehype-raw'
 
 import {
   Button,
@@ -45,21 +46,14 @@ interface Params extends ParsedUrlQuery {
 }
 
 const Release: NextPage<ReleasePageProps> = ({ release, relatedReleases }) => {
-  const {
-    title,
-    artists,
-    localizations,
-    coverArt,
-    link,
-    releaseDate,
-    genres
-  } = release
+  const { title, artists, localizations, coverArt, link, releaseDate, genres } =
+    release
   const { t } = useTranslation()
   const { locale, query } = useRouter()
 
   const artistsNames = artists.flatMap(artist => artist.name).join(', ')
 
-  const metaDescription = `"${title}" ${t('by')} ${artistsNames}. 
+  const metaDescription = `"${title}" ${t('by')} ${artistsNames}.
     ${t('releaseDate')}: ${formatLongDate(releaseDate, locale)}`
 
   return (
@@ -102,7 +96,7 @@ const Release: NextPage<ReleasePageProps> = ({ release, relatedReleases }) => {
 
             <ArtistRowList data={artists} fontSize="1rem" />
 
-            <Description allowDangerousHtml={true}>
+            <Description rehypePlugins={[rehypeRaw]}>
               {localizations[0]?.description?.html}
             </Description>
 

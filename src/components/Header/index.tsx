@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
 import { LogoFull, LogoIcon } from '~/assets'
-import { debounce } from '~/utils/debounce'
+import { debounce } from '~/utils'
 
 import { LanguageSwitcher } from './LanguageSwitcher'
 import { NavBar } from './NavBar'
@@ -16,23 +16,18 @@ export const Header = () => {
 
   const handleScroll = debounce(() => {
     const currentScrollPos = window.pageYOffset
-
-    setVisible(
-      (prevScrollPos > currentScrollPos &&
-        prevScrollPos - currentScrollPos > 90) ||
-        currentScrollPos < 180
-    )
+    setVisible(prevScrollPos - currentScrollPos > 0)
 
     setAtTop(currentScrollPos < 400)
 
     setPrevScrollPos(currentScrollPos)
-  }, 25)
+  }, 40)
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
-
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [prevScrollPos, visible, handleScroll])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <Container
