@@ -1,22 +1,18 @@
-import { FC } from 'react'
-
 import ContentLoader from 'react-content-loader'
 import { useTheme } from 'styled-components'
 
-export const Featured: FC = () => {
-  const {
-    colors: { white }
-  } = useTheme()
+export const Featured = () => {
+  const { colors } = useTheme()
 
   return (
     <ContentLoader
       speed={3}
       width={550}
       height={320}
-      backgroundColor={white}
+      backgroundColor={colors.white}
       backgroundOpacity={0.1}
       foregroundOpacity={0.05}
-      foregroundColor={white}
+      foregroundColor={colors.white}
       viewBox="0 0 550 320"
     >
       <rect x="0" y="0" rx="5" ry="5" width="240" height="30" />

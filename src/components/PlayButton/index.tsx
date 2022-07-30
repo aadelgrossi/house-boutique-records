@@ -10,19 +10,19 @@ interface PlayButtonProps {
   track: Release
 }
 
-export const PlayButton: React.FC<PlayButtonProps> = ({ track: payload }) => {
+export const PlayButton = ({ track }: PlayButtonProps) => {
   const { dispatch } = usePlayer()
   const { t } = useTranslation()
+  const { audioPreview } = track
 
-  const { audioPreview } = payload
-
-  return audioPreview ? (
+  if (!audioPreview) return null
+  return (
     <Container
-      onClick={() => dispatch({ name: 'load', payload })}
+      onClick={() => dispatch({ name: 'load', payload: track })}
       aria-label="play"
     >
       <AiFillPlayCircle size={22} color="#fff" />
       <span>{t('preview')}</span>
     </Container>
-  ) : null
+  )
 }

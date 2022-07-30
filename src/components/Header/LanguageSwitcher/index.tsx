@@ -7,13 +7,12 @@ import { locales } from '~/constants'
 
 import { Container, MenuItem } from './styles'
 
-interface Props {
+interface LanguageSwitcherProps {
   close?(): void
 }
 
-export const LanguageSwitcher: React.FC<Props> = ({ close }) => {
+export const LanguageSwitcher = ({ close }: LanguageSwitcherProps) => {
   const { locale: activeLocale, asPath } = useRouter()
-
   return (
     <Container>
       {locales.map(({ label, locale }) => (

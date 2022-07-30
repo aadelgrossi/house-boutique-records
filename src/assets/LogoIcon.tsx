@@ -1,12 +1,12 @@
-import { FC, useMemo } from 'react'
+import { useMemo } from 'react'
 
 import { useTheme } from 'styled-components'
 
-type IconColor = {
+type IconColorProps = {
   color?: 'light' | 'dark' | 'primary'
 }
 
-export const Icon: FC<IconColor> = ({ color = 'light' }) => {
+export const LogoIcon = ({ color = 'light' }: IconColorProps) => {
   const {
     colors: { white, black, primary }
   } = useTheme()

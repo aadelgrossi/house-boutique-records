@@ -1,15 +1,15 @@
-import { FC, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import Link from 'next/link'
 
+import { LogoFull, LogoIcon } from '~/assets'
 import { debounce } from '~/utils/debounce'
 
-import { Full as FullLogo, Icon } from '../Logo'
 import { LanguageSwitcher } from './LanguageSwitcher'
 import { NavBar } from './NavBar'
 import { Container, Content, LogoContainer } from './styles'
 
-export const Header: FC = () => {
+export const Header = () => {
   const [atTop, setAtTop] = useState(true)
   const [prevScrollPos, setPrevScrollPos] = useState(0)
   const [visible, setVisible] = useState(true)
@@ -44,8 +44,8 @@ export const Header: FC = () => {
       <Content>
         <Link href="/" passHref>
           <LogoContainer>
-            <FullLogo />
-            <Icon />
+            <LogoFull />
+            <LogoIcon />
           </LogoContainer>
         </Link>
         <NavBar />

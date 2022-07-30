@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react'
+import { createContext, useContext, ReactNode } from 'react'
 
 import { useRouter } from 'next/router'
 
@@ -12,7 +12,7 @@ export const LanguageContext = createContext<LocaleContextData>(
   {} as LocaleContextData
 )
 
-export const LanguageProvider: React.FC = ({ children }) => {
+export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const { locale } = useRouter()
 
   const t = (key: string) => {

@@ -1,15 +1,14 @@
-import { FC } from 'react'
-
 import Link from 'next/link'
 
 import { Container, Artist } from './styles'
 
-interface Props {
+interface ArtistRowListProps {
   data: Artist[]
   fontSize?: string
 }
 
-export const ArtistRowList: FC<Props> = ({ data, fontSize = '1em' }) => {
+export const ArtistRowList = (props: ArtistRowListProps) => {
+  const { data, fontSize = '1em' } = props
   return (
     <Container>
       {data.map(artist => (

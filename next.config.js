@@ -1,4 +1,7 @@
 module.exports = {
+  compiler: {
+    styledComponents: true
+  },
   i18n: {
     defaultLocale: 'pt',
     locales: ['en', 'pt']
@@ -6,5 +9,4 @@ module.exports = {
   images: {
     domains: ['media.graphassets.com']
   },
-  pageExtensions: ['tsx']
 }

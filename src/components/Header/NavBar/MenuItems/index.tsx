@@ -1,5 +1,3 @@
-import { FC } from 'react'
-
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -8,11 +6,11 @@ import { useTranslation } from '~/hooks'
 
 import { MenuItem } from './styles'
 
-interface Props {
+interface MenuItemsProps {
   toggleMobileMenu?(): void
 }
 
-export const MenuItems: FC<Props> = ({ toggleMobileMenu }) => {
+export const MenuItems = ({ toggleMobileMenu }: MenuItemsProps) => {
   const { locale: activeLocale, asPath, route: activeRoute } = useRouter()
   const { t } = useTranslation()
 

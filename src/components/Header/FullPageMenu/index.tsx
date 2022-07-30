@@ -1,16 +1,18 @@
-import { FC } from 'react'
+import { ReactNode } from 'react'
 
 import { AiOutlineCloseCircle } from 'react-icons/ai'
 
 import { LanguageSwitcher } from '../LanguageSwitcher'
 import { Container, VerticalList, Title, CloseMenu } from './styles'
 
-interface Props {
+interface FullPageMenuProps {
+  children: ReactNode
   active: boolean
   close(): void
 }
 
-export const FullPageMenu: FC<Props> = ({ active, close, children }) => {
+export const FullPageMenu = (props: FullPageMenuProps) => {
+  const { active, close, children } = props
   return (
     <Container active={active}>
       <Title>Menu</Title>

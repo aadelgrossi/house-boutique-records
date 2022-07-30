@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 
 import Image from 'next/image'
 import Player, { RHAP_UI } from 'react-h5-audio-player'
@@ -21,7 +21,7 @@ import {
   Title
 } from './styles'
 
-export const AudioPlayer: FC = () => {
+export const AudioPlayer = () => {
   const {
     state: { currentTrack, playing },
     dispatch

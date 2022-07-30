@@ -1,5 +1,3 @@
-import { FC } from 'react'
-
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -10,13 +8,14 @@ import { ArtistRowList } from '../ArtistRowList'
 import { PlayButton } from '../PlayButton'
 import { Container, ImageWrapper, ReleaseDate, TrackTitle } from './styles'
 
-interface Props {
+interface ReleaseCardProps {
   data: Release
 }
 
-export const ReleaseCard: FC<Props> = ({ data }) => {
+export const ReleaseCard = ({ data }: ReleaseCardProps) => {
   const { locale } = useRouter()
   const { coverArt, releaseDate, artists, title, slug } = data
+  const isUnreleased = !hasBeenReleased(releaseDate)
 
   return (
     <Container>
@@ -29,7 +28,7 @@ export const ReleaseCard: FC<Props> = ({ data }) => {
             alt={title}
             layout="responsive"
           />
-          {!hasBeenReleased(releaseDate) && (
+          {isUnreleased && (
             <ReleaseDate>{formatDate(releaseDate, locale)}</ReleaseDate>
           )}
         </ImageWrapper>

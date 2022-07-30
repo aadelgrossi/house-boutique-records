@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { FaFacebookF } from 'react-icons/fa'
 import {
   SiBeatport,
@@ -11,32 +9,24 @@ import { useTheme } from 'styled-components'
 
 import { Container } from './styles'
 
-interface Props {
+interface SocialIconProps {
   id: string
   size?: number
   platform: string
   url: string
 }
 
-export const SocialIcon: React.FC<Props> = ({ platform, size = 24, url }) => {
+const iconsMap = {
+  beatport: <SiBeatport />,
+  spotify: <SiSpotify />,
+  soundcloud: <SiSoundcloud />,
+  facebook: <FaFacebookF />,
+  instagram: <SiInstagram />
+}
+
+export const SocialIcon = ({ platform, size = 24, url }: SocialIconProps) => {
   const { colors } = useTheme()
+  const icon = cloneElement(iconsMap[icon], { size, color: colors.ice })
 
-  const resolveIconName = (platform: string): JSX.Element => {
-    switch (platform) {
-      case 'beatport':
-        return <SiBeatport size={size} color={colors.ice} />
-      case 'spotify':
-        return <SiSpotify size={size} color={colors.ice} />
-      case 'soundcloud':
-        return <SiSoundcloud size={size} color={colors.ice} />
-      case 'facebook':
-        return <FaFacebookF size={size} color={colors.ice} />
-      case 'instagram':
-        return <SiInstagram size={size} color={colors.ice} />
-      default:
-        return <></>
-    }
-  }
-
-  return <Container href={url}>{resolveIconName(platform)}</Container>
+  return <Container href={url}>{icon}</Container>
 }

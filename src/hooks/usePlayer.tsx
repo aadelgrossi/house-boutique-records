@@ -1,4 +1,11 @@
-import { createContext, Dispatch, Reducer, useContext, useReducer } from 'react'
+import {
+  ReactNode,
+  createContext,
+  Dispatch,
+  Reducer,
+  useContext,
+  useReducer
+} from 'react'
 
 interface PlayerContextData {
   state: State
@@ -40,7 +47,7 @@ const reducer: Reducer<State, Action> = (
   }
 }
 
-export const PlayerProvider: React.FC = ({ children }) => {
+export const PlayerProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   return (

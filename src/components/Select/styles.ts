@@ -10,10 +10,6 @@ export const baseInput = css`
   color: ${props => props.theme.colors.white};
 `
 
-type Props = {
-  isOpen: boolean
-}
-
 export const BaseSelect = styled.select`
   display: none;
 `
@@ -25,7 +21,7 @@ export const CustomSelectWrapper = styled.div`
   user-select: none;
 `
 
-export const Container = styled.div<Props>`
+export const Container = styled.div<{ isOpen: boolean }>`
   .custom-select {
     ${baseInput}
     padding-right: 8px;

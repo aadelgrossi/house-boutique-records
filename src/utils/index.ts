@@ -28,7 +28,6 @@ export const formatLongDate = (date: string, locale?: string): string => {
 
 export const hasBeenReleased = (someDate: string): boolean => {
   const today = startOfToday()
-
   const compareDate = new Date(someDate)
 
   return compareDate <= today

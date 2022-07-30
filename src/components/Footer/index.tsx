@@ -1,11 +1,9 @@
-import { FC } from 'react'
-
 import Link from 'next/link'
 
+import { LogoFullMono } from '~/assets'
 import { socialIcons } from '~/constants'
 import { useTranslation } from '~/hooks'
 
-import { FullMono as Logo } from '../Logo'
 import {
   Container,
   MainContent,
@@ -17,12 +15,12 @@ import {
   Title
 } from './styles'
 
-export const Footer: FC = () => {
+export const Footer = () => {
   const { t } = useTranslation()
   return (
     <Container>
       <MainContent>
-        <Logo />
+        <LogoFullMono />
 
         <Items>
           <Item>

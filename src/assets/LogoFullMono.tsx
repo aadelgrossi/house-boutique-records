@@ -1,12 +1,10 @@
-import { FC } from 'react'
-
 import { useTheme } from 'styled-components'
 
-type Props = {
+type LogoFullMonoProps = {
   dark?: boolean
 }
 
-export const FullMono: FC<Props> = ({ dark = false }) => {
+export const LogoFullMono = ({ dark = false }: LogoFullMonoProps) => {
   const {
     colors: { white, black }
   } = useTheme()

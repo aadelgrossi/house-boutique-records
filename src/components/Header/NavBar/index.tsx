@@ -6,7 +6,7 @@ import { FullPageMenu } from '../FullPageMenu'
 import { MenuItems } from './MenuItems'
 import { Container, Menu, MobileMenu } from './styles'
 
-export const NavBar: React.FC = () => {
+export const NavBar = () => {
   const [mobileMenuActive, setMobileMenuActive] = useState(false)
 
   const toggleMobileMenu = useCallback(() => {

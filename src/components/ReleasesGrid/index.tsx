@@ -1,7 +1,10 @@
-import { FC } from 'react'
+import styled from 'styled-components'
 
-import { Container } from './styles'
-
-export const ReleasesGrid: FC = ({ children }) => {
-  return <Container>{children}</Container>
-}
+export const Container = styled.div`
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  flex-wrap: wrap;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+`

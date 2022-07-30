@@ -1,21 +1,21 @@
-import { useState, useRef, FC } from 'react'
+import { useState, useRef } from 'react'
 
 import { useOutsideClick } from '~/hooks'
 
 import { Container, BaseSelect, CustomSelectWrapper } from './styles'
 
-type Item = {
+type SelectItem = {
   value: string
   label: string
 }
 
-type Props = {
+type SelectProps = {
   value?: string
-  options: Item[]
+  options: SelectItem[]
   onChange(value: string): void
 }
 
-export const Select: FC<Props> = ({ options, onChange, value }: Props) => {
+export const Select = ({ options, onChange, value }: SelectProps) => {
   const [isOpen, setOpen] = useState(false)
   const selectRef = useRef(null)
 
