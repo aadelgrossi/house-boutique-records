@@ -6,6 +6,8 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { FaChevronRight } from 'react-icons/fa'
+import rehypeRaw from 'rehype-raw'
 
 import { SocialIcon, ReleaseCard, ReleasesGrid, Badge } from '~/components'
 import { fetchArtists, fetchSingleArtist } from '~/graphql'
@@ -81,18 +83,19 @@ const Artist: NextPage<ArtistPageProps> = ({
             </ArtistSocials>
             <Name>{name}</Name>
           </ArtistHeader>
-          <Bio allowDangerousHtml={true}>{localizations[0]?.bio.html}</Bio>
+          <Bio rehypePlugins={[rehypeRaw]}>{localizations[0]?.bio.html}</Bio>
           <ReleasesContainer>
             <TitleGroup>
               <Title>
                 {t('artists_tracksBy')}
                 {` ${name}`}
               </Title>
-              <Badge>
-                <Link href={{ pathname: '/releases', query: { search: name } }}>
+              <Link href={{ pathname: '/releases', query: { search: name } }}>
+                <Badge style={{ cursor: 'pointer' }}>
                   {t('seeAll')}
-                </Link>
-              </Badge>
+                  <FaChevronRight style={{ marginLeft: 4 }} size="12px" />
+                </Badge>
+              </Link>
             </TitleGroup>
             <ReleasesGrid>
               {releases.map(release => (

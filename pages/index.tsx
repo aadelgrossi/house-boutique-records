@@ -2,6 +2,7 @@ import { GetServerSideProps, NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import Image from 'next/image'
 import Link from 'next/link'
+import { FaChevronRight } from 'react-icons/fa'
 
 import {
   ArtistRowList,
@@ -150,7 +151,10 @@ const Home: NextPage<HomeProps> = ({
                       }}
                       passHref
                     >
-                      <Badge>{t('seeAll')}</Badge>
+                      <Badge style={{ cursor: 'pointer' }}>
+                        {t('seeAll')}
+                        <FaChevronRight style={{ marginLeft: 4 }} size="12px" />
+                      </Badge>
                     </Link>
                   </TitleGroup>
 
