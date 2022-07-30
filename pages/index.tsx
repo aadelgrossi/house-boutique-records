@@ -1,4 +1,4 @@
-import { GetServerSideProps, NextPage } from 'next'
+import { GetServerSideProps } from 'next'
 import { NextSeo } from 'next-seo'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -17,38 +17,18 @@ import {
 } from '~/components/Skeleton'
 import { fetchHomeReleases } from '~/graphql'
 import { useTranslation } from '~/hooks'
-import {
-  Container,
-  Hero,
-  Contents,
-  HeroTitle,
-  ButtonGroup,
-  ReleasesContainer,
-  ReleasesContent,
-  FeaturedContainer,
-  FeaturedImageWrapper,
-  FeaturedInfo,
-  TrackTitle,
-  TitleGroup,
-  FeaturedTitle,
-  FeaturedContent,
-  LatestReleasesContainer,
-  UpcomingReleasesGrid,
-  LatestReleasesGrid,
-  UpcomingReleasesContainer
-} from '~/styles/pages'
+import * as Styled from '~/styles/pages/index'
 
 interface HomeProps {
   releases: {
-    featured: Release
+    featured?: Release
     upcoming: Release[]
     latest: Release[]
   }
 }
 
-const Home: NextPage<HomeProps> = ({
-  releases: { featured, latest, upcoming }
-}) => {
+const Home = ({ releases }: HomeProps) => {
+  const { featured, latest, upcoming } = releases
   const { t } = useTranslation()
 
   return (
@@ -74,16 +54,16 @@ const Home: NextPage<HomeProps> = ({
           ]
         }}
       />
-      <Container>
-        <Hero>
-          <Contents>
-            <HeroTitle>
+      <Styled.Container>
+        <Styled.Hero>
+          <Styled.Contents>
+            <Styled.HeroTitle>
               {t('home_heroTitle')}
               <br /> {t('home_heroTitle2')}
               <br /> {t('home_heroTitle3')}
               <br /> {t('home_heroTitle4')}
-            </HeroTitle>
-            <ButtonGroup>
+            </Styled.HeroTitle>
+            <Styled.ButtonGroup>
               <Link href="/releases" passHref>
                 <Button>{t('home_releasesButton')}</Button>
               </Link>
@@ -91,23 +71,23 @@ const Home: NextPage<HomeProps> = ({
               <Link href="/artists" passHref>
                 <Button outline>{t('home_artistsButton')}</Button>
               </Link>
-            </ButtonGroup>
-          </Contents>
-        </Hero>
+            </Styled.ButtonGroup>
+          </Styled.Contents>
+        </Styled.Hero>
 
-        <ReleasesContainer>
-          <ReleasesContent>
-            <FeaturedContainer>
+        <Styled.ReleasesContainer>
+          <Styled.ReleasesContent>
+            <Styled.FeaturedContainer>
               {featured ? (
                 <>
-                  <TitleGroup>
-                    <FeaturedTitle>
+                  <Styled.TitleGroup>
+                    <Styled.FeaturedTitle>
                       {t('home_featuredReleaseHeading')}
-                    </FeaturedTitle>
-                  </TitleGroup>
-                  <FeaturedContent>
+                    </Styled.FeaturedTitle>
+                  </Styled.TitleGroup>
+                  <Styled.FeaturedContent>
                     <Link href={`/releases/${featured.slug}`}>
-                      <FeaturedImageWrapper>
+                      <Styled.FeaturedImageWrapper>
                         <Image
                           src={featured.coverArt.url as string}
                           width={280}
@@ -115,12 +95,12 @@ const Home: NextPage<HomeProps> = ({
                           layout="responsive"
                           alt={featured.title}
                         />
-                      </FeaturedImageWrapper>
+                      </Styled.FeaturedImageWrapper>
                     </Link>
 
-                    <FeaturedInfo>
+                    <Styled.FeaturedInfo>
                       <Link href={`/releases/${featured.slug}`} passHref>
-                        <TrackTitle>{featured?.title}</TrackTitle>
+                        <Styled.TrackTitle>{featured?.title}</Styled.TrackTitle>
                       </Link>
                       <ArtistRowList data={featured.artists} fontSize="1.2em" />
                       <PlayButton track={featured} />
@@ -132,17 +112,17 @@ const Home: NextPage<HomeProps> = ({
                           {t('streamNow')}
                         </Button>
                       )}
-                    </FeaturedInfo>
-                  </FeaturedContent>
+                    </Styled.FeaturedInfo>
+                  </Styled.FeaturedContent>
                 </>
               ) : (
                 <FeaturedSkeleton />
               )}
-            </FeaturedContainer>
-            <LatestReleasesContainer>
+            </Styled.FeaturedContainer>
+            <Styled.LatestReleasesContainer>
               {latest ? (
                 <>
-                  <TitleGroup>
+                  <Styled.TitleGroup>
                     <h2>{t('home_latestReleasesHeading')}</h2>
                     <Link
                       href={{
@@ -156,37 +136,37 @@ const Home: NextPage<HomeProps> = ({
                         <FaChevronRight style={{ marginLeft: 4 }} size="12px" />
                       </Badge>
                     </Link>
-                  </TitleGroup>
+                  </Styled.TitleGroup>
 
-                  <LatestReleasesGrid>
+                  <Styled.LatestReleasesGrid>
                     {latest.map(release => (
                       <ReleaseCard key={release.id} data={release} />
                     ))}
-                  </LatestReleasesGrid>
+                  </Styled.LatestReleasesGrid>
                 </>
               ) : (
                 <ReleaseCardsSkeleton />
               )}
-            </LatestReleasesContainer>
+            </Styled.LatestReleasesContainer>
 
             {!upcoming && <ReleaseCardsSkeleton />}
 
             {upcoming.length ? (
-              <UpcomingReleasesContainer>
-                <TitleGroup>
+              <Styled.UpcomingReleasesContainer>
+                <Styled.TitleGroup>
                   <h2>{t('home_upcomingReleasesHeading')}</h2>
-                </TitleGroup>
+                </Styled.TitleGroup>
 
-                <UpcomingReleasesGrid>
+                <Styled.UpcomingReleasesGrid>
                   {upcoming.map(release => (
                     <ReleaseCard key={release.id} data={release} />
                   ))}
-                </UpcomingReleasesGrid>
-              </UpcomingReleasesContainer>
+                </Styled.UpcomingReleasesGrid>
+              </Styled.UpcomingReleasesContainer>
             ) : null}
-          </ReleasesContent>
-        </ReleasesContainer>
-      </Container>
+          </Styled.ReleasesContent>
+        </Styled.ReleasesContainer>
+      </Styled.Container>
     </>
   )
 }

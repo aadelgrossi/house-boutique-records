@@ -33,7 +33,7 @@ export const Menu = styled.ul`
   }
 `
 
-export const MobileMenu = styled.a`
+export const MobileMenu = styled.button`
   @media (min-width: 800px) {
     display: none;
   }

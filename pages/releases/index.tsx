@@ -2,7 +2,7 @@ import { ParsedUrlQuery } from 'querystring'
 
 import { useCallback, useEffect, useState } from 'react'
 
-import { GetServerSideProps, NextPage } from 'next'
+import { GetServerSideProps } from 'next'
 import { NextSeo } from 'next-seo'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -29,13 +29,13 @@ type ReleasesProps = {
   genres: { name: string }[]
 } & ReleasesQueryStringParams
 
-const Releases: NextPage<ReleasesProps> = ({
+const Releases = ({
   releases,
   genres,
   genre = '',
   search = '',
   type = 'all'
-}) => {
+}: ReleasesProps) => {
   const [query, setQuery] = useState(search)
   const [dateFilter, setDateFilter] = useState<DateFilter>(type)
   const [genreFilter, setGenreFilter] = useState(genre)
@@ -65,6 +65,17 @@ const Releases: NextPage<ReleasesProps> = ({
   const onSelectGenreChange = useCallback((value: string) => {
     setGenreFilter(value)
   }, [])
+
+  const selectOptions = [
+    {
+      value: '',
+      label: t('releases_all_genres')
+    },
+    ...genres.map(({ name }) => ({
+      value: name,
+      label: name
+    }))
+  ]
 
   return (
     <>
@@ -119,16 +130,7 @@ const Releases: NextPage<ReleasesProps> = ({
           <Select
             onChange={onSelectGenreChange}
             value={genreFilter}
-            options={[
-              {
-                value: '',
-                label: t('releases_all_genres')
-              },
-              ...genres.map(({ name }) => ({
-                value: name,
-                label: name
-              }))
-            ]}
+            options={selectOptions}
           />
 
           <Styled.ClearFilters

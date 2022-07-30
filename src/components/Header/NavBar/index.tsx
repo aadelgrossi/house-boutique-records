@@ -18,7 +18,11 @@ export const NavBar = () => {
       <Menu>
         <MenuItems />
       </Menu>
-      <MobileMenu onClick={toggleMobileMenu}>
+      <MobileMenu
+        role="menu"
+        aria-label="mobile-menu"
+        onClick={toggleMobileMenu}
+      >
         <IoIosMenu size={40} color="#fff" />
       </MobileMenu>
 

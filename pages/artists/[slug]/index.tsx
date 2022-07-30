@@ -1,6 +1,6 @@
 import { ParsedUrlQuery } from 'querystring'
 
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import { GetStaticPaths, GetStaticProps } from 'next'
 import { NextSeo } from 'next-seo'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -22,9 +22,9 @@ interface Params extends ParsedUrlQuery {
   slug: string
 }
 
-const Artist: NextPage<ArtistPageProps> = ({
-  artist: { backgroundImage, name, localizations, artistPlatforms, releases }
-}) => {
+const Artist = ({ artist }: ArtistPageProps) => {
+  const { backgroundImage, name, localizations, artistPlatforms, releases } =
+    artist
   const { t } = useTranslation()
   const { query } = useRouter()
 
