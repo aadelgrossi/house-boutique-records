@@ -13,17 +13,18 @@ interface ReleasesGridProps {
   releases: Release[]
 }
 
-export const ReleasesGrid = ({ releases, loading }: ReleasesGridProps) => {
+export const ReleasesGrid = (props: ReleasesGridProps) => {
+  const { releases, loading } = props
   const { t } = useTranslation()
 
-  const skeletons = [...Array(10)].map((_, i) => (
+  const skeletons = [...Array(15)].map((_, i) => (
     <ReleaseCoverSkeleton key={i} />
   ))
 
-  if (loading) return <>{skeletons}</>
+  if (loading) return <Styled.ReleaseGrid>{skeletons}</Styled.ReleaseGrid>
   if (!releases.length) return null
   return (
-    <>
+    <Styled.ReleaseGrid>
       {releases?.map(({ id, coverArt, title, slug, artists }) => (
         <Styled.Release key={id}>
           <Image
@@ -42,6 +43,6 @@ export const ReleasesGrid = ({ releases, loading }: ReleasesGridProps) => {
           </Styled.Overlay>
         </Styled.Release>
       ))}
-    </>
+    </Styled.ReleaseGrid>
   )
 }

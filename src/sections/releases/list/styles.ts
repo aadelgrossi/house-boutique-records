@@ -104,7 +104,7 @@ export const ReleaseGrid = styled.div`
   display: grid;
   margin: 3rem 0;
   gap: 1.5rem;
-  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
 `
 
 export const InfoButton = styled.a`

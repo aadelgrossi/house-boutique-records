@@ -7,7 +7,10 @@ import { NextSeo } from 'next-seo'
 
 import { ContainerBox, SelectItem } from '~/components'
 import { ALL_GENRES, ALL_RELEASES } from '~/graphql'
-import { ReleasesQueryResponse, ReleaseQueryVariables } from '~/graphql/types'
+import {
+  ReleaseQueryVariables,
+  AllReleasesQueryResponse
+} from '~/graphql/types'
 import { useTranslation } from '~/hooks'
 import { apolloClient } from '~/lib/apollo'
 import { ReleasesGrid, ReleasesFilters } from '~/sections/releases'
@@ -20,6 +23,7 @@ interface ReleasesQueryStringParams {
   type?: DateFilter
   genre?: string
   first?: number
+  after?: string | null
 }
 
 type ReleasesProps = ReleasesQueryStringParams & {
@@ -30,40 +34,44 @@ const Releases = ({
   genres,
   genre: initialGenre = '',
   search = '',
-  first = 25,
-  type = 'all'
+  type = 'all',
+  after
 }: ReleasesProps) => {
   const [query, setQuery] = useState(search)
   const [genre, setGenre] = useState(initialGenre)
   const [dateFilter, setDateFilter] = useState<DateFilter>(type)
 
   const today = startOfToday()
-  const variables = { query, genre, first }
+
+  const variables = { query, genre, after }
 
   const { data: response, loading } = useQuery<
-    ReleasesQueryResponse,
+    AllReleasesQueryResponse,
     ReleaseQueryVariables
   >(ALL_RELEASES, {
     variables
   })
 
+  const totalItems = response?.releasesConnection.aggregate.count || 0
+
   const releases = useMemo(() => {
-    if (dateFilter === 'all') return response?.releases || []
+    const content = response?.releasesConnection.edges.map(edge => edge.node)
+    if (dateFilter === 'all') return content || []
     if (dateFilter === 'upcoming')
       return (
-        response?.releases.filter(release =>
+        content?.filter(release =>
           isAfter(parseISO(release.releaseDate), today)
         ) || []
       )
     if (dateFilter === 'available')
       return (
-        response?.releases.filter(release =>
+        content?.filter(release =>
           isBefore(parseISO(release.releaseDate), today)
         ) || []
       )
     return []
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dateFilter, response?.releases, today, genre])
+  }, [dateFilter, response?.releasesConnection, today, genre])
 
   const { t } = useTranslation()
 
@@ -109,7 +117,7 @@ const Releases = ({
       <ContainerBox>
         <Styled.Title>{t('header_releases')}</Styled.Title>
         <ReleasesFilters
-          totalItems={releases.length}
+          totalItems={totalItems}
           query={query}
           onQueryChange={setQuery}
           clearFilters={clearFilters}
@@ -120,29 +128,27 @@ const Releases = ({
           onSelectDateChange={setDateFilter}
         />
 
-        <Styled.ReleaseGrid>
-          <ReleasesGrid releases={releases} loading={loading} />
-        </Styled.ReleaseGrid>
+        <ReleasesGrid releases={releases} loading={loading} />
       </ContainerBox>
     </>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async ({
-  query: { search = '', type = 'all', genre = '', first = 25 }
+  query: { search = '', type = 'all', genre = '', first = 5, after = null }
 }: {
   query: ReleasesQueryStringParams
 }) => {
   const { data: genresData } = await apolloClient.query({ query: ALL_GENRES })
-  const date = startOfToday()
+  // const date = startOfToday()
 
-  await apolloClient.query<ReleasesQueryResponse, ReleaseQueryVariables>({
-    query: ALL_RELEASES,
-    variables: { date, query: search, genre, first }
-  })
+  // await apolloClient.query<AllReleasesQueryResponse, ReleaseQueryVariables>({
+  //   query: ALL_RELEASES,
+  //   variables: { date, query: search, genre, after, first }
+  // })
 
   return {
-    props: { search, type, genres: genresData.genres, genre }
+    props: { search, type, genres: genresData.genres, genre, first, after }
   }
 }
 
