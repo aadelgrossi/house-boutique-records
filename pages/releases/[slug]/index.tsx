@@ -12,7 +12,7 @@ import {
 } from '~/graphql/types'
 import { useTranslation } from '~/hooks'
 import { apolloClient } from '~/lib/apollo'
-import { ReleasesSlugLayout } from '~/sections/releases/slug'
+import { ReleasesSlugLayout } from '~/sections/releases'
 import { Release } from '~/types'
 import { formatLongDate } from '~/utils'
 

@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 
 import { ARTISTS_SLUGS, SINGLE_ARTIST } from '~/graphql'
 import { apolloClient } from '~/lib/apollo'
-import { ArtistsSlugLayout } from '~/sections/artists/slug/Layout'
+import { ArtistsSlugLayout } from '~/sections/artists'
 import { Artist } from '~/types'
 
 interface ArtistPageProps {

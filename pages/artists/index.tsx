@@ -1,7 +1,7 @@
 import { NextSeo } from 'next-seo'
 
 import { useTranslation } from '~/hooks'
-import { ArtistsListLayout } from '~/sections/artists/list/Layout'
+import { ArtistsListLayout } from '~/sections/artists'
 
 const Artists = () => {
   const { t } = useTranslation()
