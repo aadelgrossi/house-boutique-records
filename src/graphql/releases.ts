@@ -140,6 +140,7 @@ export const SINGLE_RELEASE = gql`
         url
       }
       genres {
+        id
         name
       }
     }
