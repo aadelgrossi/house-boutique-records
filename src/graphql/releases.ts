@@ -93,8 +93,16 @@ export const RELEASED = gql`
 `
 
 export const ALL_RELEASES = gql`
-  query allReleases($query: String, $genre: String, $first: Int, $skip: Int) {
-    releases(
+  query allReleases(
+    $query: String
+    $genre: String
+    $after: String
+    $first: Int
+  ) {
+    releasesConnection(
+      orderBy: releaseDate_DESC
+      first: $first
+      after: $after
       where: {
         genres_some: { name_contains: $genre }
         OR: [
@@ -102,24 +110,32 @@ export const ALL_RELEASES = gql`
           { artists_some: { name_contains: $query } }
         ]
       }
-      first: $first
-      skip: $skip
-      orderBy: releaseDate_DESC
     ) {
-      id
-      title
-      slug
-      releaseDate
-      artists {
-        id
-        name
-        slug
+      aggregate {
+        count
       }
-      coverArt {
-        url
+      pageInfo {
+        pageSize
+        hasNextPage
       }
-      audioPreview {
-        url
+      edges {
+        node {
+          id
+          title
+          slug
+          releaseDate
+          artists {
+            id
+            name
+            slug
+          }
+          coverArt {
+            url
+          }
+          audioPreview {
+            url
+          }
+        }
       }
     }
   }
