@@ -1,19 +1,32 @@
-import { startOfToday } from 'date-fns'
-import { gql } from 'graphql-request'
+import { gql } from '@apollo/client'
 
-import graphCmsClient from '~/lib/graphCmsClient'
+export const LATEST_RELEASE = gql`
+  query latestRelease($date: Date!) {
+    releases(
+      where: { releaseDate_lte: $date }
+      orderBy: releaseDate_DESC
+      first: 1
+    ) {
+      id
+      title
+      slug
+      releaseDate
+      artists {
+        id
+        name
+        slug
+      }
+      coverArt {
+        url
+      }
+      audioPreview {
+        url
+      }
+    }
+  }
+`
 
-import {
-  ReleasesQueryParams,
-  ReleasesQueryResponse,
-  ReleasesHomeQueryResponse,
-  ReleaseSingleQueryParams,
-  ReleaseSingleQueryResponse,
-  ReleaseRelatedQueryParams,
-  QueryVariables
-} from './types'
-
-const UPCOMING = gql`
+export const UPCOMING_RELEASES = gql`
   query upcomingReleases(
     $query: String
     $genre: String
@@ -52,55 +65,25 @@ const UPCOMING = gql`
   }
 `
 
-const RELEASED = gql`
-  query latestReleases(
+export const ALL_RELEASES = gql`
+  query allReleases(
     $query: String
+    $date: Date
     $genre: String
-    $date: Date!
     $first: Int
+    $skip: Int
   ) {
     releases(
       where: {
         releaseDate_lte: $date
-        OR: [
-          { genres_some: { name_contains: $genre } }
-          { title_contains: $query }
-          { artists_some: { name_contains: $query } }
-        ]
-      }
-      orderBy: releaseDate_DESC
-      first: $first
-    ) {
-      id
-      title
-      slug
-      releaseDate
-      artists {
-        id
-        name
-        slug
-      }
-      link
-      coverArt {
-        url
-      }
-      audioPreview {
-        url
-      }
-    }
-  }
-`
-
-const ALL = gql`
-  query allReleases($query: String, $genre: String) {
-    releases(
-      where: {
         genres_some: { name_contains: $genre }
         OR: [
           { title_contains: $query }
           { artists_some: { name_contains: $query } }
         ]
       }
+      first: $first
+      skip: $skip
       orderBy: releaseDate_DESC
     ) {
       id
@@ -122,7 +105,15 @@ const ALL = gql`
   }
 `
 
-const SINGLE_RELEASE = gql`
+export const RELEASES_SLUGS = gql`
+  query releasesSlugs {
+    releases {
+      slug
+    }
+  }
+`
+
+export const SINGLE_RELEASE = gql`
   query singleRelease($slug: String!, $locale: Locale!) {
     release(where: { slug: $slug }) {
       id
@@ -130,8 +121,9 @@ const SINGLE_RELEASE = gql`
       releaseDate
       localizations(includeCurrent: true, locales: [$locale]) {
         description {
-          html
+          raw
           text
+          markdown
         }
         locale
       }
@@ -148,13 +140,14 @@ const SINGLE_RELEASE = gql`
         url
       }
       genres {
+        id
         name
       }
     }
   }
 `
 
-const RELATED = gql`
+export const RELATED_RELEASES = gql`
   query relatedReleases($slug: String!, $artists: [String!]) {
     releases(
       where: { artists_some: { slug_in: $artists }, slug_not: $slug }
@@ -179,95 +172,3 @@ const RELATED = gql`
     }
   }
 `
-
-export const fetchReleases = async ({
-  query = '',
-  genre = '',
-  type
-}: ReleasesQueryParams): Promise<ReleasesQueryResponse> => {
-  switch (type) {
-    case 'available': {
-      const { releases } = await fetchReleasedReleases({ query, genre })
-      return { releases }
-    }
-    case 'upcoming': {
-      const { releases } = await fetchUpcomingReleases({ query, genre })
-      return { releases }
-    }
-    default: {
-      const { releases } = await graphCmsClient.request<ReleasesQueryResponse>(
-        ALL,
-        { query, genre }
-      )
-      return { releases }
-    }
-  }
-}
-
-export const fetchHomeReleases =
-  async (): Promise<ReleasesHomeQueryResponse> => {
-    const { releases: upcoming } = await fetchUpcomingReleases({ first: 4 })
-    const { releases: latest } = await fetchReleasedReleases({ first: 4 })
-
-    return {
-      featured: latest[0],
-      latest: latest.slice(1),
-      upcoming
-    }
-  }
-
-export const fetchSingleRelease = async ({
-  slug,
-  locale = 'pt'
-}: ReleaseSingleQueryParams): Promise<ReleaseSingleQueryResponse> => {
-  return await graphCmsClient.request<ReleaseSingleQueryResponse>(
-    SINGLE_RELEASE,
-    { slug, locale }
-  )
-}
-
-export const fetchRelatedReleases = async ({
-  slug,
-  artists
-}: ReleaseRelatedQueryParams): Promise<ReleasesQueryResponse> => {
-  return await graphCmsClient.request<ReleasesQueryResponse>(RELATED, {
-    slug,
-    artists
-  })
-}
-
-export const fetchUpcomingReleases = async ({
-  query = '',
-  first = 20,
-  genre = ''
-}: ReleasesQueryParams): Promise<ReleasesQueryResponse> => {
-  const date = startOfToday().toISOString().slice(0, 10)
-
-  return await graphCmsClient.request<ReleasesQueryResponse, QueryVariables>(
-    UPCOMING,
-    {
-      date,
-      genre,
-      query,
-      first
-    }
-  )
-}
-
-export const fetchReleasedReleases = async ({
-  query = '',
-  first = 20,
-  genre
-}: ReleasesQueryParams): Promise<ReleasesQueryResponse> => {
-  const date = startOfToday().toISOString().slice(0, 10)
-
-  return await graphCmsClient.request<ReleasesQueryResponse, QueryVariables>(
-    RELEASED,
-    {
-      date,
-      genre,
-      query,
-      first
-    }
-  )
-}

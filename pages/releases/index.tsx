@@ -1,72 +1,78 @@
-import { ParsedUrlQuery } from 'querystring'
+import { useCallback, useMemo, useState } from 'react'
 
-import { useCallback, useEffect, useState } from 'react'
-
+import { useQuery } from '@apollo/client'
+import { isAfter, isBefore, parseISO, startOfToday } from 'date-fns'
 import { GetServerSideProps } from 'next'
 import { NextSeo } from 'next-seo'
-import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
-import { FaSearch } from 'react-icons/fa'
-import { RiFilterOffLine } from 'react-icons/ri'
 
-import { ArtistRowList, ContainerBox, Select } from '~/components'
-import { ReleaseCover } from '~/components/Skeleton'
-import { fetchAllGenres, fetchReleases } from '~/graphql'
+import { ContainerBox, SelectItem } from '~/components'
+import { ALL_GENRES, ALL_RELEASES } from '~/graphql'
+import { ReleasesQueryResponse, ReleaseQueryVariables } from '~/graphql/types'
 import { useTranslation } from '~/hooks'
-import * as Styled from '~/styles/pages/releases/index'
+import { apolloClient } from '~/lib/apollo'
+import { ReleasesGrid, ReleasesFilters } from '~/sections/releases'
+import * as Styled from '~/sections/releases/list/styles'
+import { Genre } from '~/types'
 
 type DateFilter = 'all' | 'available' | 'upcoming'
-
-interface ReleasesQueryStringParams extends ParsedUrlQuery {
+interface ReleasesQueryStringParams {
   search?: string
   type?: DateFilter
   genre?: string
+  first?: number
 }
 
-type ReleasesProps = {
-  releases: Release[]
-  genres: { name: string }[]
-} & ReleasesQueryStringParams
+type ReleasesProps = ReleasesQueryStringParams & {
+  genres: Genre[]
+}
 
 const Releases = ({
-  releases,
   genres,
-  genre = '',
+  genre: initialGenre = '',
   search = '',
+  first = 25,
   type = 'all'
 }: ReleasesProps) => {
   const [query, setQuery] = useState(search)
+  const [genre, setGenre] = useState(initialGenre)
   const [dateFilter, setDateFilter] = useState<DateFilter>(type)
-  const [genreFilter, setGenreFilter] = useState(genre)
 
-  const [items, setItems] = useState<Release[]>(releases)
+  const today = startOfToday()
+  const variables = { query, genre, first }
+
+  const { data: response, loading } = useQuery<
+    ReleasesQueryResponse,
+    ReleaseQueryVariables
+  >(ALL_RELEASES, {
+    variables
+  })
+
+  const releases = useMemo(() => {
+    if (dateFilter === 'all') return response?.releases || []
+    if (dateFilter === 'upcoming')
+      return (
+        response?.releases.filter(release =>
+          isAfter(parseISO(release.releaseDate), today)
+        ) || []
+      )
+    if (dateFilter === 'available')
+      return (
+        response?.releases.filter(release =>
+          isBefore(parseISO(release.releaseDate), today)
+        ) || []
+      )
+    return []
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dateFilter, response?.releases, today, genre])
+
   const { t } = useTranslation()
 
-  const resetFilters = useCallback(() => {
+  const clearFilters = useCallback(() => {
     setQuery('')
     setDateFilter('all')
   }, [])
 
-  useEffect(() => {
-    fetchReleases({
-      query,
-      type: dateFilter,
-      genre: genreFilter
-    }).then(response => {
-      setItems(response.releases)
-    })
-  }, [dateFilter, query, genreFilter])
-
-  const onSelectDateChange = useCallback((value: DateFilter) => {
-    setDateFilter(value)
-  }, [])
-
-  const onSelectGenreChange = useCallback((value: string) => {
-    setGenreFilter(value)
-  }, [])
-
-  const selectOptions = [
+  const genreOptions: SelectItem[] = [
     {
       value: '',
       label: t('releases_all_genres')
@@ -101,74 +107,21 @@ const Releases = ({
         }}
       />
       <ContainerBox>
-        <Head>
-          <title>{t('header_releases')} | House Boutique Records</title>
-        </Head>
         <Styled.Title>{t('header_releases')}</Styled.Title>
-        <Styled.Filters>
-          <Styled.SearchBox>
-            <Styled.Input
-              name="search"
-              onChange={e => setQuery(e.target.value)}
-              enterKeyHint="send"
-              value={query}
-              placeholder={t('releases_searchPlaceholder')}
-            />
-            <FaSearch size={16} color="#fff" style={{ marginRight: 16 }} />
-          </Styled.SearchBox>
-
-          <Select
-            onChange={onSelectDateChange}
-            value={dateFilter}
-            options={[
-              { value: 'all', label: t('releases_all') },
-              { value: 'available', label: t('releases_available') },
-              { value: 'upcoming', label: t('releases_upcoming') }
-            ]}
-          />
-
-          <Select
-            onChange={onSelectGenreChange}
-            value={genreFilter}
-            options={selectOptions}
-          />
-
-          <Styled.ClearFilters
-            onClick={resetFilters}
-            aria-label="clear-filters"
-            title={t('clearFilters')}
-          >
-            <RiFilterOffLine size={22} color="#fff" />
-          </Styled.ClearFilters>
-
-          <Styled.ResultsCount>
-            <strong>{items.length}</strong> {t('releases_resultsFound')}
-          </Styled.ResultsCount>
-        </Styled.Filters>
+        <ReleasesFilters
+          totalItems={releases.length}
+          query={query}
+          onQueryChange={setQuery}
+          clearFilters={clearFilters}
+          genreOptions={genreOptions}
+          date={dateFilter}
+          genre={genre}
+          onSelectGenreChange={setGenre}
+          onSelectDateChange={setDateFilter}
+        />
 
         <Styled.ReleaseGrid>
-          {items
-            ? items.map(({ id, coverArt, title, slug, artists }) => (
-                <Styled.Release key={id}>
-                  <Image
-                    src={coverArt.url}
-                    width={140}
-                    height={140}
-                    layout="responsive"
-                    alt={title}
-                  />
-                  <Styled.Overlay>
-                    <Styled.ReleaseTitle>{title}</Styled.ReleaseTitle>
-                    <ArtistRowList data={artists} />
-                    <Link href={`/releases/${slug}`}>
-                      <Styled.InfoButton>
-                        {t('releases_moreInfo')}
-                      </Styled.InfoButton>
-                    </Link>
-                  </Styled.Overlay>
-                </Styled.Release>
-              ))
-            : [...Array(10)].map((_, i) => <ReleaseCover key={i} />)}
+          <ReleasesGrid releases={releases} loading={loading} />
         </Styled.ReleaseGrid>
       </ContainerBox>
     </>
@@ -176,19 +129,21 @@ const Releases = ({
 }
 
 export const getServerSideProps: GetServerSideProps = async ({
-  query: { search = '', type = 'all', genre = '' }
+  query: { search = '', type = 'all', genre = '', first = 25 }
 }: {
   query: ReleasesQueryStringParams
 }) => {
-  const { releases } = await fetchReleases({
-    query: search,
-    genre,
-    type
+  const { data: genresData } = await apolloClient.query({ query: ALL_GENRES })
+  const date = startOfToday()
+
+  await apolloClient.query<ReleasesQueryResponse, ReleaseQueryVariables>({
+    query: ALL_RELEASES,
+    variables: { date, query: search, genre, first }
   })
 
-  const { genres } = await fetchAllGenres()
-
-  return { props: { releases, search, type, genres, genre } }
+  return {
+    props: { search, type, genres: genresData.genres, genre }
+  }
 }
 
 export default Releases

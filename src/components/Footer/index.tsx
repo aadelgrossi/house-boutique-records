@@ -4,47 +4,38 @@ import { LogoFullMono } from '~/assets'
 import { socialIcons } from '~/constants'
 import { useTranslation } from '~/hooks'
 
-import {
-  Container,
-  MainContent,
-  FooterDetail,
-  Item,
-  SocialIcons,
-  SocialButton,
-  Items,
-  Title
-} from './styles'
+import * as Styled from './styles'
 
 export const Footer = () => {
   const { t } = useTranslation()
   return (
-    <Container>
-      <MainContent>
+    <Styled.Container>
+      <Styled.MainContent>
         <LogoFullMono />
 
-        <Items>
-          <Item>
-            <Title>{t('footer_socials')}</Title>
-            <SocialIcons>
+        <Styled.Items>
+          <Styled.Item>
+            <Styled.Title>{t('footer_socials')}</Styled.Title>
+            <Styled.SocialIcons>
               {socialIcons.map(({ Icon, url, color }) => (
-                <SocialButton key={url} color={color} href={url}>
+                <Styled.SocialButton key={url} color={color} href={url}>
                   <Icon color="#fff" size={22} />
-                </SocialButton>
+                </Styled.SocialButton>
               ))}
-            </SocialIcons>
-          </Item>
+            </Styled.SocialIcons>
+          </Styled.Item>
 
-          <Item>
-            <Title>{t('footer_contact')}</Title>
+          <Styled.Item>
+            <Styled.Title>{t('footer_contact')}</Styled.Title>
             <Link href="mailto:contato@houseboutiquerecords.com">
               <a>contato@houseboutiquerecords.com</a>
             </Link>
-          </Item>
-        </Items>
-      </MainContent>
-      <FooterDetail>
+          </Styled.Item>
+        </Styled.Items>
+      </Styled.MainContent>
+      <Styled.FooterDetail>
         <p>2021 House Boutique Records</p>
-      </FooterDetail>
-    </Container>
+      </Styled.FooterDetail>
+    </Styled.Container>
   )
 }

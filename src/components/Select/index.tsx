@@ -4,7 +4,7 @@ import { useOutsideClick } from '~/hooks'
 
 import { Container, BaseSelect, CustomSelectWrapper } from './styles'
 
-type SelectItem = {
+export type SelectItem = {
   value: string
   label: string
 }

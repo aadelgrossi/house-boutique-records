@@ -3,6 +3,7 @@ import React from 'react'
 import { AiFillPlayCircle } from 'react-icons/ai'
 
 import { usePlayer, useTranslation } from '~/hooks'
+import { Release } from '~/types'
 
 import { Container } from './styles'
 

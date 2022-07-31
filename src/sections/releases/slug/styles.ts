@@ -1,7 +1,6 @@
-import ReactMarkdown from 'react-markdown'
 import styled from 'styled-components'
 
-export const ReleaseInfo = styled.div`
+export const ReleaseInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -34,9 +33,14 @@ export const ReleaseTitle = styled.h1`
   margin: 1rem 0 0.5rem;
 `
 
-export const Description = styled(ReactMarkdown)`
+export const DescriptionWrapper = styled.div`
   color: white;
   margin: 1rem 0 2rem;
+`
+
+export const DescriptionParagraph = styled.p`
+  margin-bottom: 1.5em;
+  font-size: 1.1em;
 `
 
 export const RelatedReleasesContainer = styled.div`

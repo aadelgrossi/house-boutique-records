@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Container = styled.footer`
   display: flex;
   flex-direction: column;
-
+  margin-top: auto;
   background-color: ${props => props.theme.colors.primary};
 `
 
@@ -18,7 +18,7 @@ export const MainContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  margin: 3rem max(2rem, 10vw);
+  margin: 5rem max(2rem, 10vw);
 
   transition: 0.2s all ease-in-out;
 
@@ -57,8 +57,7 @@ export const Item = styled.div`
 export const SocialIcons = styled.div`
   display: flex;
   flex-wrap: wrap;
-
-  gap: 0.5rem;
+  gap: 0.8rem;
 `
 
 export const SocialButton = styled.a<{ color: string }>`
@@ -71,7 +70,7 @@ export const SocialButton = styled.a<{ color: string }>`
 
   &:hover {
     background-color: ${props => props.color};
-    transform: scale(1.1) translateY(-5px);
+    transform: scale(1.05) translateY(-5px);
     box-shadow: unset;
   }
 `

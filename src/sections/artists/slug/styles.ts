@@ -1,11 +1,9 @@
-import ReactMarkdown from 'react-markdown'
 import styled from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  z-index: 0;
 `
 export const ImageContainer = styled.div`
   position: relative;
@@ -53,13 +51,22 @@ export const Name = styled.h1`
   font-size: max(52px, 4.5vw);
 `
 
-export const Bio = styled(ReactMarkdown)`
+export const BioContainer = styled.div`
   color: white;
-  margin: 1rem 0 4rem;
+  margin: 0.5rem 0 4rem;
 
   @media (min-width: 720px) {
-    width: calc(60% + 3vw);
+    width: 60%;
   }
+
+  @media (min-width: 1440px) {
+    width: 50%;
+  }
+`
+
+export const BioParagraph = styled.p`
+  margin-bottom: 1.5em;
+  font-size: 1.1em;
 `
 
 export const Content = styled.div`

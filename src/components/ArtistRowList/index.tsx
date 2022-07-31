@@ -1,6 +1,8 @@
 import Link from 'next/link'
 
-import { Container, Artist } from './styles'
+import { Artist } from '~/types'
+
+import { Container, ArtistLink } from './styles'
 
 interface ArtistRowListProps {
   data: Artist[]
@@ -13,7 +15,7 @@ export const ArtistRowList = (props: ArtistRowListProps) => {
     <Container>
       {data.map(artist => (
         <Link key={artist.id} href={`/artists/${artist.slug}`} passHref>
-          <Artist style={{ fontSize }}>{artist.name}</Artist>
+          <ArtistLink style={{ fontSize }}>{artist.name}</ArtistLink>
         </Link>
       ))}
     </Container>

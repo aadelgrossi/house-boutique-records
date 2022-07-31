@@ -2,11 +2,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
+import { Release } from '~/types'
 import { formatDate, hasBeenReleased } from '~/utils'
 
 import { ArtistRowList } from '../ArtistRowList'
 import { PlayButton } from '../PlayButton'
-import { Container, ImageWrapper, ReleaseDate, TrackTitle } from './styles'
+import * as Styled from './styles'
 
 interface ReleaseCardProps {
   data: Release
@@ -18,9 +19,9 @@ export const ReleaseCard = ({ data }: ReleaseCardProps) => {
   const isUnreleased = !hasBeenReleased(releaseDate)
 
   return (
-    <Container>
+    <Styled.Container>
       <Link href={`/releases/${slug}`}>
-        <ImageWrapper>
+        <Styled.ImageWrapper>
           <Image
             src={coverArt.url}
             width={200}
@@ -29,17 +30,19 @@ export const ReleaseCard = ({ data }: ReleaseCardProps) => {
             layout="responsive"
           />
           {isUnreleased && (
-            <ReleaseDate>{formatDate(releaseDate, locale)}</ReleaseDate>
+            <Styled.ReleaseDate>
+              {formatDate(releaseDate, locale)}
+            </Styled.ReleaseDate>
           )}
-        </ImageWrapper>
+        </Styled.ImageWrapper>
       </Link>
       <Link href={`/releases/${slug}`} passHref>
-        <TrackTitle title={title}>{title}</TrackTitle>
+        <Styled.TrackTitle title={title}>{title}</Styled.TrackTitle>
       </Link>
 
       <ArtistRowList data={artists} />
 
       <PlayButton track={data} />
-    </Container>
+    </Styled.Container>
   )
 }

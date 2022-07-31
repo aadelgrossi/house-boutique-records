@@ -1,15 +1,7 @@
-import { gql } from 'graphql-request'
+import { gql } from '@apollo/client'
 
-import graphCmsClient from '~/lib/graphCmsClient'
-
-import {
-  ArtistsQueryResponse,
-  ArtistSingleQueryResponse,
-  ArtistSingleQueryParams
-} from './types'
-
-const ALL_ARTISTS = gql`
-  query {
+export const ALL_ARTISTS = gql`
+  query allArtists {
     artists {
       id
       name
@@ -21,14 +13,23 @@ const ALL_ARTISTS = gql`
   }
 `
 
-const SINGLE_ARTIST = gql`
+export const ARTISTS_SLUGS = gql`
+  query artistsSlugs {
+    artists {
+      slug
+    }
+  }
+`
+
+export const SINGLE_ARTIST = gql`
   query singleArtist($slug: String!, $locale: Locale!) {
     artist(where: { slug: $slug }) {
       name
       localizations(includeCurrent: true, locales: [$locale]) {
         bio {
-          html
+          raw
           text
+          markdown
         }
         locale
       }
@@ -60,17 +61,3 @@ const SINGLE_ARTIST = gql`
     }
   }
 `
-
-export const fetchArtists = async (): Promise<ArtistsQueryResponse> => {
-  return await graphCmsClient.request<ArtistsQueryResponse>(ALL_ARTISTS)
-}
-
-export const fetchSingleArtist = async ({
-  slug,
-  locale = 'pt'
-}: ArtistSingleQueryParams): Promise<ArtistSingleQueryResponse> => {
-  return await graphCmsClient.request<ArtistSingleQueryResponse>(
-    SINGLE_ARTIST,
-    { slug, locale }
-  )
-}
