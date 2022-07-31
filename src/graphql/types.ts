@@ -26,5 +26,5 @@ export interface ReleaseQueryVariables {
   genre?: string
   first?: number
   skip?: number
-  query: string
+  query?: string
 }

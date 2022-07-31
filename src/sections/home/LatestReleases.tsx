@@ -5,7 +5,7 @@ import { FaChevronRight } from 'react-icons/fa'
 
 import { Badge, ReleaseCard } from '~/components'
 import { ReleaseCardsSkeleton } from '~/components/Skeleton'
-import { ALL_RELEASES } from '~/graphql'
+import { RELEASED } from '~/graphql'
 import { ReleaseQueryVariables } from '~/graphql/types'
 import { useTranslation } from '~/hooks'
 import { Release } from '~/types'
@@ -21,8 +21,8 @@ export const LatestReleases = () => {
   const { data, loading } = useQuery<
     LatestReleasesResponse,
     ReleaseQueryVariables
-  >(ALL_RELEASES, {
-    variables: { date, first: 4, skip: 1, query: '', genre: '' }
+  >(RELEASED, {
+    variables: { date, skip: 1, first: 4 }
   })
 
   const { t } = useTranslation()

@@ -65,17 +65,37 @@ export const UPCOMING_RELEASES = gql`
   }
 `
 
+export const RELEASED = gql`
+  query released($first: Int, $skip: Int, $date: Date!) {
+    releases(
+      where: { releaseDate_lt: $date }
+      first: $first
+      skip: $skip
+      orderBy: releaseDate_DESC
+    ) {
+      id
+      title
+      slug
+      releaseDate
+      artists {
+        id
+        name
+        slug
+      }
+      coverArt {
+        url
+      }
+      audioPreview {
+        url
+      }
+    }
+  }
+`
+
 export const ALL_RELEASES = gql`
-  query allReleases(
-    $query: String
-    $date: Date
-    $genre: String
-    $first: Int
-    $skip: Int
-  ) {
+  query allReleases($query: String, $genre: String, $first: Int, $skip: Int) {
     releases(
       where: {
-        releaseDate_lte: $date
         genres_some: { name_contains: $genre }
         OR: [
           { title_contains: $query }
