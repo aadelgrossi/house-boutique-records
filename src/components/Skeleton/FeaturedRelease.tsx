@@ -1,7 +1,7 @@
 import ContentLoader from 'react-content-loader'
 import { useTheme } from 'styled-components'
 
-export const Featured = () => {
+export const FeaturedSkeleton = () => {
   const { colors } = useTheme()
 
   return (

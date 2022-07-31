@@ -6,7 +6,7 @@ export const Container = styled.div`
   flex-wrap: wrap;
 `
 
-export const Artist = styled.a`
+export const ArtistLink = styled.a`
   font-size: 1em;
   font-weight: 300;
   text-transform: none;

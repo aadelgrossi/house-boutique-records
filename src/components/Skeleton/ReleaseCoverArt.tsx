@@ -1,7 +1,7 @@
 import ContentLoader from 'react-content-loader'
 import { useTheme } from 'styled-components'
 
-export const ReleaseCover = () => {
+export const ReleaseCoverSkeleton = () => {
   const { colors } = useTheme()
 
   return (

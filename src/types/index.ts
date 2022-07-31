@@ -1,11 +1,17 @@
 interface RootType {
   id: string
 }
-interface Artist extends RootType {
+
+interface RichText {
+  text: string
+  markdown: string
+}
+
+export interface Artist extends RootType {
   name: string
   slug: string
   localizations: Array<{
-    bio: Markdown
+    bio: RichText
     locale: string
   }>
   artistPlatforms: Array<{
@@ -22,17 +28,12 @@ interface Asset {
   url: string
 }
 
-interface Markdown {
-  html: string
-  text: string
-}
-
-interface Release extends RootType {
+export interface Release extends RootType {
   title: string
   localizations: Array<{
-    description: Markdown
+    description: RichText
   }>
-  description: Markdown
+  description: RichText
   slug: string
   releaseDate: string
   artists: Artist[]
@@ -42,6 +43,6 @@ interface Release extends RootType {
   genres: Genre[]
 }
 
-interface Genre extends RootType {
+export interface Genre extends RootType {
   name: string
 }

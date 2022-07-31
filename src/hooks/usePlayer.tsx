@@ -7,14 +7,14 @@ import {
   useReducer
 } from 'react'
 
+import { Release } from '~/types'
+
 interface PlayerContextData {
   state: State
   dispatch: Dispatch<Action>
 }
 
-export const PlayerContext = createContext<PlayerContextData>(
-  {} as PlayerContextData
-)
+export const PlayerContext = createContext({} as PlayerContextData)
 
 type Action = {
   name: 'load' | 'play' | 'pause'
@@ -57,8 +57,4 @@ export const PlayerProvider = ({ children }: { children: ReactNode }) => {
   )
 }
 
-export const usePlayer = (): PlayerContextData => {
-  const context = useContext(PlayerContext)
-
-  return context
-}
+export const usePlayer = () => useContext(PlayerContext)

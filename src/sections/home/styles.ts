@@ -73,7 +73,8 @@ export const ReleasesContainer = styled.section`
   display: flex;
   justify-content: center;
   width: 100%;
-  padding: 6rem max(1rem, 5vw) 3rem;
+  margin: 6rem 0;
+  padding: 0 2rem;
 
   @media (min-width: 1024px) {
     align-items: flex-start;

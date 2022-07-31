@@ -1,7 +1,7 @@
 import ContentLoader from 'react-content-loader'
 import { useTheme } from 'styled-components'
 
-export const Cards = () => {
+export const ReleaseCardsSkeleton = () => {
   const { colors } = useTheme()
 
   return (

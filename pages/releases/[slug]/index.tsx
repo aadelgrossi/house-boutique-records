@@ -1,28 +1,19 @@
 import { ParsedUrlQuery } from 'querystring'
 
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import { GetStaticPaths, GetStaticProps } from 'next'
 import { NextSeo } from 'next-seo'
-import Head from 'next/head'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
-import rehypeRaw from 'rehype-raw'
 
+import { SINGLE_RELEASE, RELATED_RELEASES, RELEASES_SLUGS } from '~/graphql'
 import {
-  Button,
-  ReleaseCard,
-  ArtistRowList,
-  PlayButton,
-  ContainerBox,
-  ReleasesGrid,
-  Badge
-} from '~/components'
-import {
-  fetchReleases,
-  fetchRelatedReleases,
-  fetchSingleRelease
-} from '~/graphql'
+  ReleaseSingleResponse,
+  ReleaseSingleVariables,
+  ReleasesQueryResponse
+} from '~/graphql/types'
 import { useTranslation } from '~/hooks'
-import * as Styled from '~/styles/pages/releases/slug'
+import { apolloClient } from '~/lib/apollo'
+import { ReleasesSlugLayout } from '~/sections/releases/slug'
+import { Release } from '~/types'
 import { formatLongDate } from '~/utils'
 
 interface ReleasePageProps {
@@ -34,9 +25,8 @@ interface Params extends ParsedUrlQuery {
   slug: string
 }
 
-const Release: NextPage<ReleasePageProps> = ({ release, relatedReleases }) => {
-  const { title, artists, localizations, coverArt, link, releaseDate, genres } =
-    release
+const Release = (props: ReleasePageProps) => {
+  const { title, artists, coverArt, releaseDate } = props.release
   const { t } = useTranslation()
   const { locale, query } = useRouter()
 
@@ -66,60 +56,22 @@ const Release: NextPage<ReleasePageProps> = ({ release, relatedReleases }) => {
           ]
         }}
       />
-      <ContainerBox>
-        <Head>
-          <title>{title} | House Boutique Records</title>
-        </Head>
-        <Styled.ReleaseInfo>
-          <Styled.ImageContainer>
-            <Image src={coverArt.url} width={300} height={300} alt={title} />
-          </Styled.ImageContainer>
-          <Styled.Details>
-            <Styled.Genres>
-              {genres.map(({ id, name }) => (
-                <Badge key={id}>{name.replace('_', ' ')}</Badge>
-              ))}
-            </Styled.Genres>
-
-            <Styled.ReleaseTitle>{title}</Styled.ReleaseTitle>
-
-            <ArtistRowList data={artists} fontSize="1rem" />
-
-            <Styled.Description rehypePlugins={[rehypeRaw]}>
-              {localizations[0]?.description?.html}
-            </Styled.Description>
-
-            <PlayButton track={release} />
-
-            <Styled.ReleaseDate>
-              <strong>{t('releaseDate')}</strong>
-              <p>{formatLongDate(releaseDate, locale)}</p>
-            </Styled.ReleaseDate>
-
-            {link && <Button href={link}>{t('streamNow')}</Button>}
-          </Styled.Details>
-        </Styled.ReleaseInfo>
-
-        <Styled.RelatedReleasesContainer>
-          <Styled.RelatedReleasesTitle>
-            {t('relatedReleases')}
-          </Styled.RelatedReleasesTitle>
-          <ReleasesGrid>
-            {relatedReleases?.map(related => (
-              <ReleaseCard key={related.id} data={related} />
-            ))}
-          </ReleasesGrid>
-        </Styled.RelatedReleasesContainer>
-      </ContainerBox>
+      <ReleasesSlugLayout {...props} />
     </>
   )
 }
 
+interface ReleasesSlugsResponse {
+  releases: Pick<Release, 'slug'>[]
+}
+
 export const getStaticPaths: GetStaticPaths = async ({ locales = ['pt'] }) => {
-  const { releases } = await fetchReleases({})
+  const { data } = await apolloClient.query<ReleasesSlugsResponse>({
+    query: RELEASES_SLUGS
+  })
 
   const paths = locales.flatMap(locale =>
-    releases.map(release => ({ params: { slug: release.slug }, locale }))
+    data.releases.map(release => ({ params: { slug: release.slug }, locale }))
   )
 
   return {
@@ -128,17 +80,34 @@ export const getStaticPaths: GetStaticPaths = async ({ locales = ['pt'] }) => {
   }
 }
 
+type RelatedReleasesResponse = ReleasesQueryResponse
+interface RelatedReleasesVariables {
+  slug: string
+  artists?: string[]
+}
+
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const { slug } = params as Params
 
-  const { release } = await fetchSingleRelease({ slug, locale })
+  const { data: releaseResponse } = await apolloClient.query<
+    ReleaseSingleResponse,
+    ReleaseSingleVariables
+  >({ query: SINGLE_RELEASE, variables: { slug, locale } })
 
-  const { artists } = release
+  const { release } = releaseResponse
 
-  const { releases: relatedReleases } = await fetchRelatedReleases({
-    slug,
-    artists: artists.map(a => a.slug)
+  const { data: relatedReleasesResponse } = await apolloClient.query<
+    RelatedReleasesResponse,
+    RelatedReleasesVariables
+  >({
+    query: RELATED_RELEASES,
+    variables: {
+      slug,
+      artists: release.artists.map(artist => artist.slug)
+    }
   })
+
+  const { releases: relatedReleases } = relatedReleasesResponse
 
   return { props: { release, relatedReleases }, revalidate: 60 }
 }
